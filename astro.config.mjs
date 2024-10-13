@@ -20,6 +20,7 @@ export default defineConfig({
 			logo: {
 				src: './public/logo.svg',
 			},
+			customCss: process.env.NO_GRADIENTS ? [] : ['./src/assets/landing.css'],
 			sidebar: [
 				{
 					label: 'Guides',
