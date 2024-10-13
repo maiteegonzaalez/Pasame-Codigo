@@ -8,6 +8,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Pásame el Código',
+			description: 'Una web open source con apuntes y ejercicios resueltos de las diferentes asignaturas que componen el Grado de Enxeñería Informática da Universidade da Coruña.',
 			locales: {
 			  root: {
 				label: 'Español',
@@ -18,7 +19,29 @@ export default defineConfig({
 				github: 'https://github.com/TeenBiscuits/Pasame-Codigo',
 			},
 			logo: {
-				src: './public/logo.svg',
+				src: './src/assets/logo.svg',
+			},
+			favicon: '/favicon.svg',
+			head: [
+				// Agregar un favicon ICO de respaldo para Safari.
+				{
+				tag: 'link',
+				attrs: {
+					rel: 'icon',
+					href: '/favicon.ico',
+					sizes: '32x32',
+				},
+				},
+				{
+				tag: 'meta',
+				attrs: {
+					name: 'author',
+					content: 'Pablo Portas López',
+				},
+				},
+			],
+			editLink: {
+				baseUrl: 'https://github.com/TeenBiscuits/Pasame-Codigo/edit/main/',
 			},
 			customCss: process.env.NO_GRADIENTS ? [] : ['./src/assets/landing.css'],
 			sidebar: [
@@ -34,6 +57,7 @@ export default defineConfig({
 					autogenerate: { directory: 'reference' },
 				},
 			],
+			credits: true, // Lo justo es que todos recibamos reconocimiento
 		}),
 	],
 });
