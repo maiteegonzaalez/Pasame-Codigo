@@ -8,6 +8,12 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Pásame el Código',
+			locales: {
+			  root: {
+				label: 'Español',
+				lang: 'es-ES',
+			  },
+			},
 			social: {
 				github: 'https://github.com/TeenBiscuits/Pasame-Codigo',
 			},
