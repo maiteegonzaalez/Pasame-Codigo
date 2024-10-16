@@ -50,7 +50,10 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/TeenBiscuits/Pasame-Codigo/edit/main/',
 			},
-			customCss: process.env.NO_GRADIENTS ? [] : ['./src/assets/landing.css'],
+			customCss: [
+				//  
+				process.env.NO_GRADIENTS ? '' : './src/assets/custom.css',
+			],
 			sidebar: [
 				{
 					label: 'Guides',
