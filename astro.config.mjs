@@ -16,14 +16,27 @@ export default defineConfig({
 		starlight({
 			title: 'Pásame el Código',
 			description: 'Una web open source con apuntes y ejercicios resueltos de las diferentes asignaturas que componen el Grado de Enxeñería Informática da Universidade da Coruña.',
+			defaultLocale: 'root',
 			locales: {
 			  root: {
 				label: 'Español',
 				lang: 'es-ES',
 			  },
+			  // Locales are work in progress
+			  //'en': {
+			  //  label: 'English',
+			  //  lang: 'en',
+			  //},
+			  //'gl': {
+			  //  label: 'Galego',
+			  //  lang: 'gl-ES',
+			  //},
 			},
 			social: {
 				github: 'https://github.com/TeenBiscuits/Pasame-Codigo',
+				'x.com': 'https://x.com/pabloportasl',
+				linkedin: 'https://www.linkedin.com/in/pabloportaslopez/',
+				email: 'mailto:pablo.portas@udc.es',
 			},
 			logo: {
 				src: './src/assets/logo.svg',
