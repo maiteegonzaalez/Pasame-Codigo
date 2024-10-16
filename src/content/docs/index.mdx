@@ -1,36 +1,51 @@
 ---
 title: Bienvenido a Pásame el Código
 description: Una web open source con apuntes y ejercicios resueltos de las diferentes asignaturas que componen el Grado de Enxeñería Informática da Universidade da Coruña.
+editUrl: false
 template: splash
 hero:
   tagline: Una web open source con apuntes y ejercicios resueltos de las diferentes asignaturas que componen el Grado de Enxeñería Informática da Universidade da Coruña.
   image:
+    alt: Un logo azul flotante, formado por dos corchetes que envuelven una P y una C.
     file: ../../assets/logo.svg
   actions:
-    - text: ¡Pásame el Código!
+    - text: ¡Vamos a ello!
       link: /guides/example/
       icon: right-arrow
     - text: Enséñame el código
       link: https://github.com/TeenBiscuits/Pasame-Codigo
       icon: external
       variant: minimal
+      attrs:
+        rel: me
+credits: false
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import AboutMe from '/src/components/about-me.astro';
 
-## Next steps
+
+## Nuestras asignaturas
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Programación I & II" icon="seti:c">
+		C Explicado de 0. Apuntes, boletines resueltos y ejemplos para dominar el lenguaje de Programación C.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Diseño de Software" icon="seti:java">
+		Domina Java por fin. Explicado con ejemplos y código para usar.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Paradigmas de la Programación" icon="seti:ocaml">
+		"OCaml explicado para tontos" Un lenguaje fuertemente tipado no tiene porque ser complicado.
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Más que están por venir..." icon="seti:notebook">
+    Esta web se encuentra bajo desarrollo activo, muchos más cosas están por venir.
+  </Card>
 </CardGrid>
+
+<AboutMe>
+
+```bash
+// Made with love by Pablo Portas López
+```
+
+</AboutMe>
