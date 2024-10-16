@@ -69,15 +69,38 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Comienza aquí',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{
+							slug: 'intro/readme',
+						},
+						{
+							slug: 'intro/indice',
+						},
+						{
+							slug: 'intro/contribuir'
+						},
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Programación I',
+					collapsed: true,
+					autogenerate: { directory: 'prouno' },
+				},
+				{
+					label: 'Programación II',
+					collapsed: true,
+					autogenerate: { directory: 'prodos' },
+				},
+				{
+					label: 'Diseño de Software',
+					collapsed: true,
+					autogenerate: { directory: 'deese' },
+				},
+				{
+					label: 'Paradigmas de la Programación',
+					collapsed: true,
+					autogenerate: { directory: 'pepe' },
 				},
 			],
       }),
