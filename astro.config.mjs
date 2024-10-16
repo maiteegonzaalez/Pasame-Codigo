@@ -2,9 +2,16 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
+// Vercel Adapter
+import vercel from '@astrojs/vercel/serverless';
+
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://pc.pablopl.dev',
+  site: 'https://pc.pablopl.dev',
+  output: 'server',
+  adapter: vercel({
+    webAnalytics: { enabled: true }
+  }),
 	integrations: [
 		starlight({
 			title: 'Pásame el Código',
@@ -57,7 +64,6 @@ export default defineConfig({
 					autogenerate: { directory: 'reference' },
 				},
 			],
-			credits: true, // Lo justo es que todos recibamos reconocimiento
-		}),
+      }),
 	],
 });
