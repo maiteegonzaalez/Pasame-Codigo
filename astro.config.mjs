@@ -106,10 +106,12 @@ export default defineConfig({
 						},
 						{
 							label: 'Apuntes',
+							badge: { text: 'Nuevo', variant: 'note' },
 							autogenerate: { directory: 'prouno/apuntes' },
 						},
 						{
 							label: 'Boletines',
+							badge: { text: 'Migración', variant: 'caution' },
 							autogenerate: { directory: 'prouno/boletines' },
 						},
 					],
@@ -123,21 +125,20 @@ export default defineConfig({
 						},
 						{
 							label: 'Apuntes',
+							badge: { text: 'Migración', variant: 'caution' },
 							autogenerate: { directory: 'prodos/apuntes' },
-						},
-						{
-							label: 'Boletines',
-							autogenerate: { directory: 'prodos/boletines' },
 						},
 					],
 				},
 				{
 					label: 'Diseño de Software',
+					badge: { text: 'WIP', variant: 'caution' },
 					collapsed: true,
 					autogenerate: { directory: 'deese' },
 				},
 				{
 					label: 'Paradigmas de la Programación',
+					badge: { text: 'WIP', variant: 'caution' },
 					collapsed: true,
 					autogenerate: { directory: 'pepe' },
 				},
