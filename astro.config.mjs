@@ -5,9 +5,6 @@ import starlight from '@astrojs/starlight';
 import starlightHeadingBadges from 'starlight-heading-badges'
 // Mermaid Support
 import { rehypeMermaid } from "@beoe/rehype-mermaid";
-import { getCache } from "@beoe/cache";
-
-const cache = await getCache();
 
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
@@ -155,7 +152,7 @@ export default defineConfig({
     rehypePlugins: [
       [
         rehypeMermaid,
-        { class: "not-content", strategy: "img-class-dark-mode", cache },
+        { class: "not-content", strategy: "img-class-dark-mode" },
       ],
     ],
   },
