@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+// Plugin Heading Badges
+import starlightHeadingBadges from 'starlight-heading-badges'
 
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
@@ -103,6 +105,7 @@ export default defineConfig({
 					autogenerate: { directory: 'pepe' },
 				},
 			],
+			plugins: [starlightHeadingBadges()],
 		}),
 	],
 });
