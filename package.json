@@ -21,5 +21,8 @@
     "starlight-heading-badges": "^0.3.0",
     "starlight-showcases": "^0.2.0",
     "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.1"
   }
 }
