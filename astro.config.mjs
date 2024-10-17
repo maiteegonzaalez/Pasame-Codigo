@@ -100,12 +100,36 @@ export default defineConfig({
 				{
 					label: 'Programación I',
 					collapsed: true,
-					autogenerate: { directory: 'prouno' },
+					items: [
+						{
+							slug: 'prouno/indice',
+						},
+						{
+							label: 'Apuntes',
+							autogenerate: { directory: 'prouno/apuntes' },
+						},
+						{
+							label: 'Boletines',
+							autogenerate: { directory: 'prouno/boletines' },
+						},
+					],
 				},
 				{
 					label: 'Programación II',
 					collapsed: true,
-					autogenerate: { directory: 'prodos' },
+					items: [
+						{
+							slug: 'prodos/indice',
+						},
+						{
+							label: 'Apuntes',
+							autogenerate: { directory: 'prodos/apuntes' },
+						},
+						{
+							label: 'Boletines',
+							autogenerate: { directory: 'prodos/boletines' },
+						},
+					],
 				},
 				{
 					label: 'Diseño de Software',
