@@ -8,6 +8,8 @@
 
 <div align="center">
 
+```bash
 // Made with love by Pablo Portas López
+```
 
 </div>
