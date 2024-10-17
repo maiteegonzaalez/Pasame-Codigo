@@ -5,12 +5,31 @@ prev:
   label: Índice de Asignaturas
 ---
 
-## Mermaid Support :badge[WIP]{variant=danger}
+import { LinkCard } from '@astrojs/starlight/components';
 
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
+## Apuntes
+
+<LinkCard
+  title="Bloque 1 - Conceptos Básicos"
+  href="/prouno/apuntes/b1-conceptos-basicos"
+  description="Algoritmos, lenguajes de programación, programas y sus elementos, tipos de datos y operadores, entrada y salida (printf / scanf), conceptos básicos de macros e introducción a los punteros."
+/>
+<LinkCard
+  title="Bloque 2 - Control de Flujo"
+  href="/prouno/apuntes/b2-control-de-flujo"
+  description="Bucles (while / do while / for), Condicionales (if / else / switch) y el Teorema de Böhm y Jacopini (o de la programación estructurada)"
+/>
+<LinkCard
+  title="Bloque 3 - Subprogramas"
+  href="/prouno/apuntes/b3-subprogramas"
+  description="Funciones, recursividad y retorno de datos. Divide y vencerás."
+/>
+<LinkCard
+  title="Bloque 4 - Estructuras de Datos"
+  href="/prouno/apuntes/b4-estructuras-de-datos"
+  description="Arrays, registros, cadenas de caracteres y algoritmos de búsqueda y ordenación."
+/>
+
+
+## Boletines
+
