@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+// Mermaid Support
+import rehypeMermaid from "rehype-mermaid";
 
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
@@ -12,25 +14,28 @@ export default defineConfig({
   adapter: vercel({
     webAnalytics: { enabled: true }
   }),
+  markdown: {
+	rehypePlugins: [[rehypeMermaid, { strategy: "img-svg", dark: true }]],
+  },
 	integrations: [
 		starlight({
 			title: 'Pásame el Código',
 			description: 'Una web open source con apuntes y ejercicios resueltos de las diferentes asignaturas que componen el Grado de Enxeñería Informática da Universidade da Coruña.',
 			defaultLocale: 'root',
 			locales: {
-			  root: {
+				root: {
 				label: 'Español',
 				lang: 'es-ES',
-			  },
-			  // Locales are work in progress
-			  //'en': {
-			  //  label: 'English',
-			  //  lang: 'en',
-			  //},
-			  //'gl': {
-			  //  label: 'Galego',
-			  //  lang: 'gl-ES',
-			  //},
+				},
+				// Locales are work in progress
+				//'en': {
+				//  label: 'English',
+				//  lang: 'en',
+				//},
+				//'gl': {
+				//  label: 'Galego',
+				//  lang: 'gl-ES',
+				//},
 			},
 			social: {
 				github: 'https://github.com/TeenBiscuits/Pasame-Codigo',
@@ -103,6 +108,6 @@ export default defineConfig({
 					autogenerate: { directory: 'pepe' },
 				},
 			],
-      }),
+		}),
 	],
 });
