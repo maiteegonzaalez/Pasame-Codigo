@@ -17,7 +17,7 @@ const ogImageAlt = 'Una web open source con apuntes y ejercicios resueltos de la
 // https://astro.build/config
 export default defineConfig({
   site: 'https://pc.pablopl.dev',
-  output: 'hybrid',
+  output: 'server',
   adapter: vercel({
     webAnalytics: { enabled: true }
   }),
