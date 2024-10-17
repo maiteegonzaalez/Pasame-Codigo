@@ -1,4 +1,4 @@
-# Pásame el Código
+[![Pásame el Código](./public/og.jpg)](https://pc.pablopl.dev)
 
 > [!IMPORTANT]  
 > Este proyecto esta bajo desarrollo activo.
@@ -8,6 +8,6 @@
 
 <div align="center">
 
-Develop with ♥️ by _Pablo Portas López_
+// Made with love by Pablo Portas López
 
 </div>

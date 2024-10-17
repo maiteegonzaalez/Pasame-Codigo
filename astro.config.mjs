@@ -7,6 +7,11 @@ import starlightHeadingBadges from 'starlight-heading-badges'
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
 
+// Og Image Link
+const site = 'https://pc.pablopl.dev/';
+const ogUrl = new URL('og.jpg?v=1', site).href;
+const ogImageAlt = 'Una web open source con apuntes y ejercicios resueltos de las diferentes asignaturas que componen el Grado de Enxeñería Informática da Universidade da Coruña.';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://pc.pablopl.dev',
@@ -60,6 +65,14 @@ export default defineConfig({
 					name: 'author',
 					content: 'Pablo Portas López',
 				},
+				},
+				{
+					tag: 'meta',
+					attrs: { property: 'og:image', content: ogUrl },
+				},
+				{
+					tag: 'meta',
+					attrs: { property: 'og:image:alt', content: ogImageAlt },
 				},
 			],
 			editLink: {
