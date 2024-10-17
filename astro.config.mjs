@@ -1,8 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-// Mermaid Support
-import rehypeMermaid from "rehype-mermaid";
 
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
@@ -14,9 +12,6 @@ export default defineConfig({
   adapter: vercel({
     webAnalytics: { enabled: true }
   }),
-  markdown: {
-	rehypePlugins: [[rehypeMermaid, { strategy: "img-svg", dark: true }]],
-  },
 	integrations: [
 		starlight({
 			title: 'Pásame el Código',
