@@ -3,8 +3,6 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 // Plugin Heading Badges
 import starlightHeadingBadges from 'starlight-heading-badges'
-// Mermaid Support
-import { rehypeMermaid } from "@beoe/rehype-mermaid";
 
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
@@ -148,12 +146,4 @@ export default defineConfig({
       plugins: [starlightHeadingBadges()],
     }),
   ],
-  markdown: {
-    rehypePlugins: [
-      [
-        rehypeMermaid,
-        { class: "not-content", strategy: "img-class-dark-mode" },
-      ],
-    ],
-  },
 });
