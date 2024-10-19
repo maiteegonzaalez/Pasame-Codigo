@@ -4,7 +4,10 @@ import starlight from '@astrojs/starlight';
 // Plugin Heading Badges
 import starlightHeadingBadges from 'starlight-heading-badges';
 // Mermaid Support
-import rehypeMermaid from 'rehype-mermaid';
+import rehypeMermaid from '@beoe/rehype-mermaid';
+import { getCache } from "@beoe/cache";
+
+const cache = await getCache();
 
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
@@ -149,6 +152,11 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    rehypePlugins: [[rehypeMermaid, { strategy: "img-svg", dark: true }]],
+    rehypePlugins: [
+      [
+        rehypeMermaid,
+        { class: "not-content", strategy: "img-class-dark-mode", cache },
+      ],
+    ],
   },
 });
