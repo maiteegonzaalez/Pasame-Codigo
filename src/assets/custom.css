@@ -62,11 +62,3 @@
 		transform: translatey(0px);
 	}
 }
-
-html[data-theme="light"] .beoe-dark {
-	display: none;
-}
-  
-html[data-theme="dark"] .beoe-light {
-	display: none;
-}
