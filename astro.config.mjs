@@ -2,7 +2,9 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 // Plugin Heading Badges
-import starlightHeadingBadges from 'starlight-heading-badges'
+import starlightHeadingBadges from 'starlight-heading-badges';
+
+import mermaid from 'mermaid';
 
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
