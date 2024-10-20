@@ -1,11 +1,8 @@
 ---
-export interface Props {
-  title?: string;
-}
-const { title = "" } = Astro.props;
 ---
+
 <script>
-    import mermaid from "mermaid";
+    import mermaid from 'mermaid';
     // Postpone mermaid initialization
     mermaid.initialize({ startOnLoad: false });
 
@@ -44,17 +41,27 @@ const { title = "" } = Astro.props;
     // Wait for the DOM to be fully loaded
     document.addEventListener("DOMContentLoaded", async () => {
       extractMermaidCode();
-      mermaid.initialize({ startOnLoad: true });
+      applyTheme();
     });
+
+    const applyTheme = () => {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+      mermaid.initialize({
+        theme,
+        startOnLoad: true
+      });
+    }
+
 </script>
 
 <figure class="expandable-diagram">
-    <figcaption>{title}</figcaption>
   
     <div class="diagram-content">Loading diagram...</div>
   
+    <!--  Devido a la implementación es necesario que exista 
+          un code block para extaer de el código de dentro  -->
     <details>
-      <summary>Source</summary>
+      <summary>Código</summary>
       <slot />
     </details>
   </figure>
