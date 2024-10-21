@@ -3,6 +3,7 @@ title: Bloque 2 - Control de Flujo
 description: Bucles (while / do while / for), Condicionales (if / else / switch) y el Teorema de Böhm y Jacopini (o de la programación estructurada)
 ---
 
+import Mermaid from "@components/Mermaid.astro";
 
 ### Teorema de Böhm y Jacopini (o de la programación estructurada)
 
@@ -103,6 +104,7 @@ if (/* Expresión booleana */) {
 }
 ```
 
+<Mermaid>
 ```mermaid
 flowchart TD
     I(["Inicio"]) --> Instrucción1 --> C{"¿Expresión booleana?"}
@@ -110,6 +112,7 @@ flowchart TD
     C -->|Falso| Instrucción3 --> Instrucción4
     Instrucción4 --> F(["Fin"])
 ```
+</Mermaid>
 
 #### Operador terciario
 

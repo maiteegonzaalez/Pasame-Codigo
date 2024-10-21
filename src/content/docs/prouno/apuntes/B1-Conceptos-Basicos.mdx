@@ -3,6 +3,8 @@ title: Bloque 1 - Conceptos Básicos
 description: Algoritmos, lenguajes de programación, programas y sus elementos, tipos de datos y operadores, entrada y salida (printf / scanf), conceptos básicos de macros e introducción a los punteros.
 ---
 
+import Mermaid from "@components/Mermaid.astro";
+
 
 La **programación** busca resolver **problemas** mediante la construcción de **programas** ejecutables en un *
 *computador**.
@@ -733,6 +735,7 @@ Las direcciones se pueden almacenar en variables de puntero especiales.
 - Cuando se almacena la dirección de una variable en una variable de puntero se dice que la variable puntero apunta a la
   otra variable.
 
+<Mermaid>
 ```mermaid
 flowchart LR
     subgraph Puntero
@@ -745,6 +748,7 @@ flowchart LR
 
     Dirección --> Variable
 ```
+</Mermaid>
 
 ### Declaración de punteros
 
