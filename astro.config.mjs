@@ -4,6 +4,10 @@ import starlight from '@astrojs/starlight';
 // Plugin Heading Badges
 import starlightHeadingBadges from 'starlight-heading-badges';
 
+// Support for MathJax
+import remarkMath from 'remark-math';
+import rehypeMathJax from 'rehype-mathjax';
+
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
 
@@ -146,4 +150,8 @@ export default defineConfig({
       plugins: [starlightHeadingBadges()],
     }),
   ],
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeMathJax],
+  },
 });
