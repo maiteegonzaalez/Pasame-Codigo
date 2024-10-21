@@ -1,4 +1,16 @@
 ---
+// Esta implentación de este componente es temporal, mi mejor intento por taer diagramas
+// de Mermaid.js a esta web. Existen otras implementaciones nativas como:
+// - https://github.com/withastro/starlight/discussions/1259#discussioncomment-9300105
+// - https://astro-digital-garden.stereobooster.com/recipes/mermaid-diagrams-in-markdown/
+// Pero requieren el uso de Playwright que no puede ser desplegado en Vercel
+// Mientras se busca una implementación más óptima se esta usando esta.
+// - https://xkonti.tech/blog/astro-mermaid-mdx/
+
+// Problemas con esta implementación:
+// - La necesidad de un codeblock oculto para extaer el código
+// - La no actualización del diagrama con el cambio de tema, sin una recarga completa
+// - La carga de javascript inecesario
 ---
 
 <script>
@@ -44,6 +56,7 @@
       applyTheme();
     });
 
+    // Función para aplicar el tema de la página en los diagramas
     const applyTheme = () => {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
       mermaid.initialize({
@@ -56,10 +69,8 @@
 
 <figure class="expandable-diagram">
   
-    <div class="diagram-content">Loading diagram...</div>
+    <div class="diagram-content">Cargando diagrama...</div>
   
-    <!--  Devido a la implementación es necesario que exista 
-          un code block para extaer de el código de dentro  -->
     <details>
       <summary>Código</summary>
       <slot />
