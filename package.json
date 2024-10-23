@@ -21,6 +21,7 @@
     "sharp": "^0.32.5",
     "starlight-heading-badges": "^0.3.0",
     "starlight-showcases": "^0.2.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
   }
 }
