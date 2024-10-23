@@ -4,6 +4,9 @@ description: Arrays, registros, cadenas de caracteres y algoritmos de búsqueda 
 ---
 
 
+
+> Arrays, registros, cadenas de caracteres y algoritmos de búsqueda y ordenación.
+
 ## Tipos Estructurados
 
 Las estructuras de datos pueden ser:
@@ -136,8 +139,11 @@ comportamiento del programa no está definido.
 La función `sizeof()` permite determinar el tamaño de un array
 en _bytes_.
 
-> Si `a` es una matriz de 10 enteros, entonces `sizeof(a)` suele ser 40 (asumiendo que cada entero requiere cuatro
-_bytes_).
+:::note
+
+Si `a` es una matriz de 10 enteros, entonces `sizeof(a)` suele ser 40 (asumiendo que cada entero requiere cuatro _bytes_).
+
+:::
 
 Al dividir el tamaño de la matriz por el tamaño del elemento, se obtiene la longitud de la matriz:
 
@@ -204,7 +210,11 @@ El valor de una cadena se escribe entre dobles comillas `""`.
 
 Todas las cadenas en C terminan con el carácter nulo `\0`.
 
-> La cadena `"Hola"` se corresponde con: `{'H','o','l','a','\0'}`
+:::note
+
+La cadena `"Hola"` se corresponde con: `{'H','o','l','a','\0'}`
+
+:::
 
 #### Declaración e inicialización de cadenas de caracteres
 
@@ -225,9 +235,13 @@ Se puede acceder a cualquier elemento de una cadena como un array.
 La escritura y lectura de cadenas se puede realizar con `printf()` y `scanf()`, usando el especificador de
 conversión: `%s`.
 
-> `scanf()` deja de buscar cuando encuentra un espacio en blanco.
->
-> Al hacer `scanf("%s", cadena)` e introducir: `Hola mundo`, cadena lee solo `Hola`.
+:::note
+
+`scanf()` deja de buscar cuando encuentra un espacio en blanco.
+
+Al hacer `scanf("%s", cadena)` e introducir: `Hola mundo`, cadena lee solo `Hola`.
+
+:::
 
 C permite utilizar funciones específicas de lectura y escritura de strings:
 
@@ -427,7 +441,11 @@ hasta que o bien se encuentre el valor buscado o bien se
 pueda concluir que el elemento buscado no está en el
 array (porque el subarray de búsqueda ha quedado **vacío**).
 
-> Para que este algoritmo funcione, el array tiene que estar ordenado.
+:::note
+
+Para que este algoritmo funcione, el array tiene que estar ordenado.
+
+:::
 
 ```c
 #include <stdio.h>

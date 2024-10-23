@@ -5,6 +5,8 @@ description: Bucles (while / do while / for), Condicionales (if / else / switch)
 
 import Mermaid from "@components/Mermaid.astro";
 
+> Bucles (while / do while / for), Condicionales (if / else / switch) y el Teorema de Böhm y Jacopini (o de la programación estructurada)
+
 ### Teorema de Böhm y Jacopini (o de la programación estructurada)
 
 La programación estructurada se basa en programas propios que tienen **un solo punto de entrada** y **un solo punto de
@@ -47,10 +49,13 @@ Corresponde a un simple `;` sin nada que lo preceda.
 
 La instrucción `goto` permite saltar a otro pundo del programa maracado con una etiqueta.
 
-> Su utilización está **prohibida** dentro de una programación
-> estructurada.
->
-> Si se quiere alterar el orden de ejecución secuencial se puede realizar con instrucciones condicionales.
+:::caution
+
+Su utilización está **prohibida** dentro de una programación estructurada.
+
+Si se quiere alterar el orden de ejecución secuencial se puede realizar con instrucciones condicionales.
+
+:::
 
 ## Instrucciones estructuradas
 
@@ -245,8 +250,12 @@ La variable de control debe ser de un tipo **ordinal**, así como su valor inici
 
 La comprobación de final de bucle se realiza **antes** de ejecutarse las acciones.
 
-> En `C99`, la primera expresión en una instrucción `for` puede reemplazarse por una declaración.
-> - Una variable declarada de esta forma solo es accesible desde dentro del cuerpo del bucle.
+:::note
+
+En `C99`, la primera expresión en una instrucción `for` puede reemplazarse por una declaración.
+ - Una variable declarada de esta forma solo es accesible desde dentro del cuerpo del bucle.
+
+:::
 
 ##### Bucles contadores
 

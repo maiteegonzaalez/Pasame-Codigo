@@ -5,39 +5,28 @@ description: Algoritmos, lenguajes de programación, programas y sus elementos, 
 
 import Mermaid from "@components/Mermaid.astro";
 
+> Algoritmos, lenguajes de programación, programas y sus elementos, tipos de datos y operadores, entrada y salida (printf / scanf), conceptos básicos de macros e introducción a los punteros.
 
 La **programación** busca resolver **problemas** mediante la construcción de **programas** ejecutables en un *
 *computador**.
 
-<deflist>
-<def title="Programa">
+**Programa**
 
 - Conjunto unitario de instrucciones que permite a una computadora realizar funciones diversas, como el tratamiento de
   textos, el diseño de gráficos, la resolución de problemas matemáticos, el manejo de bancos de datos, etc.
 - Codificación en cualquier lenguaje de programación específico de uno o varios algoritmos.
 
-</def>
-
-<def title="Computador">
+**Computador**
 
 Máquina electrónica que, mediante determinados programas, permite almacenar y tratar información, y resolver problemas
 de diversa índole.
-
-</def>
-</deflist>
 
 Los **lenguajes de programación** están diseñados de forma que sólo se requiere que los programadores indiquen sus
 intenciones explícitamente.
 
 ## Algoritmos
 
-<deflist>
-<def title="Algoritmo">
-
 Conjunto ordenado y finito de operaciones que permite hallar la solución de un problema.
-
-</def>
-</deflist>
 
 Condiciones necesarias:
 
@@ -356,7 +345,7 @@ Los tipos de variable y valor tienen que ser los mismos o compatibles.
 
 #### Comentarios
 
-**Comentarios**: sirven para documentar los programas, y no ejecutan ninguna acción.
+Sirven para documentar los programas, y no ejecutan ninguna acción.
 
 Los comentarios pueden intercalarse en cualquier lugar de un
 programa.
@@ -741,11 +730,9 @@ flowchart LR
     subgraph Puntero
         Dirección
     end
-
     subgraph Variable
         vc[Contenido]
     end
-
     Dirección --> Variable
 ```
 </Mermaid>
@@ -800,18 +787,18 @@ También es posible inicializar una variable de puntero en el momento en que se 
 int i, *p = &i;
 ```
 
+<Mermaid>
 ```mermaid
 flowchart LR
     subgraph p
         &i
     end
-
     subgraph i
         vc[?]
     end
-
     &i --> i
 ```
+</Mermaid>
 
 Una vez que una variable de puntero apunta a un objeto, se puede usar el operador `*` (indirección) para acceder a lo
 que está almacenado en el objeto.
