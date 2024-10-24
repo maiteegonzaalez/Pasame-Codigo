@@ -154,4 +154,7 @@ export default defineConfig({
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeMathJax],
   },
+  vite: {
+    assetsInclude: ['**/*.txt','**/*.c','**/*.h']
+  }
 });
