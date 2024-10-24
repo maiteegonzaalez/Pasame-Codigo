@@ -4,7 +4,7 @@ description: La abstracción funcional y de datos. Especificación, construcció
 ---
 
 import Mermaid from "@components/Mermaid.astro";
-import { Code, Steps } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
 import { ShowcaseProfile } from 'starlight-showcases';
 
 :::note
@@ -175,22 +175,171 @@ $
 
 ### Rational TAD: El código
 
-
-import RationalMain from '@ejemplos/TAD_Rational/main.c?raw';
-import RationalPointerC from '@ejemplos/TAD_Rational/rational_pointer.c?raw';
-import RationalPointerH from '@ejemplos/TAD_Rational/rational_pointer.h?raw';
-import RationalStructC from '@ejemplos/TAD_Rational/rational_struct.c?raw';
-import RationalStructH from '@ejemplos/TAD_Rational/rational_struct.h?raw';
-import RationalCMakeList from '@ejemplos/TAD_Rational/CMakeLists.txt?raw';
-
 <details>
 <summary>Implementación</summary>
-<Code code={RationalMain} lang='c' title="main.c"/>
-<Code code={RationalPointerC} lang='c' title="rational_pointer.c"/>
-<Code code={RationalPointerH} lang='c' title="rational_pointer.h"/>
-<Code code={RationalStructC} lang='c' title="rational_struct.c"/>
-<Code code={RationalStructH} lang='c' title="rational_struct.h"/>
-<Code code={RationalCMakeList} lang='cmake' title="CMakeLists.txt"/>
+
+```c title="main.c"
+// SPDX-FileCopyrightText: Facultade de Informática de A Coruña
+//
+// SPDX-License-Identifier: CC-BY-4.0
+
+#include <stdio.h>
+
+//#include "rational_struct.h"
+//#include "rational_pointer.h"
+
+int main() {
+    Rational r1, r2, r3, r4, s;
+
+    r1 = createRational(2, 3);
+    r2 = createRational(5, 7);
+
+    r3 = createRational(7, 3);
+    r4 = createRational(5, 4);
+
+    s = sum(r1, r2);
+    printf("The sum is %d/ %d\n", numerator(s), denominator(s));
+    s = sum(r3, r4);
+    printf("The sum is %d/ %d\n", numerator(s), denominator(s));
+}
+```
+```c title="rational_pointer.c"
+// SPDX-FileCopyrightText: Facultade de Informática de A Coruña
+//
+// SPDX-License-Identifier: CC-BY-4.0
+
+#include <stdlib.h>
+#include "rational_pointer.h"
+
+// Operación para crear un racional
+Rational createRational(int n, int d) {
+    Rational temp;
+
+    temp = malloc(sizeof(*temp));
+    temp->num = n;
+    temp->den = d;
+    return temp;
+}
+
+// Operación que retorna el numerador de un racional
+int numerator(Rational r) {
+    return r->num;
+}
+
+// Operación que retorna el denominador de un racional
+int denominator(Rational r) {
+    return r->den;
+}
+
+// Operación que retorna la suma de dos racionales
+Rational sum(Rational r1, Rational r2) {
+    Rational s;
+
+    s = malloc(sizeof(*s));
+    s->num = r1->num * r2->den + r2->num * r1->den;
+    s->den = r1->den * r2->den;
+    return s;
+}
+```
+```c title="rational_pointer.h"
+// SPDX-FileCopyrightText: Facultade de Informática de A Coruña
+//
+// SPDX-License-Identifier: CC-BY-4.0
+
+#ifndef TAD_Rational_RATIONAL_POINTER_H
+#define TAD_Rational_RATIONAL_POINTER_H
+
+typedef struct Data *Rational;
+struct Data {
+    int num;
+    int den;
+};
+
+Rational createRational(int n, int d);
+
+int numerator(Rational r);
+
+int denominator(Rational r);
+
+Rational sum(Rational r1, Rational r2);
+
+#endif // TAD_Rational_RATIONAL_POINTER_H
+```
+```c title="rational_struct.c"
+// SPDX-FileCopyrightText: Facultade de Informática de A Coruña
+//
+// SPDX-License-Identifier: CC-BY-4.0
+
+#include "rational_struct.h"
+
+// Operación para crear un racional
+Rational createRational(int n, int d) {
+    Rational temp;
+    temp.num = n;
+    temp.den = d;
+    return temp;
+}
+
+// Operación que retorna el numerador de un racional
+int numerator(Rational r) {
+    return r.num;
+}
+
+// Operación que retorna el denominador de un racional
+int denominator(Rational r) {
+    return r.den;
+}
+
+// Operación que retorna la suma de dos racionales
+Rational sum(Rational r1, Rational r2) {
+    Rational s;
+
+    s.num = r1.num * r2.den + r2.num * r1.den;
+    s.den = r1.den * r2.den;
+    return s;
+}
+```
+```c title="rational_struct.h"
+// SPDX-FileCopyrightText: Facultade de Informática de A Coruña
+//
+// SPDX-License-Identifier: CC-BY-4.0
+
+#ifndef TAD_Rational_RATIONAL_STRUCT_H
+#define TAD_Rational_RATIONAL_STRUCT_H
+
+typedef struct Data Rational;
+struct Data {
+    int num;
+    int den;
+};
+
+Rational createRational(int n, int d);
+
+int numerator(Rational r);
+
+int denominator(Rational r);
+
+Rational sum(Rational r1, Rational r2);
+
+#endif // TAD_Rational_RATIONAL_STRUCT_H
+```
+```cmake title="CMakeLists.txt"
+# SPDX-FileCopyrightText: Facultade de Informática de A Coruña
+#
+# SPDX-License-Identifier: CC-BY-4.0
+
+cmake_minimum_required(VERSION 3.22)
+project(TAD_Rational)
+
+set(CMAKE_C_STANDARD 99)
+
+add_executable(Rational_struct main.c
+        rational_struct.c
+        rational_struct.h)
+add_executable(Rational_pointer main.c
+        rational_pointer.c
+        rational_pointer.h)
+```
 </details>
 
 <ShowcaseProfile
