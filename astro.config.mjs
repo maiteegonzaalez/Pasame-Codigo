@@ -110,7 +110,6 @@ export default defineConfig({
             },
             {
               label: 'Apuntes',
-              badge: { text: 'Nuevo', variant: 'note' },
               autogenerate: { directory: 'prouno/apuntes' },
             },
             {
@@ -129,7 +128,6 @@ export default defineConfig({
             },
             {
               label: 'Apuntes',
-              badge: { text: 'Migración', variant: 'caution' },
               autogenerate: { directory: 'prodos/apuntes' },
             },
           ],
