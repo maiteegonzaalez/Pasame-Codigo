@@ -82,7 +82,13 @@ flowchart LR
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="createEmptyList.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+void createEmptyList(tList *lista) {
+    lista->indice = LNULL;
+}
 ```
 </details>
 
@@ -147,7 +153,43 @@ flowchart LR
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="insertItem.c"
+// SPDX-FileCopyrightText: 2023 Fernando Álvarez
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+bool insertItem(tItemL item, tPosL pos, tList *lista) {
+
+    tPosL posAux;
+    if (!createNode(&posAux)) {
+
+        return false;
+
+    } else {
+
+        posAux->data = item;
+        posAux->next = LNULL; //por si acaso
+    }
+    if (isEmptyList(*lista)) {
+
+        *lista = posAux;
+    } else if (pos == LNULL) {
+
+        last(*lista)->next = posAux;
+
+    } else if (pos == *lista) {
+
+        posAux->next = pos;
+        *lista = posAux;
+
+    } else {
+
+        posAux->next = pos->next;
+        pos->next = posAux;
+        posAux->data = pos->data;
+        pos->data = item;
+    }
+    return true;
+}
 ```
 </details>
 
@@ -205,7 +247,36 @@ flowchart LR
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="copyList.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+bool copyList(tlist listaDest, tList *listaOrig) {
+    tPosl p, q, r;
+    bool ret = true;
+
+    createEmptyList(listaOrig);
+    if (!isEmptyList(listaDest)) {
+        p = listaDest;
+        while ((p != LNULL) && createNode(&r)) {
+            r->data = p->data;
+            r->next = LNULL;
+            if (p == listaDest) {
+                *listaOrig = r;
+                q = r;
+            } else {
+                q->next = r;
+                q = r;
+            }
+            p = p->next;
+        }
+        if (p != LNULL) {
+            deleteList(listaOrig);
+            ret = false;
+        }
+    }
+    return ret;
+}
 ```
 </details>
 
@@ -256,7 +327,13 @@ flowchart LR
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="updateItem.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+void updateItem(tItem item, tPosL pos, tList *lista) {
+    pos->data = item;
+}
 ```
 </details>
 
@@ -322,7 +399,22 @@ flowchart TB
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="deleteAtPosition.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+void deleteAtPosition(tPosL pos, tList *lista) {
+    tPosl posAux;
+
+    if (pos == *lista)
+        *lista = (*lista)->next;
+    else {
+        for (posAux = *lista; posAux->next != pos; posAux = posAux->next);
+        posAux->next = pos->next;
+    }
+
+    free(pos);
+}
 ```
 </details>
 
@@ -400,7 +492,18 @@ flowchart LR
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="deleteList.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+void deleteList(tList *lista) {
+    tPosL posAux;
+    while (*lista != LNULL) {
+        while (posAux->next != NULL)
+            posAux = posAux->next;
+        free(posAux);
+    }
+}
 ```
 </details>
 
@@ -490,7 +593,15 @@ flowchart TB
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="findItem.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+tPosL findItem(tItem item, tList lista) {
+    tPosL posAux;
+    for (posAux = lista; (posAux != LNULL) && (posAux->data != item); posAux = posAux->next);
+    return posAux;
+}
 ```
 </details>
 
@@ -506,7 +617,13 @@ Salida: Verdadero si la lista está vacía, falso en caso contrario
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="isEmptyList.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+bool isEmptyList(tLIst lista) {
+    return lista == LNULL;
+}
 ```
 </details>
 
@@ -525,7 +642,13 @@ Precondición: Position es una posición válida en la lista
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="getItem.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+tItem getItem(tPosL pos, tList lista) {
+    return pos->data;
+}
 ```
 </details>
 
@@ -542,7 +665,13 @@ Precondición: La lista no está vacía
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="first.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+tPosL first(tList lista) {
+    return lista;
+}
 ```
 </details>
 
@@ -559,7 +688,15 @@ Precondición: La lista no está vacía
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="last.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+tPosL last(tList lista) {
+    tPosL posAux;
+    for (posAux = lista; posAux->next != LNULL; posAux->next);
+    return posAux;
+}
 ```
 </details>
 
@@ -578,7 +715,15 @@ Precondición: Position es una posición válida de la lista
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="previous.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+tPosL previous(tPosL pos, tList L) {
+    tPosL posAux;
+    for (posAux = L; posAux->next != pos; posAux = posAux->next);
+    return posAux;
+}
 ```
 </details>
 
@@ -598,7 +743,13 @@ Precondición: Position es una posición válida de la lista
 <details>
 <summary>Mostrar implementación</summary>
 ```c title="next.c"
+// SPDX-FileCopyrightText: 2024 Eliana Reigada
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
+tPosL next(tPosL pos, tList lista) {
+    return pos->next;
+}
 ```
 </details>
 
@@ -798,6 +949,18 @@ Los están enlazados entre ellos doblemente. Marcando el nodo anterior y siguien
 
 ![Multiordenada.png](../../../../assets/Multiordenada.png)
 
+
+<ShowcaseProfile
+  entries={[
+    {
+      name: 'Eliana Reigada',
+      picture: 'https://avatars.githubusercontent.com/u/160122335?v=4',
+      href: 'https://github.com/elianarl',
+      description:
+        "Código - Copyright © 2024",
+    },
+  ]}
+/>
 <ShowcaseProfile
   entries={[
     {
@@ -805,7 +968,7 @@ Los están enlazados entre ellos doblemente. Marcando el nodo anterior y siguien
       picture: 'https://avatars.githubusercontent.com/u/81629707?v=4',
       href: 'https://github.com/TeenBiscuits',
       description:
-        "Copyright © 2024",
+        "Apuntes - Copyright © 2024",
     },
   ]}
 />
