@@ -3,11 +3,16 @@
 <div align="center">
 
 
-
+[![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
+[![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white)](https://vercel.com)
+[![MDX](https://img.shields.io/badge/MDX-1B1F24.svg?logo=mdx&logoColor=white)](https://www.oracle.com/es/java/)
+[![C](https://img.shields.io/badge/C-A8B9CC.svg?logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![OCaml](https://img.shields.io/badge/OCaml-EC6813.svg?logo=OCaml&logoColor=white)](https://ocaml.org/)
+[![Java](https://img.shields.io/badge/Java-007396.svg?logo=openjdk&logoColor=white)](https://www.oracle.com/es/java/)
 [![Web](https://img.shields.io/website?down_message=offline&up_message=online&label=Web&url=https%3A%2F%2Fpc.pablopl.dev)](https://pc.pablopl.dev)
 [![Pull Request](https://img.shields.io/github/issues-pr-closed/TeenBiscuits/Pasame-Codigo.svg?label=Pull%20Request)](https://github.com/TeenBiscuits/Pasame-Codigo/pulls)
-[![GitHub Contributors](https://img.shields.io/github/contributors/TeenBiscuits/PPasame-Codigo?label=Contributors)](https://github.com/TeenBiscuits/Pasame-Codigo/graphs/contributors)
-[![Stars](https://img.shields.io/github/stars/TeenBiscuits/Pro2324.svg)](https://github.com/TeenBiscuits/Pro2324)
+[![GitHub Contributors](https://img.shields.io/github/contributors/TeenBiscuits/Pasame-Codigo?label=Contributors)](https://github.com/TeenBiscuits/Pasame-Codigo/graphs/contributors)
+[![Stars](https://img.shields.io/github/stars/TeenBiscuits/Pasame-Codigo.svg)](https://github.com/TeenBiscuits/Pasame-Codigo)
 
 </div>
 
