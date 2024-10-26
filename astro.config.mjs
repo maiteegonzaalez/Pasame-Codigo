@@ -136,13 +136,13 @@ export default defineConfig({
         },
         {
           label: 'Diseño de Software',
-          badge: { text: 'WIP', variant: 'caution' },
+          badge: { text: 'WIP', variant: 'danger' },
           collapsed: true,
           autogenerate: { directory: 'deese' },
         },
         {
           label: 'Paradigmas de la Programación',
-          badge: { text: 'WIP', variant: 'caution' },
+          badge: { text: 'WIP', variant: 'danger' },
           collapsed: true,
           autogenerate: { directory: 'pepe' },
         },
