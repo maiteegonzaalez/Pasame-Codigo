@@ -28,12 +28,11 @@
 > [!IMPORTANT]  
 > Este proyecto esta bajo desarrollo activo. Se aceptan contribuciones y se mejorará la experiencia para contribuir.
 
-<!--
-Repobeats - Stats https://repobeats.axiom.co
+<!-- Repobeats - Stats https://repobeats.axiom.co -->
 <div align="center">
-<a href="https://github.com/TeenBiscuits/Pasame-Codigo/pulse"><img src="https://repobeats.axiom.co/api/embed/675ebcf2934ba9390a99ffef8cabc521898b79e5.svg"/></a>
+<a href="https://github.com/TeenBiscuits/Pasame-Codigo/pulse"><img src="https://repobeats.axiom.co/api/embed/a8e143aa3070146b890d78a36acf3f2547e686c1.svg"/></a>
 </div>
--->
+
 
 ## Estrellitas 🌟
 
