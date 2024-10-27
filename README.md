@@ -4,6 +4,7 @@
 
 
 [![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white)](https://vercel.com)
 [![MDX](https://img.shields.io/badge/MDX-1B1F24.svg?logo=mdx&logoColor=white)](https://www.oracle.com/es/java/)
 [![C](https://img.shields.io/badge/C-A8B9CC.svg?logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
