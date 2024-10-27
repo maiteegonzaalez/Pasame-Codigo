@@ -46,6 +46,16 @@ Repobeats - Stats https://repobeats.axiom.co
     </a>
 </div>
 
+## Licencias
+
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://pc.pablopl.dev/">Pásame el Código</a>* por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/TeenBiscuits">Pablo Portas López</a> esta licenciado bajo <a href="https://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""></a></p>
+
+\* Esto aplica a apuntes, tutoriales, logos y otros materiales que sean distribuidos en la web y este repositorio bajo la contribución de cualquiera siempre que no se especifique lo contrario por el autor.
+
+Esto **no aplica** a todo el código publicado en la web, cada 'archivo' ha sido correctamente etiquetado con la licencia bajo la que es compartido. Por otra parte el código, propio, de la página web es distribuido bajo una licencia **GNU GPLv3**.
+
+Puede encontrar una copia de todas las licencias pertinentes en la carpeta [LICENSES](./LICENSES).
+
 <div align="center">
 
 ```bash
@@ -53,3 +63,4 @@ Repobeats - Stats https://repobeats.axiom.co
 ```
 
 </div>
+
