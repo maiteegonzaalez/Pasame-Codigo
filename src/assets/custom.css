@@ -1,16 +1,18 @@
 :root {
 	--blue-hsl: 215, 60%, 60%;
 	--overlay-blur: hsla(var(--blue-hsl), 0.2);
-	--accent-light: 137, 225, 255;
+	--accent-light: 186, 230, 253;
 	--accent-dark: 38, 89, 184;
 	--accent-white: 255, 255, 255;
+	--title-color: 72, 121, 200;
 }
 
 :root[data-theme='light'] {
 	--blue-hsl: 215, 85%, 65%;
-	--accent-light: 87, 189, 223;
+	--accent-light: 2, 132, 199;
 	--accent-dark: 60, 105, 188;
 	--accent-white: 38, 89, 184;
+	--title-color: 72, 121, 200;
 }
 
 [data-has-hero] .page {
@@ -44,6 +46,10 @@
 	background-size: 300%;
 	background-position: 10%;
     padding-bottom: 0.1em;
+}
+
+.astro-7zuczd3f {
+	color: rgb(var(--title-color));
 }
 
 [data-has-hero] .hero > img {
