@@ -11,6 +11,9 @@ import rehypeMathJax from 'rehype-mathjax';
 // Vercel Adapter
 import vercel from '@astrojs/vercel/serverless';
 
+// Partytown Integration
+import partytown from '@astrojs/partytown'
+
 // Og Image Link
 const site = 'https://pc.pablopl.dev/';
 const ogUrl = new URL('og.jpg?v=1', site).href;
@@ -77,6 +80,21 @@ export default defineConfig({
         {
           tag: 'meta',
           attrs: { property: 'og:image:alt', content: ogImageAlt },
+        },
+        {
+          tag: 'script',
+          attrs: {
+            async: true,
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-JHF258ZVQX',
+            type: 'text/partytown',
+          },
+        },
+        {
+          tag: 'script',
+          attrs: {
+            type: 'text/partytown',
+          },
+          content: "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-JHF258ZVQX');",
         },
       ],
       editLink: {
@@ -146,6 +164,11 @@ export default defineConfig({
         },
       ],
       plugins: [starlightHeadingBadges()],
+    }),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
     }),
   ],
   markdown: {
