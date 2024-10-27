@@ -172,7 +172,7 @@ Para describir el lenguaje se utilizan reglas que se construyen con tres tipos d
 
 Definición de un dígito con 10 reglas:
 
-```BNF
+```
 digito ::= '0'.
 digito ::= '1'.
 digito ::= '2'.
@@ -187,13 +187,13 @@ digito ::= '9'.
 
 Definición de un dígito con una única regla:
 
-```BNF
+```
 digito ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'.
 ```
 
 Definición de un número entero:
 
-```BNF
+```
 entero_sin_signo ::= digito {digito}.
 signo ::= '+' | '-'.
 entero ::= [signo] entero_sin_signo.
@@ -201,7 +201,7 @@ entero ::= [signo] entero_sin_signo.
 
 Definición de un identificador:
 
-```BNF
+```
 identificador ::= letra { [ guion_bajo] (letra | digito) }
 ```
 
@@ -272,7 +272,7 @@ Tabla ASCII de 7 bits:
 **Símbolos especiales**: símbolos con un significado especial dentro del lenguaje que se usan para representar
 delimitadores, operadores y otros elementos sintácticos.
 
-```BNF
+```
 special-symbol ::= '+' | '-' | '*' | '/' | '=' | '<' | '>' 
     | '{'  | '}' | '&' | ',' | ':' | ';' | '^' | '(' | ')' 
     | '[' | '' | '<=' | '>=' | '==' | '..' | '!=' 
@@ -306,7 +306,7 @@ else        register    union
 **Identificadores**: son nombres que pueden utilizarse para denominar una función, una constante, una variable, un tipo,
 una función, una interfaz...
 
-```BNF
+```
 underscore ::= '_' .
 identifier ::= letter { [ underscore ] ( letter | digit ) } .
 ```
@@ -317,7 +317,7 @@ El nombre debe ser apropiado y tener un significado adecuado al uso destinado pa
 
 **Constantes**: identificadores que se corresponden a un valor constante que no varía durante la ejecución del programa.
 
-```BNF
+```
 constant-definition ::= identifier '=' constant-expression
 ```
 
