@@ -164,6 +164,9 @@ export default defineConfig({
         },
       ],
       plugins: [starlightHeadingBadges()],
+      components: {
+        SkipLink: './src/components/SkipLink.astro',
+      },
     }),
     partytown({
       config: {
