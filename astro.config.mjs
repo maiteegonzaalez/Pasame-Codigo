@@ -134,7 +134,6 @@ export default defineConfig({
           },
           {
             label: 'Boletines',
-            badge: { text: 'Migración', variant: 'caution' },
             autogenerate: { directory: 'prouno/boletines' },
           },
         ],
