@@ -1,26 +1,984 @@
 ---
 title: Boletín 1 - Conceptos Básicos
 description: Entra y Salida. printf, scanf, gets, define y operaciones artiméticas básicas.
-tableOfContents: false
 ---
 
-import { Aside, LinkButton } from '@astrojs/starlight/components';
 
-<Aside type="caution">
 
-Migración en progreso 📦
+> Entra y Salida. printf, scanf, gets, define y operaciones artiméticas básicas.
 
-<LinkButton href="https://github.com/TeenBiscuits/Pasame-Codigo" variant="secondary" icon="github">
-  ¡Hecha un ojo!
-</LinkButton>
+### Ejercicio 1
 
-<LinkButton href="https://pro2324.pablopl.dev/boletin-1-conceptos-basicos.html" variant="primary" icon="open-book">
-  Ver el Original - Pro2324
-</LinkButton>
+Plantee e implemente un programa en lenguaje C que solicite el nombre y la edad de un usuario por teclado de forma que
+el ordenador le salude indicándole la edad que tiene.
 
-<LinkButton href="/" variant="secondary" icon="right-arrow">
-  Volver al inicio
-</LinkButton>
+```txt "Juan" "19" frame="terminal" title="Ejemplo de Ejecución"
+Introduzca su nombre: Juan
+Introduzca su edad: 19
+¡Buenos días Juan, tiene usted 19 años!
+```
 
-</Aside>
+**PRECONDICIÓN**: el usuario introduce correctamente por teclado los dos datos solicitados (nombre y edad).
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_01.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#define MAX 20 // SE DECLARA EL TAMAÑO MÁXIMO Y SE ASIGNA POSTERIORMENTE EN nombre[MAX]
+// NUNCA SOBREESCRIBIR EL LIMITE, YA QUE SERÍA UN MEMORY OVERFLOW Y ESO ES GRAVISIMO 0 :(
+int main() {
+    char letra = 'A';
+    char nombre[MAX] = "Ana";
+    int edad;
+    // Entrada de Valores
+    puts("Escribe tu nombre en la siguiente linea: ");
+    gets(nombre);
+    printf("Escribe tu edad a continuación: ");
+    scanf("%d", &edad);
+    // Salida en Pantalla
+    printf("Hola %s, eres guapisim@ para tener %d años.",nombre,edad);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 2
+
+Plantee e implemente un programa en que solicite el nombre, apellidos y edad de un usuario por teclado y que le muestre
+el siguiente mensaje por pantalla.
+
+```txt "Apellido" "X" frame="terminal" title=""
+Sr/Sra. Apellido, le faltan aún X años para jubilarse
+```
+
+**NOTA**: Utilice la edad de jubilación como una constante con valor 67 años.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_02.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#define MAX 30
+
+int main() {
+    char nombre[MAX], apellido1[MAX], apellido2[MAX];
+    int edad, edadjubil = 67, tjubil;
+    // Mensajes y Lectura de entrada Intento 2
+    printf("Introduzca su nombre y sus apellidos a continuación: ");
+    scanf("%s %s %s",nombre,apellido1,apellido2);
+    printf("Ahora, introduzca su edad: ");
+    scanf("%d",&edad);
+
+    /*
+    // Mensajes y Lectura de entrada Intento 1
+    printf("Nombre: ");
+    gets(nombre);
+    printf("Primer Apellido: ");
+    gets(apellido1);
+    printf("Segundo Apellido: ");
+    gets(apellido2);
+    */
+
+    // Operación
+    tjubil = edadjubil - edad;
+
+    // Salida en Pantalla
+    printf("Sr/Sra. %s, le faltan aún %d años para jubilarse",apellido1,tjubil);
+    // printf("%s %s %s %d",nombre,apellido1,apellido2,edad);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 3
+
+Plantee e implemente un programa en Lenguaje C que solicite por teclado la base y altura de un triángulo rectángulo y
+muestre por pantalla su superficie. Presente la salida con el siguiente formato:
+
+```txt "XX.XX" "YY.YY" "ZZ.ZZ" frame="terminal" title=""
+La superficie del triángulo de base XX.XX y altura YY.YY es ZZ.ZZ
+```
+
+**PRECONDICIÓN**: los dos datos solicitados (base y altura) introducidos por teclado son correctos.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_03.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#define superficie3(x, y) ((x*y)/2) // Defino la fórmula del area del triángulo
+
+int main() {
+    float base, altura;
+
+    // INPUT
+
+    puts("En la siguiente linea indique los datos solicitados de su triángulo (en metros): ");
+    printf("\t\tBase: ");
+    scanf("%f", &base);
+    printf("\t\tAltura: ");
+    scanf("%f", &altura);
+
+    // OUTPUT
+    printf("\nLa superficie del triángulo de base %.2f m y altura %.2f m es %.2f m.", base, altura,
+           superficie3(base, altura));
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 4
+
+Plantee e implemente un programa en Lenguaje C que solicite por teclado los lados de un rectángulo y muestre por
+pantalla su perímetro. Presente la salida con el siguiente formato:
+
+```txt "XX.XX" "YY.YY" "ZZ.ZZ" frame="terminal" title=""
+El perímetro del rectángulo de base XX.XX y altura YY.YY es ZZ.ZZ
+```
+
+**PRECONDICIÓN**: los dos datos solicitados (base y altura) introducidos por teclado son correctos.
+
+**POSTCONDICIÓN**: El valor del perímetro resultante, al igual que los datos de entrada serán mostrados en formato fijo
+con dos decimales, y todos ellos separados por un espacio en blanco del texto explicativo.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_04.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#define superficie2(x, y) (x*y) // DECLARO LA FÓRMULA DE LA SUPERFICIE DE UN RECTÁNGULO
+
+int main() {
+    float base, altura;
+
+    //INPUT
+    puts("Introduzca, en la siguiente linea, los datos solicitados sobre su rectángulo:");
+    printf("\t\tBase: ");
+    scanf("%f", &base);
+    printf("\t\tAltura: ");
+    scanf("%f", &altura);
+
+    //OUTPUT
+    printf("\nSiendo la base del rectángulo %.2f m y su altura %.2f m, el area del rectángulo es %.2f m.", base, altura,
+           superficie2(base, altura));
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 5
+
+Plantee e implemente un programa en Lenguaje C que solicite por teclado los
+lados de un rectángulo y muestre por pantalla su superficie.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_05.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#define superficie2(x, y) (x*y) // DECLARO LA FÓRMULA DE LA SUPERFICIE DE UN RECTÁNGULO
+
+int main() {
+    float base, altura;
+
+    //INPUT
+    puts("Introduzca, en la siguiente linea, los datos solicitados sobre su rectángulo:");
+    printf("\t\tBase: ");
+    scanf("%f", &base);
+    printf("\t\tAltura: ");
+    scanf("%f", &altura);
+
+    //OUTPUT
+    printf("\nSiendo la base del rectángulo %.2f m y su altura %.2f m, el area del rectángulo es %.2f m.", base, altura,
+           superficie2(base, altura));
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 6
+
+Plantee e implemente un programa en Lenguaje C que pida el radio de una esfera y calcule su área y su volumen.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_01.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+# define PI 3.14159265359
+# define area(x) (4 * PI * x * x)
+# define volumen(x) ((4/(float)3) * PI * x * x * x)
+
+int main() {
+    // PI = 3.14159265359
+    //double volumen, area;
+    float radio;
+
+    // ENTRADA
+    puts("Introduzca los valores solicitados:");
+    printf("\t\tEl radio de su esfera: ");
+    scanf("%f", &radio); // Para double usar &lf
+
+    // PROCESO
+
+    // ANTES DE CONOCER EL DEFINE
+    //    // No usar 4 / 3, ya que es impreciso. Preferiblemente 4 / 3.0 o 4 / (float)3
+    // volumen = (4 / (float) 3) * PI * r * r * r;
+    // area = 4 * PI * r * r;
+
+    // SALIDA
+    printf("\nEl valor del area %.3f m^2 y el volumen %.3f m^3.\n", area(radio), volumen(radio));
+    printf("Redondeando PI a 3.14159265359");
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 7
+
+Plantee e implemente un programa en Lenguaje C que solicite el precio de un producto (sin IVA) y proporcione por
+pantalla el importe total del producto con IVA incluido.
+
+Suponga un IVA constante del 24% para todos los productos.
+
+```txt "3.57" frame="terminal" title="Ejemplo de Ejecución"
+Precio del producto (sin IVA): 3.57
+El importe total (IVA incluido) es de 4.21€
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_07.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+# define IVA 0.24
+
+int main() {
+    float precioi, preciof;
+    // INPUT
+    printf("Indique a continuación el precio sin IVA de su producto: ");
+    scanf("%f", &precioi);
+
+    // CÁLCULO
+    preciof = precioi * (1 + IVA);
+
+    // OUTPUT
+    printf("El precio de su producto con IVA es %.2f €.", preciof);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 8
+
+Plantee e implemente un programa en Lenguaje C que solicite al usuario su nombre, edad y lo que se ha gastado en cañas y
+en transporte durante una semana (en euros) y muestre por pantalla esos mismos datos y la suma de los gastos.
+
+```txt "Juan" "19" "34" "15" frame="terminal" title="Ejemplo de Ejecución"
+Introduzca usted su nombre: Juan
+Introduzca usted su edad: 19
+Introduzca usted el total de sus gastos semanales en cañas (en euros): 34
+Introduzca usted el total de sus gastos semanales en transporte (en euros): 15
+
+Nombre: Juan
+Edad: 19
+Gasto semanal en cañas: 34€
+Gasto semanal en transporte: 15€
+Total gastos semanales: 49€
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_08.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int edad;
+    char nombre[20];
+    float gcanas, gtransp, gtotal;
+
+    // INPUT
+
+    puts("Indique a continuación los datos solicitados: ");
+    printf("Nombre y Edad (Nombre Edad): ");
+    scanf("%s %d", nombre, &edad);
+    printf("Gasto en Cañas y Gasto en Transporte (G.Cañas G.Transp.): ");
+    scanf("%f %f", &gcanas, &gtransp);
+
+    // CÁLCULO RIDÍCULO
+    gtotal = gcanas + gtransp,
+
+    // OUTPUT
+    printf("\nSu nombre es %s, tiene %d años.\nEl informe de gastos de esta semana es el siguiente:\n\tGasto en Cañas:\t\t\t%.2f €\n\tGasto en Transporte:\t%.2f €\n\t-------------------------------\n\tTotal:\t\t\t\t\t%.2f €",
+           nombre, edad, gcanas, gtransp, gtotal);
+
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 9
+
+Plantee e implemente un programa en Lenguaje C que solicite el nombre, edad, número de hijos y sueldo anual de una
+persona (en euros) y muestre por pantalla la misma información indicando su sueldo mensual en vez del sueldo anual.
+
+```txt "Juan" "19" "3" "15460.26" frame="terminal" title="Ejemplo de Ejecución"
+Introduzca usted su nombre: Juan
+Introduzca usted su edad: 19
+Introduzca usted su número de hijos: 3
+Introduzca usted su sueldo anual (en euros): 15460.26
+
+Nombre: Juan
+Edad: 19
+Número de hijos: 3
+Sueldo mensual: 1288.26€
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_09.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int edad, nhijos;
+    char nombre[20];
+    float sueldoa, sueldom;
+
+    // INPUT
+    puts("Introduzca los datos que a continuación se le solicitan: ");
+    printf("\tSu nombre y edad (Nombre Edad): ");
+    scanf("%s %d", nombre, &edad);
+    printf("\tNúmero de hijos/as: ");
+    scanf("%d", &nhijos);
+    printf("\tSueldo anual (En Euros): ");
+    scanf("%f", &sueldoa);
+
+    // OPERACIÓN
+    sueldom = (sueldoa / 14);
+
+    // OUTPUT
+    printf("\nSu nombre es %s, tiene %d años y %d hijos/as.\nSu sueldo anual es de %.2f €, lo cual, equivale a %.2f € al mes en 14 pagas.",
+           nombre, edad, nhijos, sueldoa, sueldom);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 10
+
+Plantee e implemente un programa en Lenguaje C que calcule el producto escalar de dos vectores en el espacio euclídeo.
+
+```txt "2 4 6" "3 1 9" frame="terminal" title="Ejemplo de Ejecución"
+Coordenadas cartesianas primer vector (separadas por espacio): 2 4 6
+Coordenadas cartesianas segundo vector (separadas por espacio): 3 1 9
+
+Producto escalar: 64
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_10.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+#define productoescalar(vx1,vy1,vz1,vx2,vy2,vz2) ((vx1*vx2)+(vy1*vy2)+(vz1*vz2))
+
+int main() {
+    int x1, y1, z1, x2, y2, z2; // VOY A SUPONER QUE SOLO PUEDE HABER COORDENADAS ENTERAS
+
+    // INPUT
+
+    puts("Introduzca las coordenadas de los vectores para calcular el producto escalar\nde ambos:");
+    printf("\tCoordenadas del primer vector (x y z): ");
+    scanf("%d %d %d",&x1,&y1,&z1);
+    printf("\tCoordenadas del segundo vector (x y z): ");
+    scanf("%d %d %d",&x2,&y2,&z2);
+
+    // OUTPUT
+    printf("\nEl producto escalar de los vectores dados es: %d", productoescalar(x1,y1,z1,x2,y2,z2));
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 11
+
+Plantee e implemente un programa en Lenguaje C que empleando expresiones, convierta un tiempo expresado en segundos al
+formato horas : minutos : segundos.
+
+```txt "3750" frame="terminal" title="Ejemplo de Ejecución"
+Tiempo en segundos: 3750
+
+3750 segundos son 1h : 2m : 30s 
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_11.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int total, horas, minutos, segundos, resto;
+
+    // INPUT
+    printf("Introduzca el tiempo en segundos que desea convertir al formato \"HH:MM:SS\": ");
+    scanf("%d", &total);
+
+    // CÁLCULO
+
+    horas = total / 3600; // DIVISIÓN DE ENTEROS, SIN RESTOS
+    minutos = total / 60 - horas * 60;
+    segundos = total - minutos * 60 - horas * 3600;
+
+    /* // otra opción, la acabo de dar en clase
+    horas = total / 3600;
+    resto = total % 3600; // Acarreo el resto de la división, es decir, el módulo :)
+    minutos = resto / 60;
+    segundos = resto % 60;
+    */
+
+    // OUTPUT
+    printf("El tiempo, en el nuevo formato, es el siguiente: %02dh:%02dm:%02ds",horas,minutos,segundos);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 12
+
+Plantee e implemente un programa en Lenguaje C que muestre por pantalla las 6 primeras filas de un triángulo de Floyd:
+
+```text
+1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15
+16 17 18 19 20 21
+```
+
+**NOTA:** No se deben utilizar bucles en este ejercicio, simplemente sentencias printf con sus correspondientes
+descriptores de formato (ancho) para obtener una salida exactamente igual a la mostrada. No utilice espacios en blanco
+directamente para separar los números.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_12.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    printf("\n1\n");
+    printf("2\t3\n");
+    printf("4\t5\t6\n");
+    printf("7\t8\t9\t10\n");
+    printf("11\t12\t13\t14\t15\n");
+    printf("16\t17\t18\t19\t20\t21\n");
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 13
+
+Plantee e implemente un programa en Lenguaje C que muestre por pantalla una tabla indicando el radio, el perímetro y el
+área de tres círculos cuyo radio es solicitado por teclado. La salida en pantalla debe tener el siguiente formato:
+
+|RADIO|PERIMETRO|AREA|
+|---|---|---|
+|2|12.56|12.56|
+|3|18.86|28.27|
+|4|25.13|50.26|
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_13.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#define PI 3.14159265359 // APROXIMACIÓN DE PI
+#define perimetro(x) (2 * PI * x) // PERIMETRO DEL CÍRCULO
+#define area(x) (PI * x * x) // AREA DEL CÍRCULO
+
+int main() {
+    float r1, r2, r3;
+
+    // INPUT
+    printf("Introduzca los radios de los tres círculos (r1 r2 r3): ");
+    scanf("%f %f %f", &r1, &r2, &r3);
+
+    // OUTPUT
+    printf("\nRADIO\t\t\tPERIMETRO\t\t\tAREA\n");
+    printf("=====\t\t\t=========\t\t\t=====\n");
+    printf("%.2f\t\t\t%.2f\t\t\t\t%.2f\n", r1, perimetro(r1), area(r1));
+    printf("%.2f\t\t\t%.2f\t\t\t\t%.2f\n", r2, perimetro(r2), area(r2));
+    printf("%.2f\t\t\t%.2f\t\t\t\t%.2f\n", r3, perimetro(r3), area(r3));
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 14
+
+Plantee e implemente un programa en Lenguaje C que a partir de la temperatura máxima y mínima diaria de una ciudad en
+grados Fahrenheit (introducidas por teclado) proporcione dichas temperaturas en grados centígrados por pantalla.
+Contemple una salida ordenada en forma de tabla.
+
+```txt "Lugo" "76" "57" frame="terminal" title="Ejemplo de Ejecución"
+Introduzca el nombre de su ciudad : Lugo
+Introduzca la temperatura máxima en grados Fahrenheit: 76
+Introduzca la temperatura mínima en grados Fahrenheit: 57
+
+----------------------------- Lugo 15/09/2019 -----------------------------
+                TMax (ºF)   TMin (ºF)   TMax (ºC)   TMin (ºC)
+                76 ºF       57 ºF       24.44 ºC    13.88 ºC
+---------------------------------------------------------------------------
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_14.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <time.h> // PARA PONER LA FECHA ACTUAL
+
+#define conversionfac(x) ((x - 32) * 5 / 9) // Fórmula de conversión de Fahrenheit a Grados Centígrados
+
+int main() {
+    char ciudad[25];
+    int dia, mes, year; // USADO PARA LA FECHA
+    float tmaxc, tminc, tmaxf, tminf; // T Máxima y Min. en ºC y en ºF
+
+    // INPUT
+    puts("Introduzca los datos solicitados para crear una tabla de temperaturas: ");
+    printf("\tNombre de tu ciudad: ");
+    scanf("%s", ciudad);
+    printf("\t¡RECUERDE TEMPERATURAS EN FAHRENHEIT!\n");
+    printf("\tTemperatura Máxima de Hoy: ");
+    scanf("%f", &tmaxf);
+    printf("\tTemperatura Mínima de Hoy: ");
+    scanf("%f", &tminf);
+
+    // OBTENER EL TIEMPO ACTUAL
+    time_t now; // TIEMPO ARITMÉTICO
+    time(&now); // OBTENER TIEMPO DEL RELOJ DEL SISTEMA
+    struct tm *local = localtime(&now); // CONVERTIR A TIEMPO LOCAL
+    dia = local->tm_mday;            // Día del mes (1 a 31)
+    mes = local->tm_mon + 1;      // Mes del año (0 a 11)
+    year = local->tm_year + 1900;   // Años desde 1900
+
+    // CONVERSIÓN DE ºF A ºC
+    tmaxc = conversionfac(tmaxf);
+    tminc = conversionfac(tminf);
+
+    // OUTPUT
+    printf("-------------------------------------------------- %s %02d/%02d/%4d --------------------------------------------------\n",
+           ciudad, dia, mes, year);
+    printf("\t\t\t\t\t\t\t\t\tTMax ºF\t\tTMin ºF\t\tTMax ºC\t\tTMin ºC\n");
+    printf("\t\t\t\t\t\t\t\t\t%.1f ºF\t\t%.1f ºF\t\t%.1f ºC\t\t%.1f ºC\t\t\n", tmaxf, tminf, tmaxc, tminc);
+    printf("---------------------------------------------------------------------------------------------------------------------\n");
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 15
+
+Un camión transporta T kilogramos de baldosas; se sabe que cada baldosa pesa B kilogramos. Las baldosas se van a
+utilizar para recubrir una superficie rectangular. Plantee e implemente un programa en Lenguaje C que indique el número
+de baldosas que habría en un lado del mayor cuadrado que se pueda recubrir con ésas baldosas, sin romperlas.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_15.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int nbaldosalado, nbaldosatotal;
+    float t, b;
+
+    // INPUT
+    puts("Introduzca los datos solicitados: ");
+    printf("\tKilogramos de baldosas que transporta el camión: ");
+    scanf("%f",&t);
+    printf("\tPeso por baldosa: ");
+    scanf("%f",&b);
+
+    // CÁLCULO
+    nbaldosatotal = (t/b);
+    // TENGO QUE HACER UNA RAÍZ CUADRADA !!!!! NI IDEA DE COMO HACERLO SIN LA LIBRERÍA MATH
+    nbaldosalado = sqrt(nbaldosatotal);
+
+    // OUTPUT
+    printf("\nEn el lado del mayor cuadrado que se puede hacer hay %d baldosas.\n", nbaldosalado);
+    // ESTO LO AÑADO PORQUE ME APETECE
+    int baldosassobrantes = nbaldosatotal - nbaldosalado * nbaldosalado;
+    float porcentajerestantes;
+    porcentajerestantes = (float)baldosassobrantes / (float)nbaldosatotal * 100;
+    printf("\tSobran %d baldosas de %d (un %.2f%%).",baldosassobrantes, nbaldosatotal, porcentajerestantes);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 16
+
+Plantee e implemente un programa en LENGUAJE C para calcular la suma de dos matrices 2x2. Pida los datos oportunos y
+calcule el resultado deseado, mostrándolo después en pantalla.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_16.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    // PARA LAS VARIABLES USO EL SIGUIENTE ESQUEMA DE NOMBRES
+    /*
+     *  ( a1 b1 )   ( a2 b2 )   ( a3 b3 )
+     *  (       ) + (       ) = (       )
+     *  ( c1 d1 )   ( c2 d2 )   ( c3 d3 )
+     */
+    float a1, b1, c1, d1, a2, b2, c2, d2, a3, b3, c3, d3;
+
+    // INPUT
+    puts("A continuación introduzca los valores de cada matriz en el orden especificado: ");
+    printf("\tPrimera matriz (a b / c d): ");
+    scanf("%f %f %f %f", &a1, &b1, &c1, &d1);
+    printf("\tSegunda matriz (a b / c d): ");
+    scanf("%f %f %f %f", &a2, &b2, &c2, &d2);
+
+    // CÁLCULO
+    a3 = a1 + a2;
+    b3 = b1 + b2;
+    c3 = c1 + c2;
+    d3 = d1 + d2;
+
+    // OUTPUT
+    printf("\nEl resultado de la suma de las dos matrices es el siguiente: \n\n");
+    printf("(\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)\n", a1, b1, a2, b2, a3, b3);
+    printf("(\t\t\t\t\t) + (\t\t\t\t\t) = (\t\t\t\t\t)\n");
+    printf("(\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)\n", c1, d1, c2, d2, c3, d3);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 17
+
+Plantee e implemente un programa en Lenguaje C como en el ejercicio anterior, calculando esta vez el producto de las
+matrices leídas.
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_17.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    // PARA LAS VARIABLES USO EL SIGUIENTE ESQUEMA DE NOMBRES
+    /*
+     *  ( a1 b1 )   ( a2 b2 )   ( a3 b3 )
+     *  (       ) * (       ) = (       )
+     *  ( c1 d1 )   ( c2 d2 )   ( c3 d3 )
+     */
+    float a1, b1, c1, d1, a2, b2, c2, d2, a3, b3, c3, d3;
+
+    // INPUT
+    puts("A continuación introduzca los valores de cada matriz en el orden especificado: ");
+    printf("\tPrimera matriz (a b / c d): ");
+    scanf("%f %f %f %f", &a1, &b1, &c1, &d1);
+    printf("\tSegunda matriz (a b / c d): ");
+    scanf("%f %f %f %f", &a2, &b2, &c2, &d2);
+
+    // CÁLCULO
+    // La multiplicación de matrices parece difícil de automatizar o hacer más eficiente
+    a3 = (a1 * a2) + (b1 * c2);
+    b3 = (a1 * b2) + (b1 * d2);
+    c3 = (c1 * a2) + (d1 * c2);
+    d3 = (c1 * b2) + (d1 * d2);
+
+    // OUTPUT
+    printf("\nEl resultado de la multiplicación de las dos matrices es el siguiente: \n\n");
+    printf("(\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)\n", a1, b1, a2, b2, a3, b3);
+    printf("(\t\t\t\t\t) * (\t\t\t\t\t) = (\t\t\t\t\t)\n");
+    printf("(\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)   (\t%03.2f\t%03.2f\t)\n", c1, d1, c2, d2, c3, d3);
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 18
+
+Plantee e implemente un programa en Lenguaje C que solicite a un usuario su nombre, apellidos, sueldo mensual (en euros)
+y el dinero que gasta diariamente en ocio, comida y transporte. A continuación, utilizando descriptores de formato, debe
+mostrar una tabla como la que se indica donde se recoja el % de su sueldo que gasta semanalmente en ocio, comida y
+transporte. Incluya también el total del gasto semanal realizado.
+
+```txt frame="terminal" title="Ejemplo de Ejecución"
+************************************************************************
+*******                     Sonia Rodríguez: 1000€               *******
+            %Ocio               %Comida         %Transporte       %Otros
+             7.5%                    5%             10.34%         2.16%
+*******                                                          *******
+                                                           Gasto semanal
+                                                                    250€
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_18.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+#define MAX 20 // DEFINO MÁXIMO PARA LOS STRINGS DE CARACTERES
+#define porcentaje(x, y) ((x / y) * 100) // FÓRMULA PARA CALCULAR PORCENTAJES
+
+int main() {
+    char nombre[MAX], apellido1[MAX], apellido2[MAX];
+    float sueldomes, gocio, gcomida, gtransporte, gotros, totalsemana;
+
+    // INPUT
+    puts("Introduzca los siguientes datos para elaborar una tabla de gastos: ");
+    printf("\tNombre y Apellidos: ");
+    scanf("%s %s %s", nombre, apellido1, apellido2);
+    // PIDO EL SEGUNDO APELLIDO PARA LUEGO NO IMPRIMIRLO PERO ES LO QUE HAY
+    printf("\tCual es su sueldo mensual (en euros): ");
+    scanf("%f", &sueldomes);
+    printf("\tGastos de esta semana (Introduzca en este orden: Ocio, Comida, Transporte, Otros): ");
+    scanf("%f %f %f %f", &gocio, &gcomida, &gtransporte, &gotros);
+
+    // CÁLCULO
+    totalsemana = gocio + gcomida + gtransporte + gotros;
+    // Los porcentajes los calculo directamente en la tabla.
+
+    // OUTPUT
+    printf("\n***********************************************************************\n");
+    printf("*******\t\t\t\t\t%s %s: %.2f €\t\t\t\t\t*******\n", nombre, apellido1, sueldomes);
+    printf("\t\t\t%%Ocio\t\t\t%%Comida\t\t\t%%Transporte\t\t\t %%Otros\n");
+    printf("\t\t\t%.2f%%\t\t\t%.2f%%\t\t\t%.2f%%\t\t\t\t  %.2f%%\n", porcentaje(gocio, sueldomes),
+           porcentaje(gcomida, sueldomes), porcentaje(gtransporte, sueldomes), porcentaje(gotros, sueldomes));
+    printf("*******\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*******\n");
+    printf("\t\t\t\t\t\t\t\t\t\t\t\t\t\t  Gasto semanal\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%.2f€", totalsemana);
+
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 19
+
+Plantee e implemente un programa en LENGUAJE Cpara controlar la compra diaria. El programa debe pedir los kilos de
+patatas comprados y su precio sin IVA, los kilos de manzanas comprados y su precio sin IVA y cuánto ha pagado por un
+libro que se ha comprado, sin IVA. Suponga que el IVA de los productos alimenticios es del 21% y de los productos de
+cultura 10%. Muestre por pantalla el importe de cada producto y el importe total de la compra según se indica en el
+ejemplo:
+
+```txt "7" "0.69" "4" "1.23" "19" frame="terminal" title="Ejemplo de Ejecución"
+Kg de patatas comprados: 7
+Precio sin IVA del kilo de patatas (en euros): 0.69
+Kg de manzanas comprados: 4
+Precio sin IVA del kilo de patatas (en euros): 1.23
+Importe del libro sin IVA (euros): 19
+
+ * --------------------------------------------------------------------------------------- Ticket 1/1
+ * Patatas              7 kg                0.69€               4.83€               5.84€   (IVA 21%)
+ * Manzanas             4 kg                1.23€               4.92€               5.95€   (IVA 21%)
+ * Libro                1                   19€                 19€                 20.90€  (IVA 10%)
+ * --------------------------------------------------------------------------------------------------
+ * TOTAL                                                                                       32.69€
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_19.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+#define IVA 0.21
+#define IVAC 0.10
+#define precioiva(x) (x * (1+IVA))
+#define precioivac(x) (x * (1+IVAC))
+
+int main() {
+    float kilospatata, preciopatata, totalpreciopatata, kilosmanzana, preciomanzana, totalpreciomanzana, preciolibro, total;
+
+    // INPUT
+    puts("Introduzca a continuación los datos solicitados para realizar el ticket de la compra: ");
+    printf("\tLos kilos de patata que ha comprado y el precio actual del kilo de patata (sin IVA): ");
+    scanf("%f %f", &kilospatata, &preciopatata);
+    printf("\tLos kilos de manzana que ha comprado y el precio actual del kilo de manzana (sin IVA): ");
+    scanf("%f %f", &kilosmanzana, &preciomanzana);
+    printf("\tEl precio del libro que ha comprado (sin IVA): ");
+    scanf("%f", &preciolibro);
+
+    // CALCULO
+    totalpreciomanzana = preciomanzana * kilosmanzana;
+    totalpreciopatata = preciopatata * kilospatata;
+    total = precioiva(totalpreciopatata) + precioiva(totalpreciomanzana) + precioivac(preciolibro);
+    // USO UNA FUNCIÓN PORQUE ME DA PEREZA DECLARAR TRES VARIABLES MÁS Y ESTO YA LO TENÍA ESCRITO
+
+    // OUTPUT
+    printf("\n--------------------------------------------------------------------------------------- Ticket 1/1\n");
+    printf("Patatas\t\t\t\t%.1f kg\t\t\t\t%.2f€\t\t\t\t%.2f€\t\t\t\t%.2f€\t (IVA 21%%)\n", kilospatata, preciopatata,
+           totalpreciopatata,
+           precioiva(totalpreciopatata));
+    printf("Manzanas\t\t\t%.1f kg\t\t\t\t%.2f€\t\t\t\t%.2f€\t\t\t\t%.2f€\t (IVA 21%%)\n", kilosmanzana, preciomanzana,
+           totalpreciomanzana,
+           precioiva(totalpreciomanzana));
+    printf("Libro\t\t\t\t1\t\t\t\t\t%.2f€\t\t\t\t%.2f€\t\t\t\t%.2f€\t (IVA 10%%)\n", preciolibro, preciolibro,
+           precioivac(preciolibro));
+    printf("--------------------------------------------------------------------------------------------------\n");
+    printf("TOTAL\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%.2f€\n", total);
+
+
+    return 0;
+}
+```
+</details>
+
+### Ejercicio 20
+
+Plantee e implemente un programa en Lenguaje C que solicite a un usuario su nombre, apellidos, edad y el número de
+créditos matriculados en primera, segunda y tercera matrícula. A continuación debe mostrar una tabla como la que se
+indica donde se recoja el coste total de las asignaturas de primera, segunda y tercera matrícula. Suponga que el precio
+del crédito en primera matrícula (15.45€) se incrementa un 25% en segunda matrícula y un 50% en tercera. Incluya también
+el coste total de la matrícula del alumno.
+
+```txt "Álvaro" "Pérez" "31" "14" "15" "10" frame="terminal" title="Ejemplo de Ejecución"
+Nombre: Álvaro
+Apellido: Pérez
+Edad: 31
+Número de créditos en primera matrícula: 14
+Número de créditos en segunda matrícula: 15
+Número de créditos en tercera matrícula: 10
+```
+
+<details>
+<summary>Mostrar Solución</summary>
+```c title="Ejercicio_20.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+#define incremetocoste(x, y) (x * (1 + y));
+#define costeporcredito(x, y) (x * y);
+#define MAX 20
+#define CREDITBASE 15.45 // EL PRECIO POR CRÉDITO BASE
+
+int main() {
+    char nombre[MAX], apellido[MAX];
+    int cm1, cm2, cm3, edad;
+    float pm1, pm2, pm3, tprecio;
+
+    // INPUT
+    puts("Introduzca los datos solicitados para elaborar el recibo de su matrícula: ");
+    printf("\tNombre, primer apellido y edad: ");
+    scanf("%s %s %d", nombre, apellido, &edad);
+    printf("\tIndique la cantidad de créditos por matrícula (M1 M2 M3): ");
+    scanf("%d %d %d", &cm1, &cm2, &cm3);
+
+    // CÁLCULO
+    pm1 = cm1 * CREDITBASE;
+    pm2 = cm2 * incremetocoste(CREDITBASE, 0.25);
+    pm3 = cm3 * incremetocoste(CREDITBASE, 0.50);
+    // POR EL EJEMPLO DEL BOLETÍN ESTE CÁLCULO NO TIENE SENTIDO
+    // pm3 = cm3 * incremetocoste(CREDITBASE, 0.875); // EL 0.875, SALE DE SUPONER QUE EL INCREMENTO DEL 50% ESTA SOBRE EL PRECIO DE LA SEGUNDA MATRÍCULA Y NO EL BASE
+    tprecio = pm1 + pm2 + pm3;
+
+    // OUTPUT
+    printf("\n***********************************************************************\n");
+    printf("*******\t\t\t\t\t%s %s: %d años\t\t\t\t\t*******\n", nombre, apellido, edad);
+    printf("Créditos M1   Coste M1\tCréditos M2   Coste M2\tCréditos M3    Coste M3\n");
+    printf("\t\t%d\t\t%.2f€\t\t\t%d\t\t%.2f€\t\t\t%d\t\t%.2f€\n", cm1, pm1, cm2, pm2, cm3, pm3);
+    printf("*******\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*******\n");
+    printf("\t\t\t\t\t\t\t\t\t\t\t\t  Coste Total Matrícula\n");
+    printf("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%.2f€\n", tprecio);
+    printf("***********************************************************************\n");
+
+    return 0;
+}
+```
+</details>
 
