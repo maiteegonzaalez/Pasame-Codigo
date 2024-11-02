@@ -1380,6 +1380,50 @@ Lourdes Smith, según el índice de masa corporal (IMC=18.68), tiene usted un PE
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_20.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main() {
+
+    char nombre[50];
+    int peso;
+    int altura;
+    float alturametros;
+    float IMC;
+    printf("Introduce tu nombre: ");
+    scanf("%s", &nombre);
+    printf("\nIntroduce tu peso en kg: ");
+    scanf("%d", &peso);
+    printf("\nIntroduce tu altura en cm: ");
+    scanf("%d", &altura);
+
+    alturametros = altura%2;
+    printf("\n%d", alturametros);
+    IMC = peso / (alturametros * alturametros);
+    printf("\n%d", IMC);
+/*
+    if (IMC < 18.5)
+    {
+        printf("%s, segun el indice de masa corporal (IMC= %.2f), está usted por debajo de su peso de salud", nombre, IMC);
+
+    } else if (IMC >= 18.5 && IMC < 25)
+    {
+        printf("%s, segun el indice de masa corporal (IMC= %.2f), su peso es normal para su estatura", nombre, IMC);
+    } else if (IMC >= 25 && IMC < 27)
+    {
+        printf("%s, segun el indice de masa corporal (IMC= %.2f), tiene usted sobrepeso de grado 1", nombre, IMC);
+    }
+    else if (IMC >= 27 && IMC < 30)
+    {
+        printf("%s, segun el indice de masa corporal (IMC= %.2f), tiene usted sobrepeso de grado 2", nombre, IMC);
+    }
+    else
+    {
+        printf("%s, segun  el indice de masa corporal (IMC= %.2f), tiene usted obesidad", nombre,IMC);
+    }
+    */
+}
 ```
 </details>
 
@@ -1408,6 +1452,74 @@ Nota media asignaturas presentadas: APROBADO (5.88)
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_21.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+
+int main ()
+{
+    float nota;
+    float acumulado;
+    int asignaturas;
+    float media;
+    int mediaint;
+    int noPresentado = 1;
+
+
+    for(asignaturas = 1; asignaturas < 4; asignaturas++)
+    {
+        printf("Introduzca calificacion asignatura %d (formato X.X, 0 para No Presentado): ", asignaturas);
+        scanf("%f", &nota);
+        if(nota >= 0 && nota <= 10)
+        {
+            if(nota != 0)
+            {
+                acumulado = acumulado + nota;
+            }
+            else
+            {
+                noPresentado++;
+            }
+        }
+        else
+        {
+            printf("Nota no valida");
+            break;
+        }
+    }
+
+    media = acumulado / (asignaturas - noPresentado);
+    mediaint = media;
+
+    switch(mediaint)
+    {
+        case 1:
+            printf("La media es: suspenso %f", media);
+            break;
+        case 2:
+            printf("La media es: suspenso %f", media);
+            break;
+        case 3:
+            printf("La media es: suspenso %f", media);
+            break;
+        case 4:
+            printf("La media es: suspenso %f", media);
+            break;
+        case 5:
+            printf("La media es: suficiente %f", media);
+        case 6:
+            printf("La media es: suficiente %f", media);
+        case 7:
+            printf("La media es: notable %f", media);
+        case 8:
+            printf("La media es: notable %f", media);
+        case 9:
+            printf("La media es: sobresaliente %f", media);
+        case 10:
+            printf("La media es: sobresaliente %f", media);
+    }
+}
 ```
 </details>
 
@@ -2074,6 +2186,35 @@ Plantee e implemente un programa en Lenguaje C para convertir un número decimal
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_38.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main ()
+{
+    int decimal;
+    int i = 0;
+    printf("Dime el numero que quieres pasar a binario ");
+    scanf("%d", &decimal);
+
+    int dividendo = decimal;
+
+    int array_dividendos[64] = {};
+
+    while(dividendo != 0)
+    {
+        array_dividendos[i] =  dividendo;
+        dividendo = dividendo / 2;
+        i++;
+    }
+
+    for(i = 64; i >= 0 ; i--)
+    {
+        printf("%d", array_dividendos[i]%2);
+    }
+}
 ```
 </details>
 
@@ -2614,6 +2755,66 @@ Plantee e implemente un programa en Lenguaje C que muestre por pantalla un menú
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_49.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    int menu = 0;
+    int intervalo1;
+    int intervalo2;
+    int numentero;
+    int cuadrado;
+    float numeroactual;
+    float raiz;
+    do
+    {
+        printf("Escriba 1 para visualizar una tabla de los numeros, los cuadrados y las raices cuadradas de los numeros contenidos en un intervalo de numeros enteros indicado por usted\n ");
+        printf("Escriba 2 para mostrar por pantalla los divisores de un numero entero que indique usted\n ");
+        printf("Escriba 3 para salir del programa\n ");
+
+        scanf("%d", &menu);
+
+        switch(menu)
+        {
+            case 1:
+                printf("Digame el intervalo de numeros enteros que desea ");
+                scanf("%d %d", &intervalo1, &intervalo2);
+
+                for(; intervalo1 != intervalo2; intervalo1++)
+                {
+                    numeroactual = intervalo1;
+                    raiz = sqrtf(numeroactual);
+                    cuadrado = intervalo1 * intervalo1;
+
+                    printf("%d al cuadrado: ", intervalo1);
+                    printf("%d", cuadrado);
+                    printf(" raiz cuadrada de %d : ", intervalo1);
+                    printf("%f\n", raiz);
+                }
+                break;
+
+            case 2:
+                printf("Digame un numero ");
+                scanf("%d", &numentero);
+
+                for(int i = 1; i < numentero; i++)
+                {
+                    if(numentero%i == 0)
+                    {
+                        printf("%d", i);
+                    }
+                }
+                break;
+
+            case 3: break;
+
+        }
+    } while (menu > 3 || menu < 1);
+}
 ```
 </details>
 
