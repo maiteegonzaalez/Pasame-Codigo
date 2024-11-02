@@ -15,6 +15,33 @@ positivo o negativo.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_01.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    // Input
+    printf("Introduzca un número entero: ");
+    scanf("%d",&n);
+
+    // Output
+    if (n > 0) {
+        printf("El número %d es positivo.",n);
+    } else {
+        if (n == 0) {
+            printf("El número es 0.");
+        } else {
+            printf("El número %d es negativo.",n);
+        }
+    }
+
+
+    return 0;
+}
 ```
 </details>
 
@@ -26,6 +53,32 @@ par o impar.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_02.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    // INPUT
+    printf("Introduzca un número entero: ");
+    scanf("%d",&n);
+
+    // OUTPUT
+    if (n == 0) {
+        printf("El número es 0.");
+    } else {
+        if (n % 2 == 0) {
+            printf("El número %d es par.",n);
+        } else {
+            printf("El número %d es impar.",n);
+        }
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -37,6 +90,32 @@ indicando si el primero es o no divisible por el segundo.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_03.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int a,b;
+
+    // INPUT
+    printf("Introduzca dos números enteros y te diré si el primero es divisible por el segundo: ");
+    scanf("%d %d",&a,&b);
+
+    // OUTPUT
+    if (b == 0) {
+        printf("NO SE PUEDE DIVIDIR ENTRE 0.");
+    } else {
+        if (a % b == 0) {
+            printf("%d es divisible entre %d.", a, b);
+        } else {
+            printf("%d no es divisible entre %d.", a, b);
+        }
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -56,6 +135,45 @@ Tercer Número: 21
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_04.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int a, b, c, menor, medio, mayor;
+
+    // IN
+    puts("Introduzca tres números para que este programa le devuelva el mayor de todos.");
+    printf("\tTres números, ordenados como quiera: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    // ORDENAR CÓDIGO SUPER RECICLADO DEL OTRO EJERCICIO
+    if (a < b) {
+        menor = a;
+        mayor = b;
+    } else {
+        menor = b;
+        mayor = a;
+    }
+    if (c < menor) {
+        medio = menor;
+        menor = c;
+    } else {
+        if (c < mayor) {
+            medio = c;
+        } else {
+            medio = mayor;
+            mayor = c;
+        }
+    }
+
+    // OUT
+    printf("\nEl mayor es: %d", mayor);
+
+    return 0;
+}
 ```
 </details>
 
@@ -75,6 +193,45 @@ Tercer Número: 21
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_05.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int a, b, c, menor, medio, mayor;
+
+    // IN
+    puts("Introduzca tres números para que este programa los organice de mayor a menor.");
+    printf("\tTres números, ordenados como quiera: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    // ORDENAR
+    if (a < b) {
+        menor = a;
+        mayor = b;
+    } else {
+        menor = b;
+        mayor = a;
+    }
+    if (c < menor) {
+        medio = menor;
+        menor = c;
+    } else {
+        if (c < mayor) {
+            medio = c;
+        } else {
+            medio = mayor;
+            mayor = c;
+        }
+    }
+
+    // OUT
+    printf("\nOrdenados de menor a mayor: %d < %d < %d", menor, medio, mayor);
+
+    return 0;
+}
 ```
 </details>
 
@@ -93,6 +250,46 @@ correctas obtenidas. Suponga que:
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_06.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+#define porcentaje(x, y) ( x / (float) y * 100)
+
+int main() {
+    int total, correctas;
+
+    // INPUT
+    puts("Conteste a las siguiente preguntas sobre el test realizado:");
+    printf("\tCantidad total de preguntas: ");
+    scanf("%d", &total);
+    printf("\tCantidad de preguntas contestadas correctamente: ");
+    scanf("%d", &correctas);
+
+    // OUTPUT
+    printf("Tiene usted ");
+    if (porcentaje(correctas, total) >= 90) {
+        printf("un Nivel Máximo.");
+    } else {
+        if (porcentaje(correctas, total) >= 75) {
+            printf("un Nivel Medio.");
+        } else {
+            if (porcentaje(correctas, total) >= 50) {
+                printf("un Nivel Regular.");
+            } else {
+                if (porcentaje(correctas, total) < 50) {
+                    printf("un Nivel Insuficiente.");
+                }
+            }
+        }
+    }
+    printf("\n");
+
+
+    return 0;
+}
 ```
 </details>
 
@@ -104,6 +301,64 @@ distintas, complejas conjugadas y raíz real doble.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_07.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+#include <math.h>
+
+int main() {
+    float a, b, c;
+    float radicando, raiz1, raiz2, parteentera, parteimaginaria;
+    int caso;
+
+    // IN
+    puts("Programa para resolver ecuaciones de segundo grado:");
+    printf("Introduzca las constantes de la función, tal que: a*x^2 + b*x + c = 0 (a,b,c): ");
+    scanf(" %f %f %f", &a, &b, &c);
+
+
+    // CÁLCULO
+    // (-b +- sqrt(b**2 - 4 * a * c)) / (2 * a)
+    radicando = powf(b, 2) - 4 * a * c;
+    // CADA CASO
+    // caso = 0 raíz de cero (raíz real doble)
+    // caso = 1 raíz de un positivo (dos raíces reales y distintas)
+    // caso = 2 raíz de un negativo (compleja conjugada)
+    if (radicando == 0) {
+        caso = 0;
+    } else {
+        if (radicando > 0) {
+            caso = 1;
+        } else {
+            caso = 2;
+        }
+    }
+
+    switch (caso) {
+        case 0:     // RAÍZ REAL DOBLE
+            raiz1 = (-b+sqrtf(radicando))/(2*a*b);
+            printf("La función tiene dos raíces reales dobles por lo tanto ambas valen %.210f",raiz1);
+            break;
+        case 1:     // DOS RAÍCES REALES Y DISTINTAS
+            raiz1 = (-b+sqrtf(radicando))/(2*a*b);
+            raiz2 = (-b-sqrtf(radicando))/(2*a*b);
+            printf("La función tiene dos raíces reales y distintas. Un de ellas vale %.2f y la otra %.2f",raiz1,raiz2);
+            break;
+        case 2:     // COMPLEJA CONJUGADA
+            // PARTO LA FUNCIÓN EN PARTE REAL E IMAGINARIA
+            parteentera = (-b/(2*a*b));
+            parteimaginaria = (sqrtf(-radicando)/(2*a*b));
+            printf("La función tiene dos raíces complejas conjugadas. Una de ellas vale %.2f + %.2fi y la otra %.2f - %.2fi.",parteentera,parteimaginaria,parteentera,parteimaginaria);
+            break;
+        default:
+
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -121,6 +376,126 @@ La fecha introducida corresponde al día 288 del año en curso
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_08.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    int DD, MM, AAAA, dias, FEBRERO, diasano;
+    bool incorrecto = true;
+    // INPUT
+    // INICIALIZO VARIABLES
+    dias = 0;
+    FEBRERO = 28;
+    diasano = 365;
+    // BUCLE DE INPUT
+    do {
+        printf("\nIntroduzca la fecha actual en el formato especificado (DD/MM/AAAA): ");
+        scanf("%d / %d / %d", &DD, &MM, &AAAA);
+        if (0 < DD && 0 < MM &&
+            1578 < AAAA) { // Tiene que ser un año de después del establecimiento del Calendario Gregoriano
+
+            // CÁLCULO DE SI ES UN AÑO BISIESTO
+            if (AAAA % 4 == 0) {
+                if (AAAA % 100 == 0) {
+                    if (AAAA % 400 == 0) {
+                        FEBRERO = 29;
+                        diasano = 366;
+                    } else {
+                        FEBRERO = 28;
+                        diasano = 365;
+                    }
+                } else {
+                    FEBRERO = 29;
+                    diasano = 366;
+                }
+            } else {
+                FEBRERO = 28;
+                diasano = 365;
+            }
+
+            switch (MM) { // COMPROBACIÓN DE DÍAS DE CADA MES
+                // MESES CON 30 DÍAS (NOVIEMBRE, SEPTIEMBRE, JUNIO, ABRIL)
+                case 11:
+                case 6:
+                case 4:
+                    if (0 < DD && DD <= 30) {
+                        incorrecto = false;
+                    } else { // TIENE UN DÍA NO VÁLIDO PARA ESE MES
+                        printf("¡Fecha no válida! (Código de error: Introducido un día incorrecto en un mes de 30 días.)");
+                    }
+                    break;
+                    // MESES CON 31 DÍAS (DICIEMBRE, OCTUBRE, AGOSTO, JULIO, MAYO, MARZO, ENERO)
+                case 12:
+                case 10:
+                case 8:
+                case 7:
+                case 5:
+                case 3:
+                case 1:
+                    if (0 < DD && DD <= 31) {
+                        incorrecto = false;
+                    } else { // TIENE UN DÍA NO VÁLIDO PARA ESE MES
+                        printf("¡Fecha no válida! (Código de error: Introducido un día incorrecto en un mes de 31 días.)");
+                    }
+                    break;
+                    // FEBRERO Y LOS BISIESTOS
+                case 2:
+                    if (0 < DD && DD <= FEBRERO) {
+                        incorrecto = false;
+                    } else { // FECHA NO VÁLIDA DD < DÍAS QUE TIENE FEBRERO ESE AÑO
+                        printf("¡Fecha no válida! (Código de error: Introducido un día incorrecto en un mes de %d días.)",
+                               FEBRERO);
+                    }
+                    break;
+                default:
+                    printf("¡Fecha no válida! (Código de error: Introducido un mes no válido.)");
+            }
+        } else {
+            printf("¡Fecha no válida! (Código de error: Debe ser una fecha válida del calendario gregoriano.)");
+        }
+    } while (incorrecto);
+
+    // CÁLCULO
+    // CÁLCULO DE DÍAS POR MES
+    switch (MM) {
+        case 12:    // NOVIEMBRE 30
+            dias = dias + 30;
+        case 11:    // OCTUBRE 31
+            dias = dias + 31;
+        case 10:     // SEPTIEMBRE 30
+            dias = dias + 30;
+        case 9:     // AGOSTO 31
+            dias = dias + 31;
+        case 8:     // JULIO 31
+            dias = dias + 31;
+        case 7:     // JUNIO 30
+            dias = dias + 30;
+        case 6:     // MAYO 31
+            dias = dias + 31;
+        case 5:     // ABRIL 30
+            dias = dias + 30;
+        case 4:     // MARZO 31
+            dias = dias + 31;
+        case 3:     // FEBRERO 28/29
+            dias = dias + FEBRERO;
+        case 2:     // ENERO 31
+            dias = dias + 31;
+        default:
+    }
+
+    // SUMO LOS DÍAS DEL MES EN CURSO AL TOTAL
+    dias = dias + DD;
+
+    // OUTPUT
+    printf("La fecha introducida corresponde al día %d del año en curso. (Levamos un %.2f%% del año en curso %d/%d)",
+           dias, (dias / (float) diasano * 100), dias, diasano);
+
+    return 0;
+}
 ```
 </details>
 
@@ -134,6 +509,121 @@ cálculo.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_09.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <time.h> // PARA OBTENER EL TIEMPO ACTUAL
+
+int main() {
+    int DD, MM, AAAA, FEBRERO; // PARA FECHA DE NACIMIENTO
+    int diaactual, mesactual, anoactual; // PARA FECHA ACTUAL
+    int edad; // LA EDAD
+    bool incorrecto = true;
+    // CONSEGUIR LOCAL TIME
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    anoactual = tm.tm_year + 1900; // AÑOS TRANSCURRIDOS DESDE EL 1900
+    mesactual = tm.tm_mon + 1; // ENERO ES EL MES CERO
+    diaactual = tm.tm_mday; // DÍA
+
+    // USADO PARA DEBUG
+    //printf("now: %d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    //printf("ahora: %d/%d/%d\n",anoactual,mesactual,diaactual);
+
+    // INPUT
+    puts("\t\t\t\t\t\t[ Calculadora de edad ]");
+
+    // ESTA SECCIÓN DEL CÓDIGO ESTÁ COPIADA DEL EJERCICIO 8
+    // INICIALIZO VARIABLE
+    FEBRERO = 28;
+    // BUCLE DE INPUT
+    do {
+        printf("\nIntroduzca su fecha de nacimiento en el formato especificado (DD/MM/AAAA): ");
+        scanf("%d / %d / %d", &DD, &MM, &AAAA);
+        if (0 < DD && 0 < MM && 1578 < AAAA) {
+            // Tiene que ser un año de después del establecimiento del Calendario Gregoriano
+
+            // CÁLCULO DE SI ES UN AÑO BISIESTO
+            if (AAAA % 4 == 0) {
+                if (AAAA % 100 == 0) {
+                    if (AAAA % 400 == 0) {
+                        FEBRERO = 29;
+                    } else {
+                        FEBRERO = 28;
+                    }
+                } else {
+                    FEBRERO = 29;
+                }
+            } else {
+                FEBRERO = 28;
+            }
+
+            switch (MM) { // COMPROBACIÓN DE DÍAS DE CADA MES
+                // MESES CON 30 DÍAS (NOVIEMBRE, SEPTIEMBRE, JUNIO, ABRIL)
+                case 11:
+                case 6:
+                case 4:
+                    if (0 < DD && DD <= 30) {
+                        incorrecto = false;
+                    } else { // TIENE UN DÍA NO VÁLIDO PARA ESE MES
+                        printf("¡Fecha no válida! (Código de error: Introducido un día incorrecto en un mes de 30 días.)");
+                    }
+                    break;
+                    // MESES CON 31 DÍAS (DICIEMBRE, OCTUBRE, AGOSTO, JULIO, MAYO, MARZO, ENERO)
+                case 12:
+                case 10:
+                case 8:
+                case 7:
+                case 5:
+                case 3:
+                case 1:
+                    if (0 < DD && DD <= 31) {
+                        incorrecto = false;
+                    } else { // TIENE UN DÍA NO VÁLIDO PARA ESE MES
+                        printf("¡Fecha no válida! (Código de error: Introducido un día incorrecto en un mes de 31 días.)");
+                    }
+                    break;
+                    // FEBRERO Y LOS BISIESTOS
+                case 2:
+                    if (0 < DD && DD <= FEBRERO) {
+                        incorrecto = false;
+                    } else { // FECHA NO VÁLIDA DD < DÍAS QUE TIENE FEBRERO ESE AÑO
+                        printf("¡Fecha no válida! (Código de error: Introducido un día incorrecto en un mes de %d días.)",
+                               FEBRERO);
+                    }
+                    break;
+                default:
+                    printf("¡Fecha no válida! (Código de error: Introducido un mes no válido.)");
+            }
+        } else {
+            printf("¡Fecha no válida! (Código de error: Debe ser una fecha válida del calendario gregoriano.)");
+        }
+        if (AAAA > anoactual || AAAA == anoactual && ((MM > mesactual) || (MM == mesactual && DD > diaactual))) {
+            // SI LA FECHA ES EN EL FUTURO, SENTENCIA LÓGICA BASTANTE LARGA, EVITAR QUE SE SALGA DEL BUCLE
+            printf("¿Naciste en el futuro o que lo que?"); // Me hacía gracia :)
+            incorrecto = true;
+        }
+    } while (incorrecto);
+
+    edad = anoactual - AAAA - 1; // RESTAMOS EL AÑO DE NACIMIENTO AL ACTUAL - 1
+
+    // COMPROBAMOS SI YA HA SIDO SU CUMPLEAÑOS
+    if ((MM < mesactual) || (MM == mesactual && DD < diaactual)) {
+        edad = edad + 1; // SUMAMOS YA QUE YA FUÉ SU CUMPLEAÑOS
+        if (MM == mesactual && DD == diaactual) { // SI COINCIDE LA FECHA FELICITAR CUMPLEAÑOS
+            printf("\n¡Feliz Cumpleaños! Tienes %d años.", edad);
+        } else {
+            printf("Tienes %d años.", edad);
+        }
+    } else {
+        printf("Tienes %d años.", edad);
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -158,6 +648,49 @@ Total anual a pagar: 1500€
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_10.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+#define IRPF 0.15
+// SINTETIZO LA FÓRMULA DEL ENUNCIADO x: sueldo y: hijos
+#define descuentohijos(x,y) (x * IRPF * (y * 0.10))
+
+int main() {
+    int nhijosmenores;
+    float sueldoanualbruto, descuentoirpf;
+
+    // INPUT
+    puts("Calculador de descuento de del IRPF");
+    printf("Introduzca su salario anual bruto (en euros): ");
+    scanf(" %f", &sueldoanualbruto);
+    printf("Introduzca el número de hijos/as mayores de 18 años a su cargo: ");
+    scanf(" %d", &nhijosmenores);
+
+    // OUTPUT
+    printf("IRPF (15%%): %.2f€\n", sueldoanualbruto * IRPF);
+    switch (nhijosmenores) {
+        case 0: // VOY A SUPONER QUE EL USURARIO NO VA A INTRODUCIR HIJOS NEGATIVOS
+            descuentoirpf = 0;
+            printf("Carece de reducción del IRPF por hijos/as a su cargo.\n");
+            break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            descuentoirpf = descuentohijos(sueldoanualbruto,nhijosmenores);
+            printf("Reducción debida a hijos/as a cargo: %.2f€\n",descuentoirpf);
+            break;
+        default: // SÍ TIENE MÁS DE 4 O MÁS HIJOS
+            descuentoirpf = descuentohijos(sueldoanualbruto,5); // DESCUENTO MÁXIMO (5 HIJOS)
+            printf("Reducción debida a hijos/as a cargo: %.2f€\n",descuentoirpf);
+    }
+    printf("Total anual a pagar: %.2f€\n", sueldoanualbruto * IRPF - descuentoirpf);
+
+    return 0;
+}
 ```
 </details>
 
@@ -174,6 +707,65 @@ $x_{2} = \frac{-b-\sqrt{b^2-4ac}}{2a}$
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_11.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <math.h>
+
+int main () {
+    // Este ejercicio es literalmente el mismo que el Ejercicio 7, así que Ctrl + C y Ctrl + V
+    float a, b, c;
+    float radicando, raiz1, raiz2, parteentera, parteimaginaria;
+    int caso;
+
+    // IN
+    puts("Programa para resolver ecuaciones de segundo grado:");
+    printf("Introduzca las constantes de la función, tal que: a*x^2 + b*x + c = 0 (a,b,c): ");
+    scanf(" %f %f %f", &a, &b, &c);
+
+
+    // CÁLCULO
+    // (-b +- sqrt(b**2 - 4 * a * c)) / (2 * a)
+    radicando = powf(b, 2) - 4 * a * c;
+    // CADA CASO
+    // caso = 0 raíz de cero (raíz real doble)
+    // caso = 1 raíz de un positivo (dos raíces reales y distintas)
+    // caso = 2 raíz de un negativo (compleja conjugada)
+    if (radicando == 0) {
+        caso = 0;
+    } else {
+        if (radicando > 0) {
+            caso = 1;
+        } else {
+            caso = 2;
+        }
+    }
+
+    switch (caso) {
+        case 0:     // RAÍZ REAL DOBLE
+            raiz1 = (-b+sqrtf(radicando))/(2*a*b);
+            printf("La función tiene dos raíces reales dobles por lo tanto ambas valen %.210f",raiz1);
+            break;
+        case 1:     // DOS RAÍCES REALES Y DISTINTAS
+            raiz1 = (-b+sqrtf(radicando))/(2*a*b);
+            raiz2 = (-b-sqrtf(radicando))/(2*a*b);
+            printf("La función tiene dos raíces reales y distintas. Un de ellas vale %.2f y la otra %.2f",raiz1,raiz2);
+            break;
+        case 2:     // COMPLEJA CONJUGADA
+            // PARTO LA FUNCIÓN EN PARTE REAL E IMAGINARIA
+            parteentera = (-b/(2*a*b));
+            parteimaginaria = (sqrtf(-radicando)/(2*a*b));
+            printf("La función tiene dos raíces complejas conjugadas. Una de ellas vale %.2f + %.2fi y la otra %.2f - %.2fi.",parteentera,parteimaginaria,parteentera,parteimaginaria);
+            break;
+        default:
+
+    }
+
+
+    return 0;
+}
 ```
 </details>
 
@@ -195,6 +787,68 @@ Introduzca tercer número: 67
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_12.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    int a, b, c;
+    bool nocontinuar = true;
+
+    // BUCLE DE INPUT
+    do {
+        puts("Introduzca tres números enteros positivos y se le mostrará la división entera del mayor entre el menor.");
+        printf("\tTres números (a,b,c): ");
+        int n; // Cuenta el número de entradas correctas
+        n = scanf("%d %d %d", &a, &b, &c);
+        while((getchar()) != '\n'); // LIMPIO EL BUFFER PARA EVITAR COSAS RARAS
+        if (n == 3) {
+            if (a > 0 && b > 0 && c > 0) {
+                nocontinuar = false;
+            } else {
+                printf("¡Introduzca tres números positivos!\n");
+            }
+        } else {
+            printf("¡Introduzca tres números enteros!\n");
+        }
+    } while (nocontinuar);
+
+    // ALGORITMO DE ORDENACIÓN DE NÚMEROS
+    // es de otro ejercicio, no lo voy a modificar cumple su función.
+    int menor, medio, mayor;
+
+    if (a < b) {
+        menor = a;
+        mayor = b;
+    } else {
+        menor = b;
+        mayor = a;
+    }
+    if (c < menor) {
+        medio = menor;
+        menor = c;
+    } else {
+        if (c < mayor) {
+            medio = c;
+        } else {
+            medio = mayor;
+            mayor = c;
+        }
+    }
+
+    // DIVISIÓN
+    // Podría usar más variables, o más líneas de código, pero prefiero dejarlo simple
+    int cociente = mayor/menor, resto = mayor%menor;
+
+    // OUTPUT
+    printf("\n\t\t\t%d dividido\t|entre %d\n\t\t\t\t\t\t------------\n\t\t\tC: %d\t\tR: %d\n",mayor,menor,cociente,resto);
+
+
+    return 0;
+}
 ```
 </details>
 
@@ -215,6 +869,157 @@ El triángulo es ISÓSCELES (lado1=lado3=125 cm)
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_13.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <math.h> // HACER SENOS Y COSENOS SIN ESTO ES DIFÍCIL
+
+#define PI 3.14159265358979323846
+
+int main() {
+    int a, b, c, continuar, correct, antiinf;
+    int menor, medio, mayor;    // PARA EL APARTADO 2
+    int clado, cangulo;         // PARA EL APARTADO 3
+    float A, B, C;              // PARA EL APARTADO 3
+    continuar = 1;
+    antiinf = 1;
+
+    while (continuar != 4) {
+        // INPUT
+        puts("Introduzca tres números enteros cualesquiera, serán utilizados para tratar\nde construir un tríangulo.");
+        correct = 0;
+        printf("\tTres números (a b c): ");
+        correct = scanf("%d %d %d", &a, &b, &c); // A n se le asignaran el número de entradas válidas.
+        // printf("%d valores correctos leídos.", correct);
+        switch (continuar) {
+            case 1: // 1) INPUT VÁLIDO
+                if (correct != 3) {
+                    printf("\n¡Input no válido, introduzca enteros! Número de valores correctos leídos: %d", correct);
+                    continuar = 1;
+                    break;
+                } else {
+                    if (a * b <= 0 || b * c <= 0) {
+                        // Lo hago con dos bucles porque multiplicar valores incorrectos puede resultar en bucles infinitos.
+                        printf("\n¡Input no válido, introduzca enteros! Recuerde que no hay triángulos de longitud negativa o 0.\n\n");
+                        continuar = 1;
+                        break;
+                    } else {
+                        //printf("\n\nX\n\n"); USADO PARA DEBUG EL CÓDIGO
+                    }
+                }
+            case 2: // 2) Teorema de la existencia de los triángulos
+                // | b - c | < a < b + c
+                // Podría usar la biblioteca de matemáticas para hacer esto o reciclar mi código de organizar números de mayor a menor
+                if (a < b) {
+                    menor = a;
+                    mayor = b;
+                } else {
+                    menor = b;
+                    mayor = a;
+                }
+                if (c < menor) {
+                    medio = menor;
+                    menor = c;
+                } else {
+                    if (c < mayor) {
+                        medio = c;
+                    } else {
+                        medio = mayor;
+                        mayor = c;
+                    }
+                }
+                if (menor + medio > mayor) {
+                    //printf("\n\nY\n\n"); USADO PARA DEBUG EL CÓDIGO
+                } else {
+                    printf("\n¡Input no válido! No se puede construir un triangulo con esos valores.\n (Teorema de la existencia de los triángulos).\n\n");
+                    continuar = 1;
+                    break;
+                }
+            case 3: // 3) Clasificar el triángulo
+                // printf("\n\nZ\n\n"); USADO PARA DEBUG EL CÓDIGO
+                // CLASIFICACIÓN POR LADO
+                // EQUILÁTERO:  1
+                // ISÓSCELES:   2
+                // ESCALENO:    3
+                clado = 0;
+                if (mayor == menor) {                       // EQUILÁTERO
+                    clado = 1;
+                } else {
+                    if (mayor == medio || medio == menor) { // ISÓSCELES
+                        clado = 2;
+                    } else {                                // ESCALENO
+                        clado = 3;
+                    }
+                }
+                // CLASIFICACIÓN POR ÁNGULO
+                // RECTÁNGULO   ( 90º): 1
+                // ACUTÁNGULO   (<90º): 2
+                // OBTUSÁNGULO  (>90º): 3
+                cangulo = 0;
+                // Usando la ley de los cosenos: c^2 = a^2 + b^2 - 2ab * cos(C)
+                // Y los paso de radianes a grados
+                C = acos((pow(a, 2) + pow(b, 2) - pow(c, 2)) / (2 * a * b)) * 180 / PI;
+                A = acos((pow(c, 2) + pow(b, 2) - pow(a, 2)) / (2 * c * b)) * 180 / PI;
+                B = acos((pow(a, 2) + pow(c, 2) - pow(b, 2)) / (2 * c * a)) * 180 / PI;
+                // printf("Ángulos: A: %.2fº B: %.2fº C: %.2fº", A, B, C); // Usado para debug del código
+                if (A == 90 || B == 90 || C == 90) {        // RECTÁNGULO
+                    cangulo = 1;
+                } else {
+                    if (A > 90 || B > 90 || C > 90) {       // OBTUSÁNGULO
+                        cangulo = 3;
+                    } else {                                // ACUTÁNGULO
+                        cangulo = 2;
+                    }
+                }
+                continuar = 4;
+            default:
+
+        }
+
+        antiinf = antiinf + 1;
+        if (antiinf > 100) {
+            continuar = 4;
+        } else {
+            //printf("Repetición = %d\n",antiinf);
+        }
+    }
+
+    if (antiinf > 100) {
+        printf("¡Anti repeticiones infinitas activado!");
+        // USO ESTO PORQUE A VECES ME CONFUNDÍA METÍA MAL UN DATO Y PASO DE QUE MI ORDENADOR SE SOBRECALIENTE
+    } else {
+        printf("El tríangulo introducido (a: %d b: %d c: %d), ",a,b,c);
+        switch (clado) {
+            case 1:
+                printf("es un triángulo equilátero ");
+                break;
+            case 2:
+                printf("es un triángulo isósceles ");
+                break;
+            case 3:
+                printf("es un tríangulo escaleno ");
+                break;
+            default:
+
+        }
+        switch (cangulo) {
+            case 1:
+                printf("y rectángulo (A: %.2fº B: %.2fº C: %.2fº).",A,B,C);
+                break;
+            case 2:
+                printf("y obtusángulo (A: %.2fº B: %.2fº C: %.2fº).",A,B,C);
+                break;
+            case 3:
+                printf("y acutángulo (A: %.2fº B: %.2fº C: %.2fº).",A,B,C);
+                break;
+            default:
+
+        }
+    }
+    return 0;
+}
 ```
 </details>
 
@@ -243,6 +1048,69 @@ datos en forma de tabla.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_14.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    int a, b, c;
+
+    // BUCLE DE INPUT
+    bool nocontinuar = true;
+    do {
+        int n, error;
+        puts("Introduzca dos números enteros positivos, el primero de tres cifras, el segundo de una.");
+        printf("\n\tDos números (XXX, X): ");
+        n = scanf("%d %d", &a, &b);
+        while((getchar()) != '\n'); // Limpio el buffer por seguridad
+        error = 0; // INICIALIZO LA VARIABLE DE CONTROL DE ERRORES
+        if (n == 2) { // Inputs válidos
+            if (a >= 0 && b >= 0) {
+                if ((a >= 100 && a < 1000)) { // PRIMER NÚMERO VÁLIDO
+                    if ((b >= 0 && b < 10)) {  // SEGUNDO NÚMERO VÁLIDO
+                        nocontinuar = false; // CORRECTO CONTINUAR
+                    } else { error = 2; } // SENDOS NÚMEROS NO VÁLIDOS
+                } else {
+                    if (b >= 0 && b < 10) { // SEGUNDO NÚMERO VÁLIDO
+                        error = 1;
+                    } else { error = 3; } // SENDOS NÚMEROS NO VÁLIDOS
+                }
+            } else { error = 5; }
+        } else { error = 4; }
+
+        // Control de mensajes de error
+        switch (error) {
+            case 1:     // PRIMER NÚMERO MAL
+                printf("\nError: El primer número no tiene tres cifras.\n");
+                break;
+            case 2:     // SEGUNDO NÚMERO MAL
+                printf("\nError: El segundo número no tiene una cifra.\n");
+                break;
+            case 3:     // SENDOS NÚMEROS NO VÁLIDOS
+                printf("\nError: Sendos números no tienen el formáto especificado.\n");
+                break;
+            case 4:     // INPUT NO VÁLIDO
+                printf("\nError: Introduzca dos inputs válidos.\n");
+                break;
+            case 5:     // NO POSITIVOS
+                printf("\nError: Ambos números deben ser positivos.\n");
+                break;
+            default:    // NO HAY ERRORES ERROR = 0
+                break; // Buena práctica hay que evitar "fallitos"
+        }
+    } while (nocontinuar);
+
+    // MULTIPLICACIÓN
+    c = a * b;
+
+    // OUTPUT
+    printf("\n\n\t\t\t %d\n\t\t\t x %d\n\t\t\t====\n\t\t\t%4d\n",a,b,c);
+
+    return 0;
+}
 ```
 </details>
 
@@ -259,6 +1127,50 @@ carácter introducido por el usuario, escriba en pantalla BEBÉ, ADOLESCENTE, MU
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_15.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    char c;
+
+    bool nocontinuar;
+    do {
+        nocontinuar = false;
+        printf("\t\t¿Que eres?\n------------------------\n B - Bebé\n A - Adolescente\n M - Mujer\n H - Hombre\n");
+        printf("\nIntroduzca el carácter correcto: ");
+        int n;
+        gets(&c);
+
+        switch (c) {
+            case 'B':
+            case 'b':
+                printf("BEBÉ");
+                break;
+            case 'A':
+            case 'a':
+                printf("ADOLESCENTE");
+                break;
+            case 'M':
+            case 'm':
+                printf("MUJER");
+                break;
+            case 'H':
+            case 'h':
+                printf("HOMBRE");
+                break;
+            default:
+                printf("\nError: Opción no válida.\n\n");
+                nocontinuar=true;
+                break;
+        }
+    } while(nocontinuar);
+
+    return 0;
+}
 ```
 </details>
 
@@ -304,6 +1216,50 @@ Introduzca un caracter: 3
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_17.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    char c;
+
+    printf("Introduzca un carácter: ");
+    scanf("%c", &c);
+
+    // printf("%c\n",c); // USADO PARA DEBUG
+    //c = (int) c; // CONVERSIÓN A ENTERO DE LA TABLA ASCII
+    // printf("%d\n",c); // USADO PARA DEBUG
+
+    if ((65 <= (int) c && (int) c <= 90) || (97 <= (int) c && (int) c <= 122)) { // LETRA
+        switch ((int) c) {
+            case 65: // A
+            case 97: // a
+            case 69: // E
+            case 101: // e
+            case 73: // I
+            case 105: // i
+            case 79: // O
+            case 111: // o
+            case 85: // U
+            case 117: // u
+                printf("\t\t\t%c es una vocal", c);
+                break;
+            default:
+                printf("\t\t\t%c es una consonante", c);
+                break;
+        }
+    } else {
+        if (48 <= (int) c && (int) c <= 57) { // DÍGITO
+            printf("\t\t\t%c es un dígito", c);
+        } else { // CARÁCTER ESPECIAL
+            printf("\t\t\t%c es un carácter especial", c);
+        }
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -490,6 +1446,26 @@ La suma de los números introducidos es 303
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_28.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int main() {
+    int a, b;
+
+    printf("A continuación introduzca los números enteros de los que desee calcular la suma\nseparados por espacios:\n");
+
+    do{
+        scanf(" %d",&b);
+        a += b;
+    } while (b != 0);
+
+    printf("La suma de los números introducidos es %d",a);
+
+    return 0;
+}
 ```
 </details>
 
@@ -631,6 +1607,158 @@ previamente el número de quinielas deseado.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_39.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
+
+int semillaaleatori();
+
+int imprimirquinielas(int nq);
+
+
+int main() { // Función principal del código, menú, inputs, outputs...
+    char op, v = ' '; // Opción Menú y espacio vacío
+    bool nocontinuar = true;
+    int nq, n; // nq: Número de Quinielas n: Número de inputs válido aleatori: Semilla para generar quinielas
+    nq = -1; // Este valor no podrá ser nunca introducido por el usuario, y se usa para saber que no ha pasado por el menú 'I'
+
+    do {
+        printf("\n[\t\tGenerador de quinielas\t\t]\n[\tI) Indicar número de Quinielas\t]\n[\tM) Mostrar Quinielas\t\t\t]\n[\tS) Salir%24c]\n[\t¿Que opción quieres?\t{ ",v); // HOLA :)
+        gets(&op);
+        switch (op) {
+            case 'I': // Indicar número de quinielas
+            case 'i':
+                printf("\nIntroduzca un número de Quinielas: ");
+                n = scanf("%d",&nq);
+                while((getchar()) != '\n'); // Limpio buffer que luego da errores tontos
+                if (n == 1 && nq > 0 && nq <= 10) { // Con esto se comprueba in input válido (entero) y comprendido entre 1 y 10.
+                    semillaaleatori(); // SI SE VUELVE A ELEGIR I Y SE DA UN INPUT CORRECTO SE VUELVE A GENERAR UN N ALEATORIO
+                    // PENDIENTE CREAR SISTEMA QUE LE PREGUNTE AL USUARIO SI QUIERE SOBREESCRIBIR SUS QUINIELAS
+                    printf("\nInput correcto, generadas %2d quinielas.\n",nq);
+                    printf("Puede mostrar las quinielas en el apartado 'M' del menú...\n");
+                } else {
+                    printf("\nError: Input nó valido, el número de Quinielas debe estar comprendido entre 1 y 10.\n");
+                }
+                break;
+            case 'M': // Mostrar Quinielas
+            case 'm':
+                if (nq == -1) { // No ha pasado por la opción 'I'
+                    printf("\n¡Primero introduzca un número de quinielas a generar!\n");
+                } else {
+                    imprimirquinielas(nq);
+                    printf("\n\n¿Quieres volver al menú? S/n ");
+                    gets(&op); // Reciclo esta variable por ahorrar
+                    switch (op) {
+                        case 'S':
+                        case 's':
+                            break;
+                        case 'N':
+                        case 'n':
+                            nocontinuar = false;
+                            break;
+                    }
+                }
+                break;
+            case 'S': // Salida
+            case 's':
+                nocontinuar = false;
+                break;
+            default: // Input No Esperado
+                printf("\n¡Input no válido!\n");
+                break;
+
+        }
+    }while(nocontinuar);
+    printf("\nGracias por usar nuestro Software. :)\n"); // Nada que añadir soy el mejor
+    printf("\nBy Pablo Portas ;)\n"); // Eliminar esta línea de código hará que el programa no funcione
+    // NO TIENES PRUEBAS PERO TAMPOCO DUDAS
+
+    return 0;
+}
+
+int semillaaleatori() { // La única utilidad de esta función es generar un número random.
+    int aleatori;
+    srandom(time(NULL));
+    aleatori = random();
+    // printf("\n%d\n",aleatori); // USADO PARA DEBUG
+    return aleatori;
+};
+
+int imprimirquinielas(int nq) { // Usado para imprimir las quinielas
+    /* MI IMPLEMENTACIÓN, EXPLICACIÓN (Borrador)
+     * Empleando la semilla (aleatori) la divido entre 12 y cojo el resto (módulo de 12)
+     * esto dará un número del 0 al 11 dependiendo del valor de aleatori, pero nunca fuera
+     * de ese dominio de enteros [0,11] con lo cual existen 12 posibles resultados. Este
+     * número se guardará en la variable 'apst'.
+     * Cada vez que se quiera imprimir una apuesta en la quiniela se repetirá el proceso
+     * de impresión. Para eso usaré la variable 'rimp' que será igual al número de quinielas
+     * solicitadas por el usuario 'nq'.
+     * En cuanto a los resultados de cada partido a 'apst' le hago módulo 3 y según que salga
+     * pués ganan empatan o pierden.
+     */
+    int apst, r;
+    apst = random() % 12;
+    printf("\n[ Nº |\tPartido \t\t\t\t\t\t | Resultado ]\n");
+    for (r = 1; r < nq + 1; r++) {
+        printf("[ %2d ",r);
+        switch (apst) { // Partidos VOY A USAR EQUIPOS DE LA KINGS LEAGUE PORQUE NO SE NADA DE FUTBOL
+            case 11:
+                printf("| 1K FC vs xBuyer Team              ");
+                break;
+            case 10:
+                printf("| Aniquiladores FC vs PIO FC        ");
+                break;
+            case 9:
+                printf("| El Barrio vs Ultimate Móstoles    ");
+                break;
+            case 8:
+                printf("| Jijantes FC vs Saiyans FC         ");
+                break;
+            case 7:
+                printf("| Kunisports vs Rayo de Barcelona   ");
+                break;
+            case 6:
+                printf("| Los Troncos FC vs Porcinos FC     ");
+                break;
+            case 5:
+                printf("| PIO FC vs 1K FC                   ");
+                break;
+            case 4:
+                printf("| xBuyer Team vs El Barrio          ");
+                break;
+            case 3:
+                printf("| Jijantes FC vs Los Troncos FC     ");
+                break;
+            case 2:
+                printf("| El Barrio vs PIO FC               ");
+                break;
+            case 1:
+                printf("| Saiyans FC vs Porcinos FC         ");
+                break;
+            default:
+                printf("| Kunisports vs PIO FC              ");
+                break;
+        }
+        switch (apst % 3) { // Apuesta
+            case 2:
+                printf("|     2     ]");
+                break;
+            case 1:
+                printf("|     1     ]");
+                break;
+            default:
+                printf("|     X     ]");
+                break;
+        }
+        printf("\n"); // Saltamos de Línea
+        apst = random() % 12; // Cambiamos el valor de apst
+    }
+}
 ```
 </details>
 
@@ -706,6 +1834,26 @@ teclado.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_45.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+// Librerías
+#include <stdio.h>
+
+// Main
+int main() {
+    float capital, interes, t;
+
+    printf("Introduzca el capital invertido: ");
+    scanf("%f", &capital);
+    printf("Introduzca el porcentaje de interés anual: ");
+    scanf("%f", &interes);
+    // Fórmula capital * (1 + interes * t) = 2 * capital
+    t = 1 / (float) (interes);
+    printf("Se tardarán %.1f años en duplicar el capital invertido.", t);
+
+    return 0;
+}
 ```
 </details>
 
@@ -728,6 +1876,33 @@ Plantee e implemente un programa en Lenguaje C muestre por pantalla la tabla de 
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_46.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+// Librerías
+#include <stdio.h>
+
+// Main
+int main() {
+
+    // i filas, j columnas
+    for (int i = 0; i <= 9; i++) {
+        for (int j = 0; j <= 9; j++) {
+            if (i == 0 && j == 0) printf(" *"); // El asterisco de la celda 0,0
+            else {
+                if (i == 0) printf("%2d", j);// La barra de título
+                else {
+                    if (j == 0)printf("%2d", i); // La primera columna
+                    else printf("%2d", i * j); // El interior de la matriz
+                }
+            }
+            printf("\t");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -738,6 +1913,31 @@ Plantee e implemente un programa en Lenguaje C para obtener las primeras n filas
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_47.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define MENSAJE "Introduzca el número de filas que quiere imprimir del triángulo de Floyd: "
+#define FORMAT "%5d"
+
+// Main
+int main() {
+    int n;
+
+    printf(MENSAJE);
+    scanf("%d",&n);
+
+    // Sacado del Ejercicio 5 / Boletín 3
+    for (int i = n, g = 1;i >= 0; i--) {
+        for (int f = 1; f != n - i + 1; f++, g++) printf(FORMAT"\t", g);
+        printf("\n");
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -748,6 +1948,36 @@ Plantee e implemente un programa en Lenguaje C para obtener elementos del trián
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_48.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define MENSAJE "Introduzca el número máximo que quiere imprimir en el triángulo de Floyd: "
+#define FORMAT "%5d"
+#define MAX 30
+
+// Main
+int main() {
+    int n;
+
+    printf(MENSAJE);
+    scanf("%d",&n);
+
+    // Sacado del Ejercicio 5 / Boletín 3
+    for (int i = MAX, g = 1;i >= 0; i--) {
+        if(g > n) break;
+        for (int f = 1; f != MAX - i + 1; f++, g++){
+            if(g > n) break;
+            printf(FORMAT"\t", g);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -773,6 +2003,97 @@ Plantee e implemente en Lenguaje C el juego MasterMind, empleando sentencias do�
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_50.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+// Librerías
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+// Declaración de Funciones
+char colorAleatorio(int ncolor);
+
+// Main
+int main() {
+    // Descripción del juego
+    /*
+     * Al principio y en secreto se dispondrán 4 colores.
+     * Existen en total 5 colores posibles:
+     *  N - Negro       A - Amarillo    R - Rojo
+     *  B - Blanco      V - Verde
+     * Es decir existen 5^4 combinaciones posibles
+     * El usuario debe adivinar los 4 colores solo conociendo si ha colocado bien o no alguno.
+     */
+
+    char a, b, c, d; // Las respuestas
+    char ap1, ap2, ap3, ap4; // Las apuestas
+    int intento; // Número de intentos
+    bool ganaste = false; // No ganaste todavía
+
+    // Se generan los cuatro colores secretos
+    srand(time(NULL));
+    // rand()%4 Número aleatorio de 0 - 4
+    a = colorAleatorio((rand() % 4));
+    b = colorAleatorio((rand() % 4));
+    c = colorAleatorio((rand() % 4));
+    d = colorAleatorio((rand() % 4));
+
+    // Se le da la bienvenida al usuario
+    printf("Buenas, se han dispuesto 4 colores en secreto.\n"
+           "\t\t\t[ X ][ X ][ X ][ X ]\n"
+           "Tu objetivo es adivinarlos, te iré diciendo según aciertes en tus diferentes intentos.\n"
+           "Existen 5 colores: \n"
+           "N - Negro\tA - Amarillo\tR - Rojo\n"
+           "B - Blanco\tV - Verde\n");
+
+    // Bucle del juego
+    intento = 1;
+    do {
+        printf("%dº Intento. Que colores crées que hay: ", intento);
+        scanf("%c %c %c %c", &ap1, &ap2, &ap3, &ap4);
+        while ((getchar()) != '\n'); // Limpio el buffer si no da errores
+
+        printf("[ %c ][ %c ][ %c ][ %c ]\n", ap1, ap2, ap3, ap4);
+
+        if (ap1 == a)printf("[ %c ]", a);
+        else printf("[ X ]");
+        if (ap2 == b)printf("[ %c ]", b);
+        else printf("[ X ]");
+        if (ap3 == c)printf("[ %c ]", c);
+        else printf("[ X ]");
+        if (ap4 == d)printf("[ %c ]", d);
+        else printf("[ X ]");
+        printf("\n");
+
+        if (ap1 == a && ap2 == b && ap3 == c && ap4 == d) {
+            ganaste = true;
+            printf("¡Enhorabuena has acertado en tan solo %d intentos!", intento);
+        } else intento += 1;
+
+    } while (ganaste == false);
+
+    return 0;
+}
+
+// Definición de funciones
+char colorAleatorio(int ncolor) {
+    switch (ncolor) {
+        case 0:
+            return 'N';
+        case 1:
+            return 'B';
+        case 2:
+            return 'A';
+        case 3:
+            return 'V';
+        case 4:
+            return 'R';
+        default:
+            break;
+    }
+}
 ```
 </details>
 
