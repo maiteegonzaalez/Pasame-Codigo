@@ -1193,6 +1193,34 @@ Virginia Woolf es JOVEN (<32)
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_16.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    char nombre[50];
+    char apellido1[50];
+    char apellido2[50];
+    int edad;
+
+    printf("Nombre: ");
+    scanf("%s %s %s",&nombre,&apellido1,&apellido2);
+
+    printf("Introduzca su edad: ");
+    scanf("%d",&edad);
+
+    if (edad<32){
+        printf("%s %s %s es joven",nombre,apellido1,apellido2);
+    }
+    else if(edad>=32 && edad<75){
+        printf("%s %s %s es Adulto/a",nombre,apellido1,apellido2);
+    }
+    else if(edad>=75){
+        printf("%s %s %s es Anciano/a",nombre,apellido1,apellido2);
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -1279,6 +1307,7 @@ El número que ha pensado es el 8
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_18.c"
+
 ```
 </details>
 
@@ -1360,6 +1389,38 @@ impares por otra.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_22.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int suma1;
+    int suma2;
+    int numero;
+    int numerop;
+    int numeroi;
+
+    numero=0;
+    numerop=0;
+    numeroi=-1;
+
+    while(numero<=200) {
+        numero++;
+        if(numero%2!=0){
+            numeroi=numeroi+2;
+            suma1+=numeroi;
+        }
+        else{
+            numerop=numerop+2;
+            suma2+=numerop;
+        }
+    }
+
+    printf("%d\n",suma1);
+    printf("%d",suma2);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1371,6 +1432,38 @@ un número si no está comprendido entre 20 y 30 ambos inclusive.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_23.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int suma1;
+    int suma2;
+    int numero;
+    int numerop;
+    int numeroi;
+
+    numero=0;
+    numerop=0;
+    numeroi=-1;
+
+    while(numero<=200) {
+        numero++;
+        if(numero%2!=0){
+            numeroi=numeroi+2;
+            suma1+=numeroi;
+        }
+        else{
+            numerop=numerop+2;
+            suma2+=numerop;
+        }
+    }
+
+    printf("%d\n",suma1);
+    printf("%d",suma2);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1392,6 +1485,24 @@ TABLA DE MULTIPLICAR DEL 7
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_24.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int multiplicando;
+    int producto;
+
+    multiplicando=-1;
+
+    while(multiplicando<10){
+        multiplicando=multiplicando+1;
+        producto= 7*multiplicando;
+        printf("7 X %d= %d\n",multiplicando,producto);
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -1403,6 +1514,30 @@ formato similar al indicado en el ejercicio anterior.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_25.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int tabla;
+    int multiplicando;
+    int producto;
+
+    multiplicando=-1;
+    tabla=0;
+
+    while(tabla<5){
+        tabla=tabla+1;
+        while(multiplicando<10) {
+            multiplicando = multiplicando + 1;
+          producto = tabla * multiplicando;
+          printf("%d X %d= %d\n", tabla, multiplicando, producto);
+      }
+      multiplicando=-1;
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -1415,6 +1550,33 @@ anterior.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_26.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int multiplicando;
+    int producto;
+    int numero;
+
+    printf("Introduzca un numero entero positivo: ");
+    scanf("%d",&numero);
+
+    multiplicando=-1;
+
+    if(numero>=0){
+        while(multiplicando<10){
+            multiplicando=multiplicando+1;
+            producto= numero*multiplicando;
+            printf("%d X %d= %d\n",numero,multiplicando,producto);
+        }
+    }
+    else{
+        printf("El numero introducido no es positivo");
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -1426,6 +1588,39 @@ tres bucles.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_27.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int numero_w;
+    int numero_dw;
+    int numero_f;
+    int suma_while = 0;
+    int suma_do_while = 0;
+    int suma_for;
+
+    numero_w=0;
+    numero_dw=0;
+
+    while(numero_w<100){
+        numero_w=numero_w+1;
+        suma_while += numero_w;
+    }
+    do {
+        numero_dw=numero_dw+1;
+        suma_do_while += numero_dw;
+    } while(numero_dw<100);
+    for(numero_f=0; numero_f<=100;numero_f++){
+        suma_for += numero_f;
+    }
+
+    printf("%d\n",suma_while);
+    printf("%d\n",suma_while);
+    printf("%d",suma_for);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1488,6 +1683,34 @@ Media: 40.12
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_29.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+#include <math.h>
+int main(){
+    float valor;
+    float media;
+    float suma;
+    float n;
+
+    n=0;
+    printf("Introduzca los numero de los que quiere calcular la media separados por espacios:\n");
+
+    do{
+        scanf("%f",&valor);
+        n=n+1;
+        suma += valor;
+    }while(valor!='\n');
+
+    media= suma/n;
+    printf("%.2f\n",suma);
+    printf("%.2f\n",n);
+    printf("%.2f\n",media);
+
+    return 0;
+
+}
 ```
 </details>
 
@@ -1499,6 +1722,35 @@ la suma de los números pares y los impares por separado. La entrada de números
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_30.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int numero;
+    int suma_pares;
+    int suma_impares;
+
+    while(numero!=0){
+        printf("Introduzca un numero entero:\n");
+        scanf("%d",&numero);
+        if (numero%2==0){
+            suma_pares+=numero;
+        }
+        else if(numero%2!=0){
+            suma_impares+=numero;
+        }
+        else{
+            printf("Introduzca un valor valido");
+            break;
+        }
+    }
+
+    printf("Suma de los pares:%d\n",suma_pares);
+    printf("Suma de los impares:%d\n",suma_impares);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1510,6 +1762,33 @@ espere a que el usuario pulse una tecla y muestre los correspondientes al siglo 
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_31.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+   int anio;
+
+   for(anio=2000;anio>=2000 && anio<2100;anio++){
+       if(anio%4==0 && anio%10!=0 || anio%400==0){
+           printf("%d\n",anio);
+       }
+
+   }
+
+   printf("Presione enter tecla para continuar:\n");
+
+   while(getchar() !='\n');
+   for(anio=1900;anio>=1900 && anio<2000; anio++){
+       if(anio%4==0 && anio%10!=0 || anio%400==0){
+               printf("%d\n",anio);
+       }
+
+   }
+
+
+
+}
 ```
 </details>
 
@@ -1521,6 +1800,35 @@ teclado para valores no negativos de N.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_32.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+#include <math.h>
+int main(){
+    float numero;
+    float n;
+    float potencia;
+
+    printf("Introduzca el numero del que desea calcular la potencia:\n");
+    scanf("%f",&numero);
+
+    while(numero>=0){
+        printf("Introduzca la potencia a la que desea elevar (introduzca un 0 para detenerse):\n");
+        scanf("%f",&n);
+        potencia= pow(numero,n);
+        printf("%.2f\n",potencia);
+        if(n==0){
+            break;
+        }
+
+
+    }
+    return 0;
+
+
+
+}
 ```
 </details>
 
@@ -1532,6 +1840,33 @@ teclado.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_33.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int i;
+    int numero;
+    int factorial;
+
+    factorial=1;
+    printf("Introduzca el numero del que quiere calcular el factorial:\n");
+    scanf("%d",&numero);
+
+    if(numero>=0){
+        for(i=1;i<=numero;i++){
+            factorial=factorial*i;
+        }
+
+    }
+
+    printf("%d",factorial);
+
+    return 0;
+}
+
+
+
 ```
 </details>
 
@@ -1543,6 +1878,35 @@ N de dicha sucesión.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_34.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int fibonacci(int n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+int main(){
+    int n;
+    int resultado;
+
+    printf("Introduzca un valor N mayor que 0:\n");
+    scanf("%d",&n);
+
+    if(n<=0){
+        printf("Introduzca un valor valido.");
+    }
+    else{
+        resultado= fibonacci(n);
+        printf("El numero %d de la sucesion de Fibonacci es %d",n,resultado);
+    }
+
+    return 0;
+
+}
 ```
 </details>
 
@@ -1555,6 +1919,28 @@ pantalla el número de errores totales contabilizados del modo indicado.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_35.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    char caracter;
+    int error;
+
+    printf("Introduzca los caracteres separados por espacios:\n");
+    scanf("%c",&caracter);
+
+    while(caracter!='\n'){
+        scanf("%c",&caracter);
+       if (32<(int)caracter && (int)caracter<48 || 57<(int)caracter && caracter <65 || 90<caracter && caracter<97 || 122<caracter && caracter<=127) {
+          error++;
+        }
+    }
+
+    printf("La cantidad de errores es: %d",error);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1571,6 +1957,41 @@ introducido, muestre por pantalla lo indicado y a continuación vuelva a mostrar
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_36.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    char caracter;
+
+    printf("Introduzca un caracter (R,C,P o A):\n");
+    scanf("%c",&caracter);
+
+    while(caracter!='A')
+        switch (caracter) {
+        case 'R':case 'r':
+            printf("Ahora dibujaria un rectangulo\n");
+            printf("Introduzca un caracter (R,C,P o A):\n");
+            scanf(" %c",&caracter);
+            break;
+        case 'C':case 'c':
+            printf("Ahora dibujaria un cuadrado\n");
+            printf("Introduzca un caracter (R,C,P o A):\n");
+            scanf(" %c",&caracter);
+            break;
+        case 'P':case 'p':
+            printf("Ahora dibujaria un pentagono\n");
+            printf("Introduzca un caracter (R,C,P o A):\n");
+            scanf(" %c",&caracter);
+            break;
+        default:
+            printf("Introduzca un caracter valido:\n");
+            scanf(" %c",&caracter);
+    }
+    if (caracter='A'){
+        printf("Ahora se acabo el programa");
+    }
+}
 ```
 </details>
 
@@ -1582,6 +2003,37 @@ obtenga la suma de los primeros n términos de la sucesión de Fibonacci.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_37.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int fibonacci(int n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+int main(){
+    int n;
+    int resultado;
+    int n2;
+
+    printf("Introduzca un numero entero mayor que 0:\n");
+    scanf("%d",&n2);
+
+    if(n2<=0){
+        printf("Introduzca un valor valido");
+    }
+    else{
+        for(n=0;n<=n2;n++){
+            resultado+= fibonacci(n);
+        }
+        printf("El resultado de la suma de los %d primeros numeros de la sucesion de Fibonacci es %d",n2,resultado);
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -1772,6 +2224,30 @@ _1 + 1/2+ 1/3 +....... + 1/n > límite_
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_40.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int limite;
+    int n;
+    int valor;
+
+    n=0;
+    valor=0;
+
+    printf("Introduzca el limite:\n");
+    scanf("%d",&limite);
+
+    while(valor<=limite){
+        n++;
+        valor+=n;
+    }
+
+    printf("El numero de terminos necesarios en la serie para satisfacer la desigualdad son: %d",n);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1785,6 +2261,30 @@ $x^2 + y^2 =z^2$
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_41.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int contador = 0;
+    int x, y, z;
+
+    for (x = 1; contador < 1000; x++) {
+        for (y = 1; y <= x; y++) {
+            z = x * x + y * y;
+            int sqrt_z = sqrt(z);
+
+            if (sqrt_z * sqrt_z == z) {
+                printf("(%d, %d, %d)\n", x, y, sqrt_z);
+                contador++;
+            }
+        }
+    }
+
+    return 0;
+}
 ```
 </details>
 
@@ -1796,6 +2296,27 @@ de cambio razonable, esto es, no negativo ni excesivamente grande.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_42.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    float dinero_euros;
+    float dinero_dolares;
+
+    printf("Introduzca la cantidad de euros que quiere cambiar:\n");
+    scanf("%f",&dinero_euros);
+
+    while(dinero_euros<0 || dinero_euros>10000000){
+        printf("Cantidad no valida introduzca una cantidad valida(0-10000000):\n");
+        scanf("%f",&dinero_euros);
+    }
+
+    dinero_dolares= dinero_euros * 1.06;
+    printf("%.2f euros son %.2f dolares",dinero_euros,dinero_dolares);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1809,6 +2330,35 @@ $$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+...+\frac{x^n}{n!}+... \f
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_43.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+// Librerías
+#include <stdio.h>
+#include <math.h>
+
+// Constantes
+#define e 2.718281828459045235360 // Sacada de Wikipedia
+#define MAX 100
+#define ERROR 0.0001
+
+// Main
+int main() {
+    float aproxdeE = 1, x = 1, fact; // Comenzando en  1,  e ^ x = e ^ 1, factorial
+    int rep; // Rep
+
+    // Fórmula: 1 + x + (x^2/2!) + (x^3/3!) + ...
+    aproxdeE = 1 + x;
+    for (int i = 2; i < MAX; i++) {
+        rep++;fact = 1;
+        for (int j = 1; j <= i; j++) fact = j * fact;
+        aproxdeE += (powf(x,i)/fact);
+        if (fabs(e-aproxdeE) < ERROR) break; // Cuando el error absoluto sea menor fin al bucle, en caso contrario hasta que i = MAX
+    }
+    printf("El valor aproximado de e (%d rep.): %.5f",rep,aproxdeE);
+
+    return 0;
+}
 ```
 </details>
 
@@ -1822,6 +2372,47 @@ de sus divisores propios es igual a él; y número abundante es el que la suma d
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_44.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+#include <stdio.h>
+int main(){
+    int n1;
+    int n2;
+    int i;
+    int divisor;
+    int suma;
+    int resto;
+
+    printf("Introduzca un numero entero positivo:\n");
+    scanf("%d",&n1);
+
+    printf("Introduzca un numero entero positivo mayor:\n");
+    scanf("%d",&n2);
+
+    for(i=n1;i<=n2;i++){
+        suma=0;
+        for(divisor=1;divisor< i;divisor++) {
+            resto = i % divisor;
+            if (resto == 0) {
+                suma += divisor;
+            }
+        }
+        if(suma<i){
+            printf("El numero %d es deficiente\n",i);
+        }
+        else if(suma==i){
+            printf("El numero %d es perfecto\n",i);
+        }
+        else{
+            printf("El numero %d es abundante\n",i);
+        }
+
+    }
+
+    return 0;
+
+}
 ```
 </details>
 
