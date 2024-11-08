@@ -53,6 +53,9 @@ importers:
       starlight-showcases:
         specifier: ^0.2.0
         version: 0.2.0(@astrojs/starlight@0.28.6(astro@4.16.10(rollup@4.24.0)(typescript@5.6.3)))(astro@4.16.10(rollup@4.24.0)(typescript@5.6.3))
+      starlight-sidebar-topics:
+        specifier: ^0.2.0
+        version: 0.2.0(@astrojs/starlight@0.28.6(astro@4.16.10(rollup@4.24.0)(typescript@5.6.3)))
       tailwindcss:
         specifier: ^3.4.14
         version: 3.4.14
@@ -2868,6 +2871,12 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       '@astrojs/starlight': '>=0.23.0'
+
+  starlight-sidebar-topics@0.2.0:
+    resolution: {integrity: sha512-K433c+lAPxgB3knpjnTR3c+RO2UisW2Em9Lf035G6lPInARp1Sawbpd1Pv6vmc/xcqvZRq7f5q0tGeHhXfI5qw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.28.0'
 
   stdin-discarder@0.2.2:
     resolution: {integrity: sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==}
@@ -6958,6 +6967,10 @@ snapshots:
       '@astrojs/starlight': 0.28.6(astro@4.16.10(rollup@4.24.0)(typescript@5.6.3))
     transitivePeerDependencies:
       - astro
+
+  starlight-sidebar-topics@0.2.0(@astrojs/starlight@0.28.6(astro@4.16.10(rollup@4.24.0)(typescript@5.6.3))):
+    dependencies:
+      '@astrojs/starlight': 0.28.6(astro@4.16.10(rollup@4.24.0)(typescript@5.6.3))
 
   stdin-discarder@0.2.2: {}
 
