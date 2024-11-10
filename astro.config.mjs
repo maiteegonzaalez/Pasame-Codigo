@@ -1,8 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+
 // Plugin Heading Badges
 import starlightHeadingBadges from 'starlight-heading-badges';
+// Plugin Sidebar Topics
+import starlightSidebarTopics from 'starlight-sidebar-topics'
+
 
 // Support for MathJax
 import remarkMath from 'remark-math';
@@ -106,65 +110,67 @@ export default defineConfig({
       './src/tailwind.css',
       process.env.NO_GRADIENTS ? '' : './src/assets/custom.css',
     ],
-    sidebar: [
-      {
-        label: 'Comienza aquí',
-        items: [
-          {
-            slug: 'intro/readme',
-          },
-          {
-            slug: 'intro/indice',
-          },
-          {
-            slug: 'intro/contribuir'
-          },
-        ],
-      },
-      {
-        label: 'Programación I',
-        collapsed: true,
-        items: [
-          {
-            slug: 'prouno/indice',
-          },
-          {
-            label: 'Apuntes',
-            autogenerate: { directory: 'prouno/apuntes' },
-          },
-          {
-            label: 'Boletines',
-            autogenerate: { directory: 'prouno/boletines' },
-          },
-        ],
-      },
-      {
-        label: 'Programación II',
-        collapsed: true,
-        items: [
-          {
-            slug: 'prodos/indice',
-          },
-          {
-            label: 'Apuntes',
-            autogenerate: { directory: 'prodos/apuntes' },
-          },
-        ],
-      },
-      {
-        label: 'Diseño de Software',
-        badge: { text: 'WIP', variant: 'danger' },
-        collapsed: true,
-        autogenerate: { directory: 'deese' },
-      },
-      {
-        label: 'Paradigmas de la Programación',
-        badge: { text: 'WIP', variant: 'danger' },
-        collapsed: true,
-        autogenerate: { directory: 'pepe' },
-      },
+    plugins: [
+      starlightHeadingBadges(),
+      starlightSidebarTopics([
+        {
+          label: 'Comienza Aquí',
+          link: '/intro/',
+          icon: 'open-book',
+          items: [
+            'intro/readme', 
+            'intro/contribuir', 
+            {
+              label: 'Licencias', 
+              autogenerate: {directory: 'intro/licencias'},
+              collapsed: true,
+            }
+          ],
+        },
+        {
+          label: 'Programación I',
+          link: '/prouno/',
+          icon: 'seti:c',
+          items: [
+            {
+              label: 'Apuntes',
+              autogenerate: { directory: 'prouno/apuntes' },
+            },
+            {
+              label: 'Boletines',
+              autogenerate: { directory: 'prouno/boletines' },
+            },
+          ],
+        },
+        {
+          label: 'Programación II',
+          link: '/prodos/',
+          icon: 'seti:c',
+          items: [
+            {
+              label: 'Apuntes',
+              autogenerate: { directory: 'prodos/apuntes' },
+            },
+          ],
+        },
+        {
+          label: 'Diseño de Software',
+          link: '/deese/',
+          icon: 'seti:java',
+          items: [
+          ],
+          badge: { text: 'WIP', variant: 'danger' },
+        },
+        {
+          label: 'Paradigmas de la Programación',
+          link: '/pepe/',
+          icon: 'seti:ocaml',
+          items: [
+          ],
+          badge: { text: 'WIP', variant: 'danger' },
+        },
+      ]),
     ],
-    plugins: [starlightHeadingBadges()],
     components: {
       SkipLink: './src/components/SkipLink.astro',
     },

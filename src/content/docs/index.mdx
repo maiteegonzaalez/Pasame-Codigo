@@ -10,7 +10,7 @@ hero:
     file: ../../assets/logo.svg
   actions:
     - text: ¡Vamos a ello!
-      link: /intro/indice
+      link: /intro
       icon: right-arrow
     - text: ¡Enséñame el código!
       link: https://github.com/TeenBiscuits/Pasame-Codigo
@@ -21,21 +21,25 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import Asignaturas from '@components/Asignaturas.astro';
 import AboutMe from '@components/AboutMe.astro';
 
 
 ## Nuestras asignaturas
 
 <CardGrid stagger>
-	<Card title="Programación I & II" icon="seti:c">
+	<Asignaturas title="Programación I" icon="seti:c" href="/prouno">
 		C Explicado de 0. Apuntes, boletines resueltos y ejemplos para dominar el lenguaje de Programación C.
-	</Card>
-	<Card title="Diseño de Software" icon="seti:java">
+	</Asignaturas>
+  <Asignaturas title="Programación II" icon="seti:c" href="/prodos">
+		Tipos abstractos de datos, implementados y con el código. Listas, colas, pilas, árboles...
+	</Asignaturas>
+	<Asignaturas title="Diseño de Software" icon="seti:java" href="/deese">
 		Domina Java por fin. Explicado con ejemplos y código para usar.
-	</Card>
-	<Card title="Paradigmas de la Programación" icon="seti:ocaml">
+	</Asignaturas>
+	<Asignaturas title="Paradigmas de la Programación" icon="seti:ocaml" href="/pepe">
 		"OCaml explicado para tontos" Un lenguaje fuertemente tipado no tiene porque ser complicado.
-	</Card>
+	</Asignaturas>
   <Card title="Más que están por venir..." icon="seti:notebook">
     Esta web se encuentra bajo desarrollo activo, muchos más cosas están por venir.
   </Card>
