@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+
 // Plugin Heading Badges
 import starlightHeadingBadges from 'starlight-heading-badges';
 // Plugin Sidebar Topics
@@ -116,7 +117,15 @@ export default defineConfig({
           label: 'Comienza Aquí',
           link: '/intro/',
           icon: 'open-book',
-          items: ['intro/readme', 'intro/contribuir'],
+          items: [
+            'intro/readme', 
+            'intro/contribuir', 
+            {
+              label: 'Licencias', 
+              autogenerate: {directory: 'intro/licencias'},
+              collapsed: true,
+            }
+          ],
         },
         {
           label: 'Programación I',
