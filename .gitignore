@@ -18,5 +18,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# index now key
+public/*.txt
+!public/robots.txt
+
 # macOS-specific files
 .DS_Store
