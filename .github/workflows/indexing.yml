@@ -11,8 +11,8 @@ jobs:
     if: github.repository == 'TeenBiscuits/Pasame-Codigo'
     runs-on: ubuntu-latest
     steps:
-      - name: ⌛ Espera 100s
-        run: sleep 100s
+      - name: ⌛ Espera 5s
+        run: sleep 5s
         shell: bash
       - name: ⌛ Esperar deploy
         # tj-actions
@@ -23,7 +23,6 @@ jobs:
           project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           token:  ${{ secrets.VERCEL_TOKEN }}
           sha: ${{ github.sha }}
-          timeout: ''
 
   indexnow:
     name: 🔎 Bing IndexNow
