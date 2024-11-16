@@ -1,0 +1,61 @@
+name: 🔎 Indexación en motores de búsqueda 
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  wait-for-vercel-deployment:
+    name: 🔼 Esperar el deploy en Vercel
+    if: github.repository == 'TeenBiscuits/Pasame-Codigo'
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⌛ Esperar deploy
+        # Unly
+        # MIT
+        # https://github.com/UnlyEd/github-action-await-vercel
+        uses: UnlyEd/github-action-await-vercel@v1
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: pc.pablopl.dev
+          timeout: 10
+          poll-interval: 1 
+
+      - name: Display deployment status
+        run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
+
+  indexnow:
+    name: 🔎 Bing IndexNow
+    if: github.repository == 'TeenBiscuits/Pasame-Codigo'
+    needs: [wait-for-vercel-deployment]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬆️ Subir Sitemap
+        # Bojie Yang
+        # MIT
+        # https://github.com/bojieyang/indexnow-action
+        uses: bojieyang/indexnow-action@v2
+        with:
+          sitemap-location: 'https://pc.pablopl.dev/sitemap-index.xml'
+          key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: 'https://pc.pablopl.dev/${{ secrets.INDEXNOW_KEY }}.txt'
+          endpoint: www.bing.com # Es el default
+          failure-strategy: error
+
+  google-indexing:
+    name: 🔎 Google Index
+    if: github.repository == 'TeenBiscuits/Pasame-Codigo'
+    needs: [wait-for-vercel-deployment]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬆️ Subir Urls
+        # Robin Genz
+        # MIT
+        # https://github.com/robingenz/google-indexing-action
+        uses: robingenz/action-google-indexing@v1
+        with:
+          siteUrl: 'pc.pablopl.dev'
+          gcpServiceAccountKey: ${{ secrets.GCP_SA_KEY }}
