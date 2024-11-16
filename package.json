@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "prebuild": "node -e \"require('dotenv').config(); const fs = require('fs'); const path = require('path'); const fileName = process.env.FILE_NAME || 'indexnow'; const filePath = path.join(__dirname, 'public', `${fileName}.txt`); fs.mkdirSync(path.dirname(filePath), { recursive: true }); fs.writeFileSync(filePath, fileName);\"",
+    "prebuild": "node -e \"require('dotenv').config(); const fs = require('fs'); const path = require('path'); const fileName = process.env.FILE_NAME && process.env.FILE_NAME.trim() !== '' ? process.env.FILE_NAME : 'indexnow'; const filePath = path.join(__dirname, 'public', `${fileName}.txt`); fs.mkdirSync(path.dirname(filePath), { recursive: true }); if (fs.existsSync(filePath) && fs.lstatSync(filePath).isDirectory()) { throw new Error('La ruta especificada apunta a un directorio, no a un archivo. Verifica FILE_NAME.'); } fs.writeFileSync(filePath, fileName);\"",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
