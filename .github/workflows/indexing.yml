@@ -11,8 +11,8 @@ jobs:
     if: github.repository == 'TeenBiscuits/Pasame-Codigo'
     runs-on: ubuntu-latest
     steps:
-      - name: ⌛ Espera 5s
-        run: sleep 5s
+      - name: ⌛ Espera 100s
+        run: sleep 100s
         shell: bash
       - name: ⌛ Esperar deploy
         # tj-actions
@@ -37,7 +37,7 @@ jobs:
         # https://github.com/bojieyang/indexnow-action
         uses: bojieyang/indexnow-action@v2
         with:
-          sitemap-location: 'https://pc.pablopl.dev/sitemap-index.xml'
+          sitemap-location: 'https://pc.pablopl.dev/sitemap-0.xml'
           key: ${{ secrets.INDEXNOW_KEY }}
           key-location: 'https://pc.pablopl.dev/${{ secrets.INDEXNOW_KEY }}.txt'
           endpoint: www.bing.com # Es el default
