@@ -12,20 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⌛ Esperar deploy
-        # Unly
+        # tj-actions
         # MIT
-        # https://github.com/UnlyEd/github-action-await-vercel
-        uses: UnlyEd/github-action-await-vercel@v1
-        id: await-vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        # https://github.com/tj-actions/vercel-wait
+        uses: tj-actions/vercel-wait@v1
         with:
-          deployment-url: pc.pablopl.dev
-          timeout: 10
-          poll-interval: 1 
-
-      - name: Display deployment status
-        run: "echo The deployment at ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).url }} is ${{ fromJson(steps.await-vercel.outputs.deploymentDetails).readyState }}"
+          project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          token:  ${{ secrets.VERCEL_TOKEN }}
+          sha: ${{ github.sha }}
 
   indexnow:
     name: 🔎 Bing IndexNow
@@ -55,7 +49,7 @@ jobs:
         # Robin Genz
         # MIT
         # https://github.com/robingenz/google-indexing-action
-        uses: robingenz/action-google-indexing@v1
+        uses: robingenz/action-google-indexing@v1.0.1
         with:
           siteUrl: 'pc.pablopl.dev'
           gcpServiceAccountKey: ${{ secrets.GCP_SA_KEY }}
