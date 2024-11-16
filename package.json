@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "prebuild": "node -e \"require('dotenv').config(); const fs = require('fs'); const path = require('path'); const fileName = process.env.FILE_NAME || 'indexnow'; const filePath = path.join('public', `${fileName}.txt`); fs.mkdirSync(path.dirname(filePath), { recursive: true }); fs.writeFileSync(filePath, fileName);\"",
+    "prebuild": "node -e \"require('dotenv').config(); const fs = require('fs'); const path = require('path'); const fileName = process.env.FILE_NAME || 'indexnow'; const filePath = path.join(__dirname, 'public', `${fileName}.txt`); fs.mkdirSync(path.dirname(filePath), { recursive: true }); fs.writeFileSync(filePath, fileName);\"",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
