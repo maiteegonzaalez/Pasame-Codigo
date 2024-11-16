@@ -11,8 +11,8 @@ jobs:
     if: github.repository == 'TeenBiscuits/Pasame-Codigo'
     runs-on: ubuntu-latest
     steps:
-      - name: ⌛ Espera 5s
-        run: sleep 5s
+      - name: ⌛ Espera 70s
+        run: sleep 70s
         shell: bash
       - name: ⌛ Esperar deploy
         # tj-actions
