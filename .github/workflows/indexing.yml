@@ -36,10 +36,9 @@ jobs:
         # https://github.com/bojieyang/indexnow-action
         uses: bojieyang/indexnow-action@v2
         with:
-          sitemap-location: 'https://pc.pablopl.dev/sitemap-0.xml'
+          sitemap-location: 'https://pc.pablopl.dev/sitemap-index.xml'
           key: ${{ secrets.INDEXNOW_KEY }}
-          key-location: 'https://pc.pablopl.dev/${{ secrets.INDEXNOW_KEY }}.txt'
-          endpoint: www.bing.com # Es el default
+          endpoint: www.bing.com
           failure-strategy: error
 
   google-indexing:
