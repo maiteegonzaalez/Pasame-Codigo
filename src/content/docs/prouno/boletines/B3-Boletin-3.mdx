@@ -854,6 +854,26 @@ funcionamiento, activando este último desde el programa principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_15.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+void Esvocal(char caracter){
+    switch (caracter) {
+        case'A':case'a':case'E':case'e':case'I':case'i':case'O':case'o':case'U':case'u':
+            printf("El caracter %c es una vocal",caracter);
+            break;
+        default:
+            printf("El caracter %c no es una vocal",caracter);
+    }
+}
+int main(){
+    char caracter;
+    printf("Introduzca el caracter que desea evaluar:\n");
+    scanf("%c",&caracter);
+    Esvocal(caracter);
+}
 ```
 </details>
 
@@ -865,6 +885,26 @@ implemente la función apropiada para probar su funcionamiento, activando este �
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_16.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+void Esdigito(char caracter){
+    switch (caracter) {
+        case'0':case'1':case'2':case'3':case'4':case'5':case'6':case'7':case'8':case'9':
+            printf("El caracter %c es un digito",caracter);
+            break;
+        default:
+            printf("El caracter %c no es un digito",caracter);
+    }
+}
+int main(){
+    char caracter;
+    printf("Introduzca el caracter que desea evaluar:\n");
+    scanf("%c",&caracter);
+    Esdigito(caracter);
+}
 ```
 </details>
 
@@ -877,6 +917,28 @@ es una letra (mayúscula o minúscula).
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_17.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+void Esmayuscula(char caracter){
+    if (65<= (int)caracter && (int)caracter<=90) {
+            printf("El caracter %c esta en mayuscula",caracter);
+    }
+    else if(97<=(int)caracter && (int)caracter<=122){
+        printf("El caracter %c esta en minuscula",caracter);
+    }
+    else{
+        printf("El caracter %c no es una letra",caracter);
+    }
+}
+int main(){
+    char caracter;
+    printf("Introduzca el caracter que desea evaluar:\n");
+    scanf("%c",&caracter);
+    Esmayuscula(caracter);
+}
 ```
 </details>
 
@@ -889,6 +951,62 @@ mayúsculas y minúsculas) y dígitos que incluye.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_18.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+int Esmayuscula(char caracter){
+    if (65<= (int)caracter && (int)caracter<=90) {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+int Esminuscula(char caracter){
+    if(97<=(int)caracter && (int)caracter<=122){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+int Esdigito(char caracter){
+    switch (caracter) {
+        case'0':case'1':case'2':case'3':case'4':case'5':case'6':case'7':case'8':case'9':
+            return 1;
+        default:
+            return 0;
+    }
+}
+int contador(char* frase,int longitud){
+    int i;
+    int mayusculas;
+    int minusculas;
+    int digitos;
+    for(i=0;i<longitud;i++){
+        if(Esmayuscula(frase[i])==1){
+            mayusculas++;
+        }
+        else if(Esminuscula(frase[i])==1){
+            minusculas++;
+        }
+        else if(Esdigito(frase[i])==1){
+            digitos++;
+        }
+    }
+    printf("El numero de mayusculas es: %d\nEl numero de minusculas es: %d\nEl numero de digitos es:%d",mayusculas,minusculas,digitos);
+}
+int main(){
+    char frase[50];
+    int longitud;
+    printf("Introduzca la frase que desee sin espacios:\n");
+    gets(&frase);
+    printf("Introduzca la longitud de la frase:\n");
+    scanf("%d",&longitud);
+    contador(frase,longitud);
+}
 ```
 </details>
 
@@ -901,6 +1019,39 @@ pulse enter) y la muestre por pantalla cambiada a mayúsculas.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_19.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+int Esminuscula(char caracter){
+    if(97<=(int)caracter && (int)caracter<=122){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+void pasaramayusculas(char* frase,int longitud){
+    int i;
+    for(i=0;i<longitud;i++){
+        if(Esminuscula(frase[i])==1){
+            printf("%c",(int)frase[i]-32);
+        }
+        else{
+           printf("%c",frase[i]);
+        }
+    }
+}
+int main(){
+    char frase[100];
+    int longitud;
+    printf("Introduzca la frase que desee :\n");
+    gets(&frase);
+    printf("Introduzca la longitud de la frase contando los espacios:\n");
+    scanf("%d",&longitud);
+    pasaramayusculas(frase,longitud);
+}
 ```
 </details>
 
@@ -912,6 +1063,29 @@ implemente la función apropiada para probar su funcionamiento, activando este �
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_20.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+int factorial(int numero){
+    int factorial,i;
+    factorial=1;
+    if(numero>=0){
+        for(i=1;i<=numero;i++){
+            factorial=factorial*i;
+        }
+
+    }
+    return factorial;
+}
+int main(){
+    int numero;
+    printf("Introduzca el numero del que quiere calcular el factorial:\n");
+    scanf("%d",&numero);
+    printf("%d",factorial(numero));
+    return 0;
+}
 ```
 </details>
 
@@ -924,6 +1098,33 @@ principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_21.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+int fibonacci(int n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+int main(){
+    int n;
+    printf("Introduzca un valor N mayor que 0:\n");
+    scanf("%d",&n);
+
+    if(n<=0){
+        printf("Introduzca un valor valido.");
+    }
+    else{
+        printf("El numero %d de la sucesion de Fibonacci es %d",n, fibonacci(n));
+    }
+
+    return 0;
+
+}
 ```
 </details>
 
@@ -936,6 +1137,27 @@ principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_22.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+int primo(int numero){
+    int i;
+    for(i=2;i<numero;i++){
+        if(numero%i==0){
+            printf("El numero %d no es primo",numero);
+            return 0;
+        }
+    }
+    printf("El numero %d es primo",numero);
+}
+int main(){
+    int numero;
+    printf("Introduzca el numero que desea evaluar:\n");
+    scanf("%d",&numero);
+    primo(numero);
+}
 ```
 </details>
 
@@ -1067,6 +1289,29 @@ principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_24.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+int factorial(int numero){
+    int factorial,i;
+    factorial=1;
+    if(numero>=0){
+        for(i=1;i<=numero;i++){
+            factorial=factorial*i;
+        }
+
+    }
+    return factorial;
+}
+int main(){
+    int numero;
+    printf("Introduzca el numero del que quiere calcular el factorial:\n");
+    scanf("%d",&numero);
+    printf("%d",factorial(numero));
+    return 0;
+}
 ```
 </details>
 
@@ -1079,6 +1324,24 @@ principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_25.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <math.h>
+float nPotencia(float n,float numero){
+    return pow(numero,n);
+}
+int main(){
+    float n;
+    float numero;
+    printf("Introduzca el numero que desee elevar:\n ");
+    scanf("%f",&numero);
+    printf("Introduzca a que potencia entera desea elevarlo:\n");
+    scanf("%f",&n);
+    printf("El resultado es %.3f", nPotencia(n,numero));
+}
 ```
 </details>
 
@@ -1091,6 +1354,24 @@ programa principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_26.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+int suma(int n){
+    int i,suma=0;
+    for(i=0;i<=n;i++){
+        suma+=i;
+    }
+    return suma;
+}
+int main(){
+    int n;
+    printf("Introduzca el numero que desee:\n");
+    scanf("%d",&n);
+    printf("La suma de enteros posistivos hasta %d es:\n%d",n, suma(n));
+}
 ```
 </details>
 
@@ -1102,6 +1383,35 @@ implemente la función apropiada para probar su funcionamiento, activando este �
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_27.c"
+// SPDX-FileCopyrightText: 2023 Santiago Neira Sejean
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+void invertirNumero(int numero, int n){
+    int cifras[50];
+    int aux;
+    aux = numero;
+    for (int i = n; i > 0; i--) {
+        cifras[i] = aux % 10;
+        aux /= 10;
+        printf("%d",cifras[i]);
+    }
+
+}
+int main(){
+    int numero;
+    int n;
+
+    printf("\nIntroduzca un numero: ");
+    scanf("%d", &numero);
+
+    printf("\nIntroduzca el numero de cifras: ");
+    scanf("%d", &n);
+
+    invertirNumero(numero,n);
+}
 ```
 </details>
 
