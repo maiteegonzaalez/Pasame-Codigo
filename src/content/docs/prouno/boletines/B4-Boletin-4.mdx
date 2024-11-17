@@ -33,6 +33,49 @@ por teclado y vaya rellenando un array de 7 elementos, mostrándolos posteriorme
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_02.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define MAX 40
+#define NANIMAL 7
+
+// Definiciones
+typedef char nombreanimal[40];
+
+typedef struct{
+    nombreanimal nombre;
+}tRegAnimales[NANIMAL];
+
+// Definición funciones
+void introducirNombres(tRegAnimales listaAnimales);
+void imprimirNombres(tRegAnimales listaNombres);
+
+// Main
+int main() {
+    tRegAnimales listaAnimales;
+
+    introducirNombres(listaAnimales);
+    imprimirNombres(listaAnimales);
+
+    return 0;
+}
+
+// Declaración Funciones
+void introducirNombres(tRegAnimales listaAnimales){
+    printf("Introduzca los 7 nombres de animales separados por comas: ");
+    for(int i = 0; i < NANIMAL; i++) scanf("%s, ",listaAnimales[i].nombre);
+}
+
+void imprimirNombres(tRegAnimales listaNombres){
+    printf("Los 7 nombres són:");
+    for(int i = 0; i < NANIMAL; i++) printf(" %s",listaNombres[i].nombre);
+    printf(".");
+}
 ```
 </details>
 
@@ -44,6 +87,46 @@ elementos de un array de números reales proporcionados por el usuario, consider
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_03.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define MAX 30
+
+// Definiciones
+typedef float listanumeros[MAX];
+
+// Definición funciones
+void introducirPorTeclado(listanumeros numeros);
+
+void imprimirSumatorio(const listanumeros numeros);
+
+// Main
+int main() {
+    listanumeros lnumeros;
+    introducirPorTeclado(lnumeros);
+    imprimirSumatorio(lnumeros);
+    return 0;
+}
+
+// Declaración Funciones
+void introducirPorTeclado(listanumeros numeros) {
+    printf("Introduzca los números que quiere sumar, para terminar introduzca 0: ");
+    // Expresión lógica dentro del for: mientras i < 30 y a partir del primer número que el número
+    // introducido anteriormente (i-1) no fuera 0.
+    for (int i = 0; i < MAX && (i < 1 || numeros[i - 1] != 0.0); i++) scanf("%f", &numeros[i]);
+}
+
+void imprimirSumatorio(const listanumeros numeros) {
+    float suma = 0;
+    // Impresión hasta el MAX o hasta llegar al primer 0
+    for (int i = 0; i < MAX && numeros[i] != 0; i++) suma += numeros[i];
+    printf("El sumatorio final son: %.2f", suma);
+}
 ```
 </details>
 
@@ -57,6 +140,75 @@ horas estudiando) y más vago (menor número de horas estudiando).
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_04.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Definiciones
+typedef struct {
+    int horas;
+    char nombre[10];
+} tRegdiasemana;
+
+typedef tRegdiasemana vHorasSemana[7];
+
+// Definición funciones
+void introducirHoras(vHorasSemana horas);
+
+void imprimirMediaYMostrarDias(vHorasSemana horas);
+
+void ordenarDeMayorAMenor(vHorasSemana horas);
+
+// Main
+int main() {
+    // Inicializo el Registro para cada día de la semana
+    vHorasSemana horasestudio = {{0, "Lunes"},
+                                 {0, "Martes"},
+                                 {0, "Miércoles"},
+                                 {0, "Jueves"},
+                                 {0, "Viernes"},
+                                 {0,"Sábado"},
+                                 {0,"Domingo"}};
+    introducirHoras(horasestudio);
+    imprimirMediaYMostrarDias(horasestudio);
+    return 0;
+}
+
+// Declaración Funciones
+void introducirHoras(vHorasSemana horas) {
+    printf("Introduzca las horas de estudio que le ha dedicado a Pro 1: \n");
+    for (int i = 0; i < 7; i++) {
+        printf("%s: ",horas[i].nombre);
+        scanf("%d", &horas[i].horas);
+        while ((getchar()) != '\n'); // Limpio Buffer
+    }
+
+}
+
+void imprimirMediaYMostrarDias(vHorasSemana horas) {
+    int media = 0;
+    for (int i = 0; i < 7; i++) media += horas[i].horas;
+    media = media / 7;
+    printf("La media de horas diarias: %d\n", media);
+    ordenarDeMayorAMenor(horas);
+    printf("El día que más horas estudiaste fué el %s (%d horas) y el que menos %s (%d horas).",horas[6].nombre,horas[6].horas,horas[0].nombre,horas[0].horas);
+}
+
+void ordenarDeMayorAMenor(vHorasSemana horas){
+    vHorasSemana aux;
+    for(int j = 1; j < 6; j++) {
+        for (int i = 0; i < 7-j; i++) {
+            if (horas[i].horas > horas[i + 1].horas) {
+                aux[i] = horas[i]; // Movemos al aux
+                horas[i] = horas[i + 1]; // Movemos el segundo al primer hueco
+                horas[i + 1] = aux[i]; // Copiamos el valor del primero al segundo hueco
+            }
+        }
+    }
+}
 ```
 </details>
 
@@ -154,6 +306,83 @@ devuelva una array ordenado con los elementos de los dos anteriores.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_10.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+// Definiciones
+typedef int array50[50], array100[100];
+
+// Definición funciones
+void crearArrayAleatorio(array50 array);
+
+void fusiondedosArrays(array50 array1, array50 array2, array100 arraydesalida);
+
+void bubblesort(array100 array);
+
+void imprimirArray(array100 array);
+
+// Main
+int main() {
+    array50 array1, array2;
+    array100 arrayfinal;
+
+    srand(time(NULL)); // Así solo se declara una vez
+    crearArrayAleatorio(array1);
+    crearArrayAleatorio(array2);
+
+    fusiondedosArrays(array1, array2, arrayfinal);
+
+    bubblesort(arrayfinal);
+
+    imprimirArray(arrayfinal);
+
+    return 0;
+}
+
+// Declaración Funciones
+void crearArrayAleatorio(array50 array) {
+    for (int i = 0; i < 50; i++) {
+        array[i] = rand() % 1000; // Para evitar números gigantes, prefiero un array de números menores a 1000;
+    }
+}
+
+void fusiondedosArrays(array50 array1, array50 array2, array100 arraydesalida) {
+    for (int i = 0; i < 50; i++) { // El primer array en los elementos del 0 - 49
+        arraydesalida[i] = array1[i];
+    }
+    for (int i = 0; i < 50; i++) { // El segundo array en los elementos del 50 - 99
+        arraydesalida[i + 50] = array2[i];
+    }
+}
+
+void bubblesort(array100 array) { // Algoritmo BubbleSort https://es.wikipedia.org/wiki/Ordenamiento_de_burbuja
+    int aux;
+    for (int j = 1; j < 99; j++) {
+        for (int i = 0; i < 100 - j; i++) {
+            if (array[i] > array[i + 1]) {
+                aux = array[i]; // Movemos al aux
+                array[i] = array[i + 1]; // Movemos el segundo al primer hueco
+                array[i + 1] = aux; // Copiamos el valor del primero al segundo hueco
+            }
+        }
+    }
+}
+
+void imprimirArray(array100 array) {
+    printf("El array ordenado:\n %d", array[0]);
+    for (int i = 1; i < 100; i++) {
+        printf(", "); // Colocando la coma aquí conseguimos que el último elemento no tenga y así sea un punto.
+        if (i % 20 == 0) printf("\n"); // Para que sea más legible en terminal.
+        printf("%3d", array[i]); // El formato hace que queden en cuadrícula
+    }
+    printf("."); // El punto en cuestión
+}
 ```
 </details>
 
