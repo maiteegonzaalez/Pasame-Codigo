@@ -1482,6 +1482,68 @@ implemente otra función apropiada para probar su funcionamiento, activando esta
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_29.c"
+// SPDX-FileCopyrightText: 2024 Pablo R. <p.rperez@udc.gal>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+//Para usar bool
+#include <stdbool.h>
+//Para usar pow
+#include <math.h>
+//Para usar scanf y printf
+#include <stdio.h>
+
+//Precondición: num es positivo
+bool determinarSiCapicua(int num) {
+	int a, b;
+	//Variables auxiliares
+	int reducido, posFinal;
+
+	if(num < 10) {
+		//Caso base de la recursión: Solo queda un dígito
+		return true;
+	} else {
+		//Extraer el primer y último dígito
+		// posFinal ayudará a saber en que posición está «a»
+		for(a = num, posFinal = 0;
+			a >= 10 || a <= -10;
+			posFinal++, a /= 10);
+		b = num % 10;
+
+		//Comprobar si son iguales. Si sí, recursión; si no, se devuelve falso y esto sube por la pila de llamadas
+		if(a == b) {
+			//Quitamos a y b de num
+			reducido = num / 10;
+			reducido -= a * (int)pow(10, posFinal);
+
+			return determinarSiCapicua(reducido);
+		} else {
+			return false;
+		}
+	}
+}
+
+void probarSiCapicua() {
+	int num;
+
+	printf("Introduzca el número natural: ");
+	scanf("%d", &num);
+	if(num < 0) {
+		num = -num;
+	}
+
+	if(determinarSiCapicua(num)) {
+		printf("%d es capicua\n", num);
+	} else {
+		printf("%d no es capicua\n", num);
+	}
+}
+
+int main() {
+	probarSiCapicua();
+
+	return 0;
+}
 ```
 </details>
 
@@ -1495,6 +1557,42 @@ activándola desde el programa principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_30.c"
+// SPDX-FileCopyrightText: 2024 Pablo R. <p.rperez@udc.gal>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int sumaCifras(int num) {
+	//Caso base de la recursión: num es menor que 10
+	if(num < 10) {
+		return num;
+	} else {
+		//Recursión: Se elimina la última cifra
+		return sumaCifras(num / 10) + (num % 10);
+	}
+}
+
+void probarSuma() {
+	int num;
+
+	while(1) {
+		printf("Introduzca el número: ");
+		scanf("%d", &num);
+		if(num <= 0) {
+			printf("%d tiene que ser mayor que 0\n", num);
+		} else {
+			break;
+		}
+	}
+
+	printf("Suma: %d\n", sumaCifras(num));
+}
+
+int main() {
+	probarSuma();
+	return 0;
+}
 ```
 </details>
 
@@ -1508,6 +1606,51 @@ principal.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_31.c"
+// SPDX-FileCopyrightText: 2024 Pablo R. <p.rperez@udc.gal>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+//Función auxiliar para mover un disco de una torre a otra
+void mover(int n, char *origen, char *destino) {
+	printf("Mover %d de %s a %s\n", n, origen, destino);
+}
+
+void torresHanoi(int disco, char *origen, char *auxiliar, char *destino){
+	if(disco == 1){
+		mover(disco, origen, destino);
+	} else{
+		torresHanoi(disco - 1,origen,destino,auxiliar);
+		mover(disco, origen, destino);
+		torresHanoi(disco - 1,auxiliar,origen,destino);
+	}
+}
+
+void ejecutar(int numDiscos) {
+	//Ejecutar el algorimo
+	torresHanoi(numDiscos, "Origen", "Auxiliar", "Destino");
+}
+
+int main() {
+	int numDiscos;
+
+	while(1) {
+		printf("Introduzca el numero de discos: ");
+		scanf("%d", &numDiscos);
+		if(numDiscos <= 0) {
+			printf("Debe haber 1 o más discos\n");
+		} else {
+			break;
+		}
+	}
+
+	ejecutar(numDiscos);
+
+	return 0;
+}
 ```
 </details>
 
@@ -1588,6 +1731,45 @@ para probar su funcionamiento, activando está último desde el programa princip
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_33.c"
+// SPDX-FileCopyrightText: 2024 Pablo R. <p.rperez@udc.gal>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int sumaFib(int limite, int a, int b) {
+	int siguiente;
+
+	siguiente = a + b;
+	printf("%d %d = %d %d\n", a, b, siguiente, limite);
+	//Caso base de la recursión: se llegó al límite
+	if(siguiente == limite) {
+		return siguiente;
+	} else {
+		return sumaFib(limite, b, siguiente) + siguiente;
+	}
+}
+
+void probarSuma() {
+	int num;
+
+	while(1) {
+		printf("Introduzca el número: ");
+		scanf("%d", &num);
+		if(num <= 0) {
+			printf("%d tiene que ser mayor que 0\n", num);
+		} else {
+			break;
+		}
+	}
+
+	printf("Suma: %d\n", sumaFib(num, 1, 1) + 2); //El 2 representa la suma de los 1 iniciales
+}
+
+int main() {
+	probarSuma();
+	return 0;
+}
 ```
 </details>
 
@@ -1626,6 +1808,174 @@ El número 124 no es primo
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_34.c"
+// SPDX-FileCopyrightText: 2024 Pablo R. <p.rperez@udc.gal>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+enum Operaciones {
+	SALIR,
+	CONTAR_CIFRAS,
+	SUMAR_CIFRAS,
+	CIFRA_SIGNIFICATIVA,
+	IMAGEN,
+	PRIMO,
+	MCD,
+	TABLA
+};
+
+int numCifras(int num) {
+	int n;
+	//Bucle for, en cada paso dividimos num entre 10 y sumamos 1
+	for(n = 1; num /= 10; n++);
+	return n;
+	//Otra opción sería hacer
+	// #include <math.h>
+	// return (int)log10(num) + 1;
+}
+
+int sumaCifras(int num) {
+	//Caso base de la recursión: num es menor que 10
+	if(num < 10) {
+		return num;
+	} else {
+		//Recursión: Se elimina la última cifra
+		return sumaCifras(num / 10) + (num % 10);
+	}
+}
+
+int cifraSignificativa(int num, int i) {
+	//Se coje la i-ésima cifra, empezando por el final.
+	for(; i > 1; i--) {
+		num /= 10;
+	}
+
+	return num % 10;
+}
+
+int imagen(int num) {
+	int x;
+	for(x = 0; num > 0; num /= 10) {
+		x = x*10 + (num % 10);
+	}
+	return x;
+}
+
+bool primo(int n) {
+	//Este algoritmo usa el método de Eratóstenes,
+	// eliminando números hasta la raíz cuadrada de n
+	//Indica si el i-ésimo número no es primo
+	bool *no_primos;
+
+	no_primos = calloc(n, sizeof(bool));
+
+	//Recorremos los números enteros hasta la raiz de n
+	for(int i = 2; i*i <= n; i++) {
+		if(no_primos[i]) {
+			//Si ya se comprobó, saltar
+			continue;
+		} else {
+			if(n % i == 0) {
+				//No es primo
+				return false;
+			} else {
+				//Si es primo. Marcamos todos sus múltiplos
+				for(int j = i + 1; j*j <= n; j++) {
+					no_primos[i] = n % j == 0;
+				}
+			}
+		}
+	}
+
+	free(no_primos);
+
+	return true;
+}
+
+int mcd(int a, int b) {
+	//Algoritmo de Euclides recursivo
+	int tmp;
+
+	if(b == 0) {
+		//Caso base
+		return a;
+	} else {
+		if(a > b) {
+			tmp = a % b;
+		} else {
+			tmp = b % a;
+		}
+		return mcd(b, tmp);
+	}
+}
+
+void tabla(int num) {
+	printf("   SUMA RESTA MULT  DIV\n");
+	for(int i = 1; i <= 10; i++) {
+		printf("%2d %4d %5d %4d %4d\n", i, num + i, num - i, num * i, num / i);
+	}
+}
+
+void menu() {
+	int op, num, i;
+
+	do {
+		printf("0 - Salir\n");
+		printf("1 - Calcular el número de cifras de un entero\n");
+		printf("2 - Sumar las cifras de un entero\n");
+		printf("3 - Indicar la cifra i-ésima menos significativa de un entero\n");
+		printf("4 - Calcular la imagen especular de un entero\n");
+		printf("5 - Comprobar si un entero es primo\n");
+		printf("6 - Calcula el MCD (mínimo común divisor) de dos números enteros\n");
+		printf("7 - Presentar la tabla de sumar, restar, multiplicar y dividir (hasta 10) de un número entero\n");
+		printf("Introduzca el nº de operación: ");
+		scanf("%d", &op);
+		if(op == SALIR) {
+			continue;
+		}
+		printf("Introduza el número: ");
+		scanf("%d", &num);
+		if(op == CIFRA_SIGNIFICATIVA || op == MCD) {
+			printf("Introduzca el segundo número: ");
+			scanf("%d", &i);
+		}
+		printf("\n");
+		switch(op) {
+			case CONTAR_CIFRAS:
+				printf("%d cifras\n", numCifras(num));
+				break;
+			case SUMAR_CIFRAS:
+				printf("Total: %d\n", sumaCifras(num));
+				break;
+			case CIFRA_SIGNIFICATIVA:
+				printf("Cifra: %d\n", cifraSignificativa(num, i));
+				break;
+			case IMAGEN:
+				printf("%d -> %d\n", num, imagen(num));
+				break;
+			case PRIMO:
+				printf("%d %s primo\n", num, primo(num) ? "es" : "no es");
+				break;
+			case MCD:
+				printf("mcd(%d, %d) = %d\n", num, i, mcd(num, i));
+				break;
+			case TABLA:
+				tabla(num);
+				break;
+			default:
+				printf("Opción incorrecta");
+		};
+		printf("\n");
+	} while(op);
+}
+
+int main() {
+	menu();
+	return 0;
+}
 ```
 </details>
 
@@ -1658,6 +2008,373 @@ usuario pueda elegir entre cuatro opciones para realizar las siguientes operacio
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_35.c"
+// SPDX-FileCopyrightText: 2024 Pablo R. <p.rperez@udc.gal>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+#include <limits.h>
+#include <errno.h>
+
+
+enum Operaciones {
+	SALIR,
+	VOCALES,
+	POTENCIA,
+	FACTORIAL,
+	CUBOS,
+	CUADRADO,
+	RECTANGULO,
+	TABLA,
+	MAXIMO,
+	DIVISORES,
+	EQUILATERO
+};
+
+void vocales() {
+	char c;
+	int n = 0;
+
+	printf("Introduzca el texto. Introduzca «*» y pulse intro para terminar: ");
+	do {
+		c = getc(stdin);
+		switch(c) {
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+			case 'A':
+			case 'E':
+			case 'I':
+			case 'O':
+			case 'U':
+				n++;
+				break;
+		}
+	} while(c != EOF && c != '*');
+
+	printf("%d vocales\n", n);
+}
+
+int potencia(int base, int exponente) {
+	int n;
+
+	//Para no usar las funciones de exponenciación, se hace un simple bucle
+	for(n = 1; exponente > 0; exponente--) {
+		n *= base;
+	}
+
+	return n;
+}
+
+int factorial(int n) {
+	if(n <= 1) {
+		return 1;
+	} else {
+		return n * factorial(n - 1);
+	}
+}
+
+void cuadradosYCubos(int de, int hasta) {
+	printf("%5s  Cuadrado  Cubo\n", "");
+	for(int i = de; i <= hasta; i++) {
+		printf("%5d  %8d  %8d\n", i, i*i, i*i*i);
+	}
+}
+
+void dibujarCuadrado(int lado, char caracter) {
+	int i;
+	//Primera línea
+	for(i = 0; i < lado; i++) {
+		putchar(caracter);
+	}
+	putchar('\n');
+	//Siguientes líneas
+	for(i = 1; i < lado - 1; i++) {
+		putchar(caracter);
+		for(int j = 1; j < lado - 1; j++) {
+			putchar(' ');
+		}
+		putchar(caracter);
+		putchar('\n');
+	}
+	//Línea final
+	for(i = 0; i < lado; i++) {
+		putchar(caracter);
+	}
+}
+
+void areaRectangulo(int largoA, int cortoA, int largoB, int cortoB) {
+	int areaA, areaB, perimetroA, perimetroB;
+
+	areaA = largoA * cortoA;
+	perimetroA = (largoA + cortoA)*2;
+
+	areaB = largoB * cortoB;
+	perimetroB = (largoB + cortoB)*2;
+
+	if(areaA < areaB) {
+		printf("Rectángulo %d %d: Área %d Perímetro %d\n", largoA, cortoA, areaA, perimetroA);
+	} else {
+		printf("Rectángulo %d %d: Área %d Perímetro %d\n", largoB, cortoB, areaB, perimetroB);
+	}
+}
+
+void raices(int de, int hasta) {
+	printf("%5s  Cuadrado  Raiz cuadrada\n", "");
+	for(int i = de; i <= hasta; i++) {
+		printf("%5d  %8d  %e\n", i, i*i, sqrt(i));
+	}
+}
+
+void maximo() {
+	long *numeros, tmp, max, i;
+	char *entrada, *continuar, *entradaTmp;
+	size_t tamEntrada = sizeof(char);
+
+	long maximo, minimo;
+	float media;
+
+
+	//Inicializar la cadena que contendrá la entrada
+	entrada = malloc(sizeof(char));
+	printf("Introduzca los números separados por espacios. Termine con un salto de línea: ");
+	getline(&entrada, &tamEntrada, stdin);
+	entradaTmp = entrada;
+	continuar = entrada;
+
+	//Inicializar el vector de números
+	numeros = calloc(tamEntrada / 2 + 1, sizeof(int));
+	//Si el número es múltiplo de 10, se para
+	for (i = 0; (tmp = strtol(continuar, &entradaTmp, 10)) % 10 != 0; i++ ) {
+		//Si continuar es igual a entradaTmp no se han introducido
+		// números. Si entradaTmp es igual a '\0' es que se ha
+		// leido toda la entrada.
+		if(continuar == entradaTmp || *entradaTmp == '\0') {
+			break;
+		} else {
+			//En cada vuelta, strtol coje un número de continuar, y
+			// apunta al siguiente en la variable entradaTmp
+			continuar = entradaTmp;
+		}
+		numeros[i] = tmp;
+	}
+
+	//Calcular la media, máximo y mínimo
+	max = i;
+	maximo = LONG_MIN;
+	minimo = LONG_MAX;
+	for(i = 0, tmp = 0; i < max; i++) {
+		tmp += numeros[i];
+		if(numeros[i] > maximo) {
+			maximo = numeros[i];
+		}
+		if(numeros[i] < minimo) {
+			minimo = numeros[i];
+		}
+	}
+	media = (float)tmp / max;
+
+	printf("Máximo: %ld\nMínimo: %ld\nMedia: %f\n", maximo, minimo, media);
+
+	free(numeros);
+	free(entrada);
+}
+
+void divisores(int num) {
+	printf("Divisores de %d: ", num);
+	for(int i = 2; i < num; i++) {
+		if(num % i == 0) {
+			printf("%d ", i);
+		}
+	}
+	printf("\n");
+}
+
+void triangulo(int lado, char caracter) {
+	int i;
+
+	int espacioAntes, espacioEntre;
+
+	if(lado % 2 == 0) {
+		espacioAntes = (lado - 2) / 2;
+		espacioEntre = 2;
+	} else {
+		espacioAntes = lado / 2;
+		espacioEntre = 1;
+	}
+
+	//Punta del triángulo
+	//Si lado es par, 2 asteriscos
+	//Si impar, 1 asterisco
+	for(i = 0; i < espacioAntes; i++) {
+		putchar(' ');
+	}
+	putchar(caracter);
+	if(lado % 2 == 0) {
+		putchar(caracter);
+	}
+	putchar('\n');
+
+	//Dibujar los lados
+	// El espacio anterior se reduce un caracter de cada vez
+	// El espacio interior se reduce de 2 en 2
+	for(espacioAntes-- ; espacioAntes > 0; espacioAntes--, espacioEntre += 2) {
+		//Dibujar espacios antes
+		for(i = 0; i < espacioAntes; i++) {
+			putchar(' ');
+		}
+		putchar(caracter);
+		//Dibujar espacios entre
+		for(i = 0; i < espacioEntre; i++) {
+			putchar(' ');
+		}
+		putchar(caracter);
+		putchar('\n');
+	}
+
+	//Dibujar el lado inferior
+	for(i = 0; i < lado; i++) {
+		putchar(caracter);
+	}
+	putchar('\n');
+}
+
+
+//Función auxiliar con gets que lee un número por pantalla
+//Equivalente a scanf("%d")
+int leerNumero() {
+	size_t len = 10*sizeof(char);
+	char *str;
+	int n;
+
+	str = calloc(10, sizeof(char));
+	getline(&str, &len, stdin);
+
+	n = strtol(str, NULL, 10);
+	free(str);
+	return n;
+}
+
+void menu() {
+	int op, tmpA, tmpB, tmpC, tmpD;
+	size_t len;
+	char *c;
+
+	c = calloc(10, sizeof(char));
+
+	do {
+printf(" 0 - Salir del programa\n");
+printf(" 1 - Conocer el número de vocales sin acentuar existentes en un texto que el usuario escribe mientras no aparezca el carácter *\n");
+printf(" 2 - Calcular la potencia de un número b elevado a e, sin utilizar los operadores de exponenciación\n");
+printf(" 3 - Mostrar por pantalla el factorial del menor de dos números enteros positivos que introduzca por teclado el usuario\n");
+printf(" 4 - Visualizar una tabla con los cuadrados y los cubos de los números contenidos en un intervalo de enteros indicado por el usuario\n");
+printf(" 5 - Dibujar un cuadrado, aproximadamente centrado, en pantalla con el carácter y longitud del lado que indique el usuario\n");
+printf(" 6 - Mostrar el área y el perímetro del rectángulo de menor área. El usuario debe indicar las longitudes de los lados de los dos rectángulos\n");
+printf(" 7 - Visualizar una tabla de los números, los cuadrados y las raíces cuadradas de aquellos números contenidos en un intervalo de enteros indicado por el usuario\n");
+printf(" 8 - Calcular el máximo, el mínimo y la media de una serie de números enteros que el usuario introduce por teclado. Finaliza la serie cuando el número introducido es múltiplo de 10\n");
+printf(" 9 - Mostrar por pantalla los divisores de un número entero que indique el usuario\n");
+printf("10 - Dibujar un triángulo equilátero, aproximadamente centrado, en pantalla con el carácter y longitud del lado que indique el usuario\n");
+		printf("Introduzca el nº de operación: ");
+		op = leerNumero();
+		if(op == SALIR) {
+			continue;
+		}
+		printf("\n");
+		switch(op) {
+			case VOCALES:
+				vocales();
+				break;
+
+			case POTENCIA:
+				printf("Base: ");
+				tmpA = leerNumero();
+				printf("Exponente: ");
+				tmpB = leerNumero();
+				printf("Resultado %d ** %d: %d", tmpA, tmpB, potencia(tmpA, tmpB));
+				break;
+
+			case FACTORIAL:
+				printf("Primer número: ");
+				tmpA = leerNumero();
+				printf("Segundo número: ");
+				tmpB = leerNumero();
+				if(tmpA > tmpB) {
+					printf("Factorial de %d: %d\n", tmpB, factorial(tmpB));
+				} else {
+					printf("Factorial de %d: %d\n", tmpA, factorial(tmpA));
+				}
+				break;
+
+			case CUBOS:
+				printf("De: ");
+				tmpA = leerNumero();
+				printf("Hasta: ");
+				tmpB = leerNumero();
+				cuadradosYCubos(tmpA, tmpB);
+				break;
+
+			case CUADRADO:
+				printf("Caracter: ");
+				getline(&c, &len, stdin);
+				printf("Tamaño: ");
+				tmpA = leerNumero();
+				dibujarCuadrado(tmpA, c[0]);
+				break;
+
+			case RECTANGULO:
+				printf("Longitudes de los lados largo y ancho del primer rectángulo, separados por espacios: ");
+				getline(&c, &len, stdin);
+				sscanf("%d %d", c, &tmpA, &tmpB);
+				printf("Longitudes de los lados largo y ancho del segundo rectángulo, separados por espacios: ");
+				getline(&c, &len, stdin);
+				sscanf("%d %d", c, &tmpC, &tmpD);
+				areaRectangulo(tmpA, tmpB, tmpC, tmpD);
+				break;
+
+			case TABLA:
+				printf("De: ");
+				tmpA = leerNumero();
+				printf("Hasta: ");
+				tmpB = leerNumero();
+				raices(tmpA, tmpB);
+				break;
+
+			case MAXIMO:
+				maximo();
+				break;
+
+			case DIVISORES:
+				printf("Introduca el número: ");
+				tmpA = leerNumero();
+				divisores(tmpA);
+				break;
+
+			case EQUILATERO:
+				printf("Caracter: ");
+				getline(&c, &len, stdin);
+				printf("Tamaño: ");
+				tmpA = leerNumero();
+				triangulo(tmpA, c[0]);
+				break;
+
+			default:
+				printf("Opción incorrecta");
+		};
+		printf("\n");
+	} while(op);
+
+	free(c);
+}
+
+int main() {
+	menu();
+	return 0;
+}
 ```
 </details>
 
@@ -1677,6 +2394,194 @@ Implemente un programa en Lenguaje C para trabajar con números complejos. Las o
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_36.c"
+// SPDX-FileCopyrightText: 2024 Pablo R. <p.rperez@udc.gal>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+enum Operaciones {
+	SALIR,
+	BINOMICA,
+	MODULO,
+	SUMAR,
+	RESTAR,
+	MULTIPLICAR
+};
+
+typedef struct  {
+	double real;
+	double imaginario;
+} Binomica;
+
+typedef struct  {
+	double modulo;
+	double argumento;
+} ModuloArg;
+
+
+typedef struct {
+	bool binomico;
+	union {
+		Binomica b;
+		ModuloArg m;
+	};
+} Numero;
+
+void binomicaAModulo(Binomica *origen, ModuloArg *destino) {
+	destino->modulo = sqrt(origen->real*origen->real + origen->imaginario*origen->imaginario);
+	destino->argumento = atan(origen->imaginario);
+}
+
+void moduloABinomica(ModuloArg *origen, Binomica *destino) {
+	destino->imaginario = tan(origen->argumento);
+	destino->real = sqrt(origen->modulo*origen->modulo - destino->imaginario*destino->imaginario);
+}
+
+void escribirNumero(Numero *n, const char *nombre) {
+	printf("%s ", nombre);
+
+	if(n->binomico) {
+		printf("(binomico):  z = %e + i*%e", n->b.real, n->b.imaginario);
+	} else {
+		printf("(módulo-argumental): |%e|_%e ", n->m.modulo, n->m.argumento);
+	}
+
+	printf("\n");
+}
+
+void sumaBinomico(Binomica *x, Binomica *y, Binomica *z) {
+	z->real = x->real + y->real;
+	z->imaginario = x->imaginario + y->imaginario;
+}
+
+void restaBinomico(Binomica *x, Binomica *y, Binomica *z) {
+	z->real = x->real - y->real;
+	z->imaginario = x->imaginario - y->imaginario;
+}
+
+void multBinomico(Binomica *x, Binomica *y, Binomica *z) {
+	z->real = x->real*y->real - x->imaginario*y->imaginario;
+	z->imaginario = x->imaginario*y->real + x->real*y->imaginario;
+}
+
+void menu() {
+	int op;
+	double tmpA, tmpB;
+	Numero x, y, z;
+	Binomica tempA, tempB;
+	ModuloArg tempC;
+
+	do {
+		printf(" 1. Introducir dos números complejos en forma binómica por teclado\n");
+		printf(" 2. Introducir dos números complejos en forma módulo-argumental por teclado\n");
+		printf(" 3. Sumar dos números complejos\n");
+		printf(" 4. Restar dos números complejos\n");
+		printf(" 5. Multiplicar dos números complejos\n");
+		printf(" 0. Salir\n");
+		printf("Escoja una opción: ");
+		scanf("%d", &op);
+		if(op == SALIR) {
+			continue;
+		}
+		printf("\n");
+		switch(op) {
+			case BINOMICA:
+				printf("Introduzca los números, con la parte real e imaginaria separados por espacios.\n");
+				printf("X: ");
+				scanf("%lf %lf", &tmpA, &tmpB);
+				x.binomico = true;
+				x.b.real = tmpA;
+				x.b.imaginario = tmpB;
+				printf("Y: ");
+				scanf("%lf %lf", &tmpA, &tmpB);
+				y.binomico = true;
+				y.b.real = tmpA;
+				y.b.imaginario = tmpB;
+				break;
+
+			case MODULO:
+				printf("Introduzca los números, con el módulo y argumento separados por espacios.\n");
+				printf("X: ");
+				scanf("%lf %lf", &tmpA, &tmpB);
+				x.binomico = false;
+				x.m.modulo = tmpA;
+				x.m.argumento = tmpB;
+				printf("Y: ");
+				scanf("%lf %lf", &tmpA, &tmpB);
+				y.binomico = false;
+				y.m.modulo = tmpA;
+				y.m.argumento = tmpB;
+				break;
+
+			case SUMAR:
+				if(x.binomico && y.binomico) {
+					sumaBinomico(&x.b, &y.b, &(z.b));
+				} else {
+					moduloABinomica(&x.m, &tempA);
+					moduloABinomica(&y.m, &tempB);
+					sumaBinomico(&tempA, &tempB, &(z.b));
+				}
+				z.binomico = true;
+				escribirNumero(&z, "Z");
+
+				z.binomico = false;
+				binomicaAModulo(&z.b, &tempC);
+				z.m = tempC;
+				escribirNumero(&z, "Z");
+				break;
+
+			case RESTAR:
+				if(x.binomico && y.binomico) {
+					restaBinomico(&x.b, &y.b, &(z.b));
+				} else {
+					moduloABinomica(&x.m, &tempA);
+					moduloABinomica(&y.m, &tempB);
+					restaBinomico(&tempA, &tempB, &(z.b));
+				}
+				z.binomico = true;
+				escribirNumero(&z, "Z");
+
+				z.binomico = false;
+				binomicaAModulo(&z.b, &tempC);
+				z.m = tempC;
+				escribirNumero(&z, "Z");
+				break;
+
+			case MULTIPLICAR:
+				if(x.binomico && y.binomico) {
+					multBinomico(&x.b, &y.b, &(z.b));
+				} else {
+					moduloABinomica(&x.m, &tempA);
+					moduloABinomica(&y.m, &tempB);
+					multBinomico(&tempA, &tempB, &(z.b));
+				}
+				z.binomico = true;
+				escribirNumero(&z, "Z");
+
+				z.binomico = false;
+				binomicaAModulo(&z.b, &tempC);
+				z.m = tempC;
+				escribirNumero(&z, "Z");
+				break;
+
+			default:
+				printf("Opción incorrecta");
+		};
+		printf("\n");
+		printf("Números cargados:\n");
+		escribirNumero(&x, "X");
+		escribirNumero(&y, "Y");
+	} while(op);
+}
+
+int main() {
+	menu();
+	return 0;
+}
 ```
 </details>
 
