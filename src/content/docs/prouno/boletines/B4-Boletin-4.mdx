@@ -22,6 +22,41 @@ creado.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_01.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+void askNumbers(int *cadena)
+{
+    int i;
+    printf("Dime un numero");
+    for(i = 0; i < 10; i++)
+    {
+        scanf("%d", &cadena[i]);
+        printf("Dime otro numero ");
+    }
+    printf("\n");
+}
+
+void printNumbers(int *cadena)
+{
+    int i;
+    printf("La cadena es: \n");
+    for(i = 0; i < 10; i++)
+    {
+        printf("%d ", cadena[i]);
+    }
+}
+
+int main()
+{
+    int cadena[10];
+    askNumbers(cadena);
+    printNumbers(cadena);
+    return 1;
+}
 ```
 </details>
 
@@ -295,6 +330,61 @@ resultante de las operaciones indicadas.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_09.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <math.h>
+
+void escanearDatos(int *numeros,int tamano)
+{
+    int i;
+    for(i = 0 ;i < tamano; i++)
+    {
+        printf("Introduzca un valor:\n");
+        scanf("%d",&numeros[i]);
+    }
+}
+void imprimirDatos (int *numeros, int tamano){
+    int i;
+    for(i = 0 ;i < tamano; i++)
+    {
+        printf("%d, ",numeros[i]);
+    }
+}
+void modificarArray(int *numeros,int tamano){
+    int i;
+    for(i = 0; i < tamano; i++)
+    {
+        if(numeros[i]%2==0)
+        {
+            numeros[i]=pow(numeros[i],2);
+        }
+        else if(numeros[i] % 2 != 0)
+        {
+            numeros[i] = trunc(sqrt(abs(numeros[i])));
+        }
+    }
+}
+int main(){
+    int tamano;
+    printf("Introduzca cuantos numeros va a proprocionar:\n");
+    scanf("%d",&tamano);
+    if(tamano<=0 || tamano>20)
+    {
+        printf("Introduzca un tamano valido");
+        return 2;
+    }
+    int numeros[tamano];
+    escanearDatos(numeros,tamano);
+    imprimirDatos(numeros,tamano);
+    printf("\n");
+    modificarArray(numeros,tamano);
+    printf("\n");
+    imprimirDatos(numeros,tamano);
+    return 0;
+}
 ```
 </details>
 
@@ -450,6 +540,80 @@ mismo considerando como tipo base de la matriz números enteros.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_15.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+// i = fila
+// j = columna
+void crearMatriz(int tamanho, int matriz[tamanho][tamanho])
+{
+    int i;
+    int j;
+    for(j = 0; j < tamanho; j++)
+    {
+        for(i = 0; i < tamanho; i++)
+        {
+            printf("Posicion %d, %d \n", j + 1, i + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+void imprimirMatriz(int tamanho, int matriz[tamanho][tamanho])
+{
+    int i;
+    int j;
+    for(j = 0; j < tamanho; j++)
+    {
+        for(i = 0; i < tamanho; i++)
+        {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void imprimirTraspuesta(int tamanho, int matriz[tamanho][tamanho])
+{
+    int i;
+    int j;
+    for(j = 0; j < tamanho; j++)
+    {
+        for(i = 0; i < tamanho; i++)
+        {
+            printf("%d ", matriz[j][i]);
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int tamanho;
+    int traspuesta;
+
+    printf("De que tamanho quieres la matriz");
+    scanf("%d", &tamanho);
+
+
+    printf("Quieres la traspuesta? 1 = si, 0 = no");
+    scanf("%d", &traspuesta);
+
+    int matriz[tamanho][tamanho];
+
+    crearMatriz(tamanho, matriz);
+
+    if(traspuesta)
+    {
+        imprimirTraspuesta(tamanho, matriz);
+    }
+    else
+    {
+        imprimirMatriz(tamanho, matriz);
+    }
+}
 ```
 </details>
 
@@ -520,6 +684,77 @@ calificación. Además muestre a continuación el listado con el nombre y nota d
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_20.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct alumno
+{
+    char nombre[40];
+    int nota;
+};
+
+void introducirAlumno(struct alumno *a)
+{
+    printf("Nombre: ");
+    gets(&a->nombre);
+    printf("Nota: ");
+    char nota[20];
+    gets(nota);
+    a->nota = atoi(nota);
+}
+
+void notaMasAlta(struct alumno *alumnos)
+{
+    int notaMax = 0;
+    int notaMin = 0;
+    int indiceMejorNota;
+    int indicePeorNota;
+    int j = 0;
+    for(int i = 0; i < 15; i++)
+    {
+        if (notaMax < alumnos[i].nota)
+        {
+            notaMax = alumnos[i].nota;
+            indiceMejorNota = i;
+        }
+        if(notaMin > alumnos[i].nota)
+        {
+            notaMin = alumnos[i].nota;
+            indicePeorNota = j;
+        }
+        j++;
+        printf("%d", notaMax);
+        printf("%d", notaMin);
+    }
+    printf("El alumno %s tiene la mejor calificiacion.\n", alumnos[indiceMejorNota].nombre);
+    printf("El alumno %s tiene la peor calificiacion.\n", alumnos[indicePeorNota].nombre);
+}
+
+void imprimirAlumno(struct alumno a)
+{
+    printf("El nombre del alumno es: %s\n", a.nombre);
+    printf("El nota del alumno es: %d\n", a.nota);
+}
+
+int main()
+{
+    struct alumno alumnos[15];
+    for(int i = 0; i < 15; i++)
+    {
+        printf("Introduciendo alumno %d:\n",i + 1);
+        introducirAlumno(&alumnos[i]);
+    }
+    for(int i = 0; i < 15; i++)
+    {
+        printf("Imprimiendo alumno %d:\n",i + 1);
+        imprimirAlumno(alumnos[i]);
+    }
+    notaMasAlta(alumnos);
+}
 ```
 </details>
 
@@ -578,6 +813,56 @@ nacimiento, tipo de puesto de trabajo y el nivel de estudios de todos los trabaj
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_24.c"
+// SPDX-FileCopyrightText: 2023 Miguel Fraga Pico
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+struct empleados
+{
+    char puesto[50]; //oficinista   conductor   técnico
+    char nivelEstudios[50];
+    char fechaNacimiento[50];
+    char nombre[50];
+};
+
+void introducirEmpleado(struct empleados *e)
+{
+    printf("Cual es el nombre del empleado?");
+    gets(&e->nombre);
+    printf("Que puesto le corresponde al empleado?");
+    gets(&e->puesto);
+    printf("Cual es la fecha de nacimiento del empleado? dd/mm/aaaa");
+    gets(&e->fechaNacimiento);
+    printf("Cual es el nivel de estudios del empleado? ");
+    gets(&e->nivelEstudios);
+}
+
+void imprimirempleado(struct empleados e)
+{
+    printf("El nombre del empleado es: %s\n", e.nombre);
+    printf("La fecha de nacimiento del empleado es: %s\n", e.fechaNacimiento);
+    printf("El nivel de estudios del empleado es: %s\n", e.nivelEstudios);
+    printf("El puesto del empleado es: %s\n", e.puesto);
+}
+
+
+int main()
+{
+    struct empleados empleados[20];
+
+    for(int i = 0; i < 20; i++)
+    {
+        printf("Introduciendo alumno %d:\n",i);
+        introducirEmpleado(&empleados[i]);
+    }
+    for(int i = 0; i < 20; i++)
+    {
+        printf("Imprimiendo alumno %d:\n",i);
+        imprimirempleado(empleados[i]);
+    }
+}
 ```
 </details>
 
