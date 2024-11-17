@@ -15,6 +15,22 @@ implemente un programa principal para probar su funcionamiento.
 <details>
 <summary>Mostrar Solución</summary>
 ```c title="Ejercicio_01.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+void imprimeLBlanco(int nlineas);
+int main() {
+    int n;
+    printf("¿Cuantas líneas en blanco quieres que imprima? ");
+    scanf("%d",&n);
+    imprimeLBlanco(n);
+    return 0;
+}
+void imprimeLBlanco(int nlineas){
+    for(nlineas; nlineas > 0; nlineas--) printf("\n");
+}
 ```
 </details>
 
@@ -26,7 +42,59 @@ subprograma, implemente la función apropiada para probar su funcionamiento.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_02.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <string.h>
+
+void inicialSemana(char I);
+
+int main() {
+    char I; // Inicial
+    printf("Introduzca la inicial de un día de la semana: ");
+    scanf("%c",&I);
+    inicialSemana(I);
+    return 0;
+}
+
+void inicialSemana(char I){
+    switch (I) {
+        case 'L':
+        case 'l':
+            printf("Lunes");
+            break;
+        case 'M':
+        case 'm':
+            printf("Martes");
+            break;
+        case 'X':
+        case 'x':
+            printf("Miércoles");
+            break;
+        case 'J':
+        case 'j':
+            printf("Jueves");
+            break;
+        case 'V':
+        case 'v':
+            printf("Viernes");
+            break;
+        case 'S':
+        case 's':
+            printf("Sábado");
+            break;
+        case 'D':
+        case 'd':
+            printf("Domingo");
+            break;
+        default:
+            printf("Error");
+            break;
+    }
+}
 ```
 </details>
 
@@ -37,7 +105,32 @@ que lo divide exceptuando el mismo.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_03.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+
+int mayorDiv(int n);
+
+int main() {
+    int n, maxDiv;
+    printf("Introduzca un número entero: ");
+    scanf("%d",&n);
+    maxDiv = mayorDiv(n);
+    printf("%d",maxDiv);
+    return 0;
+}
+
+int mayorDiv(int n){
+    int maxDiv;
+    for (int i = 1; i != n; i++){
+        if(n % i == 0) maxDiv = i;
+        else;
+    }
+    return maxDiv;
+}
 ```
 </details>
 
@@ -49,7 +142,78 @@ este último desde el programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_04.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
+
+// Constantes de mensajes
+#define MENSAJE "Introduzca las constantes solicitadas de una ecuación de segundo grado (Ax^2+Bx+C=0):"
+#define SOLUCION "La solución a la ecuación es: "
+#define NOSOLUCION "La ecuación no tiene una solución real."
+
+// Definiciones
+typedef struct {
+    float A, B, C;
+} Coeficientes;
+
+typedef float sol[2];
+
+// Definición funciones
+Coeficientes pedirCoef();
+
+void resolverEq(Coeficientes coef, sol x);
+
+bool comprobacionEq(Coeficientes coef, sol x);
+
+// Main
+int main() {
+    Coeficientes coef;
+    sol x;
+
+    puts(MENSAJE);
+    coef = pedirCoef();
+    resolverEq(coef, x);
+
+    if (comprobacionEq(coef, x)) printf(SOLUCION"%.2f y/o %.2f", x[0], x[1]);
+    else printf(NOSOLUCION);
+
+    return 0;
+}
+
+// Declaración Funciones
+Coeficientes pedirCoef() {
+    Coeficientes aux;
+
+    printf("A: ");
+    scanf("%f", &aux.A);
+    printf("B: ");
+    scanf("%f", &aux.B);
+    printf("C: ");
+    scanf("%f", &aux.C);
+
+    return aux;
+}
+
+void resolverEq(Coeficientes coef, sol x) {
+    float raiz;
+
+    raiz = sqrtf(powf(coef.B, 2) - 4 * coef.A * coef.C);
+    x[0] = (-coef.B + raiz) / (2 * coef.A);
+    x[1] = (-coef.B - raiz) / (2 * coef.A);
+}
+
+bool comprobacionEq(Coeficientes coef, sol x) {
+    if (coef.A * powf(x[0], 2) + coef.B * x[0] + coef.C == 0 &&
+        coef.A * powf(x[1], 2) + coef.B * x[1] + coef.C == 0)
+        return true;
+    else return false;
+}
 ```
 </details>
 
@@ -61,7 +225,39 @@ activando este último desde el programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_05.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define MENSAJE "Introduzca un número entero para mostrar un tríangulo de Floyd: "
+#define FORMAT "%5d"
+
+// Definición funciones
+void imprimirTFloyd(int n);
+
+// Main
+int main() {
+    int n;
+
+    printf(MENSAJE);
+    scanf("%d",&n);
+    imprimirTFloyd(n);
+
+    return 0;
+}
+
+// Declaración Funciones
+void imprimirTFloyd(int n){
+    for (int i = n, g = 1;i >= 0; i--){
+        for(int f = 1;f != n-i+1; f++, g++) printf(FORMAT"\t",g);
+        printf("\n");
+    }
+}
 ```
 </details>
 
@@ -73,7 +269,52 @@ apropiada para probar su funcionamiento, activando este último desde el program
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_06.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define MENSAJE "Introduzca un número entero para mostrar un tríangulo de Floyd: "
+#define FORMAT "%5d"
+
+// Definición funciones
+int introducirN();
+
+void imprimirTFloyd(int n);
+
+// Main
+int main() {
+    int n;
+
+    n = introducirN();
+    imprimirTFloyd(n);
+
+    return 0;
+}
+
+// Declaración Funciones
+int introducirN() {
+    int aux = 0;
+
+    do {
+        printf(MENSAJE);
+        scanf("%d", &aux);
+        while ((getchar()) != '\n');
+    } while (aux <= 0);
+
+    return aux;
+}
+
+void imprimirTFloyd(int n) {
+    for (int i = n, g = 1; i >= 0; i--) {
+        for (int f = 1; f != n - i + 1; f++, g++) printf(FORMAT"\t", g);
+        printf("\n");
+    }
+}
 ```
 </details>
 
@@ -90,7 +331,122 @@ La fecha introducida no es correcta
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_07.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+#include <stdbool.h>
+
+// Constantes
+typedef struct {
+    int DD, MM, AAAA;
+} tRegFecha;
+
+// Definiciones
+#define MENSAJE "Introduzca su fecha de nacimiento en el formato especificado (DD/MM/AAAA): "
+#define FORMATO "%d / %d / %d"
+#define FNOVALIDA "¡Fecha no válida!"
+#define FERROR "Código de error: "
+#define ERRORCODE0 "Debe ser una fecha válida del calendario gregoriano."
+#define ERRORCODE1 "Introducido un día incorrecto en un mes de %d días."
+#define ERRORCODE2 "Introducido un mes no válido."
+
+// Definición funciones
+tRegFecha introducirFecha();
+
+bool esFechaCorrecta(tRegFecha fecha);
+
+// Main
+int main() {
+    tRegFecha fecha;
+
+    do fecha = introducirFecha();
+    while (esFechaCorrecta(fecha) == false);
+
+    return 0;
+}
+
+// Declaración Funciones
+tRegFecha introducirFecha() {
+    tRegFecha aux;
+
+    printf("\n"MENSAJE);
+    scanf(FORMATO, &aux.DD, &aux.MM, &aux.AAAA);
+    while ((getchar()) != '\n');
+
+    return aux;
+}
+
+bool esFechaCorrecta(tRegFecha fecha) {
+    // ESTA SECCIÓN DEL CÓDIGO FUÉ ADAPTADA DEL EJERCICIO 8, BOLETÍN 2.
+
+    if (0 < fecha.DD && 0 < fecha.MM && 1578 < fecha.AAAA) {
+        // Tiene que ser un año de después del establecimiento del Calendario Gregoriano
+
+        // CÁLCULO DE SI ES UN AÑO BISIESTO
+        int FEBRERO;
+        if (fecha.AAAA % 4 == 0) {
+            if (fecha.AAAA % 100 == 0) {
+                if (fecha.AAAA % 400 == 0) {
+                    FEBRERO = 29;
+                } else {
+                    FEBRERO = 28;
+                }
+            } else {
+                FEBRERO = 29;
+            }
+        } else {
+            FEBRERO = 28;
+        }
+
+        // COMPROBACIÓN DE DÍAS DE CADA MES
+        switch (fecha.MM) {
+            // MESES CON 30 DÍAS (NOVIEMBRE, SEPTIEMBRE, JUNIO, ABRIL)
+            case 11:
+            case 6:
+            case 4:
+                if (0 < fecha.DD && fecha.DD <= 30) {
+                    return true;
+                } else { // TIENE UN DÍA NO VÁLIDO PARA ESE MES
+                    printf(FNOVALIDA" ("FERROR ERRORCODE1")", 30);
+                    return false;
+                }
+                // MESES CON 31 DÍAS (DICIEMBRE, OCTUBRE, AGOSTO, JULIO, MAYO, MARZO, ENERO)
+            case 12:
+            case 10:
+            case 8:
+            case 7:
+            case 5:
+            case 3:
+            case 1:
+                if (0 < fecha.DD && fecha.DD <= 31) {
+                    return true;
+                } else { // TIENE UN DÍA NO VÁLIDO PARA ESE MES
+                    printf(FNOVALIDA" ("FERROR ERRORCODE1")", 31);
+                    return false;
+                }
+                // FEBRERO Y LOS BISIESTOS
+            case 2:
+                if (0 < fecha.DD && fecha.DD <= FEBRERO) {
+                    return true;
+                } else { // FECHA NO VÁLIDA DD < DÍAS QUE TIENE FEBRERO ESE AÑO
+                    printf(FNOVALIDA" ("FERROR ERRORCODE1")", FEBRERO);
+                    return false;
+                }
+            default:
+                printf(FNOVALIDA" ("FERROR ERRORCODE2")");
+                return false;
+        }
+
+    } else {
+        printf(FNOVALIDA" ("FERROR ERRORCODE0")");
+        return false;
+    }
+
+}
 ```
 </details>
 
@@ -105,7 +461,50 @@ utilizando para ello la siguiente interface:
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_08.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define PETICION "Introduzca un més (1-12): "
+#define MENSAJE "El més siguiente es: %d"
+
+// Definición funciones
+int introducirMes();
+
+int MesSiguiente(int mes);
+
+// Main
+int main() {
+    int mes;
+
+    mes = introducirMes();
+    mes = MesSiguiente(mes);
+    printf(MENSAJE, mes + 1); // Correción del módulo 11
+
+    return 0;
+}
+
+// Declaración Funciones
+int introducirMes() {
+    int aux;
+    do {
+        printf(PETICION);
+        scanf("%d", &aux);
+    } while (aux < 0 || aux > 12);
+    aux -= 1; // El mes 1 pasa a ser el mes 0, y el més 12 el 11
+    return aux;
+}
+
+int MesSiguiente(int mes) {
+    int aux;
+    aux = (mes + 1) % 12; // Módulo 12, para que el més siguiente al 12 sea el 1
+    return aux;
+}
 ```
 </details>
 
@@ -118,7 +517,53 @@ siguiente mes, utilizando para ello la siguiente interface:
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_09.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define PETICION "Introduzca un més (1-12): "
+#define MENSAJE "El més siguiente es: %d"
+
+// Definiciones
+typedef int tMes;
+
+// Definición funciones
+tMes introducirMes();
+
+tMes MesSiguiente(tMes mes);
+
+// Main
+int main() {
+    tMes mes;
+
+    mes = introducirMes();
+    mes = MesSiguiente(mes);
+    printf(MENSAJE, mes + 1); // Correción del módulo 11
+
+    return 0;
+}
+
+// Declaración Funciones
+tMes introducirMes() {
+    tMes aux;
+    do {
+        printf(PETICION);
+        scanf("%d", &aux);
+    } while (aux < 0 || aux > 12);
+    aux -= 1; // El mes 1 pasa a ser el mes 0, y el més 12 el 11
+    return aux;
+}
+
+tMes MesSiguiente(tMes mes) {
+    tMes aux;
+    aux = (mes + 1) % 12; // Módulo 12, para que el més siguiente al 12 sea el 1
+    return aux;
+}
 ```
 </details>
 
@@ -130,7 +575,38 @@ funcionamiento, activando este último desde el programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_10.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define PETICION "Introduzca un número entero: "
+
+// Definición funciones
+char esPosioNega(int entero);
+
+// Main
+int main() {
+    int entero;
+
+    printf(PETICION);
+    scanf("%d",&entero);
+    printf("%c",esPosioNega(entero));
+
+    return 0;
+}
+
+// Declaración Funciones
+char esPosioNega(int entero){
+    char aux;
+    if (entero >= 0) aux = 'P';
+    else aux = 'N';
+    return aux;
+}
 ```
 </details>
 
@@ -142,7 +618,56 @@ funcionamiento, activando este último desde el programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_11.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void reverseNumeros(int limite_izq, int limite_der)
+{
+    int i;
+    for (i = limite_der; i >= limite_izq; i--)
+    {
+        printf("%d ", i);
+    }
+}
+
+void testScript()
+{
+    int limite_izq = rand() % 3;
+    int limite_der = (rand() % 100);
+    int i;
+    printf("%d\n",limite_izq);
+    printf("%d\n", limite_der);
+    for (; limite_der > limite_izq; limite_der--)
+    {
+        printf("%d ", limite_der);
+    }
+}
+
+int main()
+{
+    int test;
+    int limite_izq;
+    int limite_der;
+    printf("Quieres probar el funcionamiento del programa con numeros aleatorios? 1 = si; 0 = no ");
+    scanf("%d", &test);
+    if(test)
+    {
+        testScript();
+    }
+    else
+    {
+        printf("Dime el limite izquierdo del intervalo");
+        scanf("%d", &limite_izq);
+        printf("Dime el limite derecho del intervalo");
+        scanf("%d", &limite_der);
+    }
+    reverseNumeros(limite_izq, limite_der);
+}
 ```
 </details>
 
@@ -154,7 +679,39 @@ programa principal..
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_12.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define MENSAJE "Introduzca un entero para realizarle el factorial: "
+#define RESPUESTA "El factorial de %d! es: %d"
+
+// Definición funciones
+int factorialN(int N);
+
+// Main
+int main() {
+    int N, fact;
+
+    printf(MENSAJE);
+    scanf("%d", &N);
+    fact = factorialN(N);
+    printf(RESPUESTA, N, fact);
+
+    return 0;
+}
+
+// Declaración Funciones
+int factorialN(int N) {
+    int aux = 1;
+    for (int i = 1; i <= N; i++) aux = i * aux;
+    return aux;
+}
 ```
 </details>
 
@@ -166,7 +723,42 @@ valor de x, y activando esta última desde el programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_13.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+#include <math.h>
+
+// Constantes
+#define PREGUNTA "¿Cual es el valor de x? "
+#define RESPUESTA "Las solución al polinomio (3x^5 + 2x^4 – 5x^3 – x^2 + 7^x - 6) es: "
+
+// Definición funciones
+float solEcua5Grado(float x);
+
+// Main
+int main() {
+    float x, sol;
+
+    printf(PREGUNTA);
+    scanf("%f", &x);
+
+    sol = solEcua5Grado(x);
+
+    printf(RESPUESTA"%.2f", sol);
+
+    return 0;
+}
+
+// Declaración Funciones
+float solEcua5Grado(float x) {
+    float aux;
+    aux = 3 * powf(x, 5) + 2 * powf(x, 4) - 5 * powf(x, 3) - x * powf(x, 2) + 7 * x - 6;
+    return aux;
+}
 ```
 </details>
 
@@ -181,7 +773,75 @@ henrios y el valor de la frecuencia en hertzios para los cálculos de las reacta
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_14.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// PARA HACER ESTE EJERCICIO HACEN FALTA CONOCIMIENTOS EN ELECTRÓNICA BÁSICA!!!
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define PI 3.141592
+
+// Definición funciones
+void pedirDatosPorTeclado(float *inductancia, float *capacidad, float *frecuencia);
+
+float calcularXL(float inductancia, float frecuencia);
+
+float calcularXC(float capacidad, float frecuencia);
+
+float calcularImpedancia(float XL, float XC);
+
+void mostrarDatosPorPantalla(float XL, float XC, float Impedancia);
+
+
+// Main
+int main() {
+    float inductancia, capacidad, frecuencia;
+    pedirDatosPorTeclado(&inductancia, &capacidad, &frecuencia);
+
+    mostrarDatosPorPantalla(calcularXL(inductancia, frecuencia), calcularXC(capacidad, frecuencia),
+                            calcularImpedancia(calcularXL(inductancia, frecuencia), calcularXC(capacidad, frecuencia)));
+    return 0;
+}
+
+// Declaración Funciones
+void pedirDatosPorTeclado(float *inductancia, float *capacidad, float *frecuencia) {
+    printf("Ingrese el valor de la inductancia en henrios: ");
+    scanf("%f", inductancia);
+    printf("Ingrese el valor del condensador en faradios: ");
+    scanf("%f", capacidad);
+    printf("Ingrese el valor de la frecuencia en hertzios: ");
+    scanf("%f", frecuencia);
+}
+
+// Función para calcular la reactancia inductiva (XL)
+float calcularXL(float inductancia, float frecuencia) {
+    float aux = 2 * PI * frecuencia * inductancia;
+    return aux;
+}
+
+// Función para calcular la reactancia capacitiva (XC)
+float calcularXC(float capacidad, float frecuencia) {
+    float aux = 1 / (2 * PI * frecuencia * capacidad);
+    return aux;
+}
+
+// Función para calcular la impedancia (Z)
+float calcularImpedancia(float XL, float XC) {
+    float aux = XL - XC;
+    return aux;
+}
+
+void mostrarDatosPorPantalla(float XL, float XC, float impedancia) {
+    printf("\nSolución\n");
+    printf("Reactancia Inductiva (XL): %.2f ohmios\n", XL);
+    printf("Reactancia Capacitiva (XC): %.2f ohmios\n", XC);
+    printf("Impedancia (Z): %.2f ohmios\n", impedancia);
+}
 ```
 </details>
 
@@ -193,7 +853,7 @@ funcionamiento, activando este último desde el programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_15.c"
 ```
 </details>
 
@@ -204,7 +864,7 @@ implemente la función apropiada para probar su funcionamiento, activando este �
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_16.c"
 ```
 </details>
 
@@ -216,7 +876,7 @@ es una letra (mayúscula o minúscula).
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_17.c"
 ```
 </details>
 
@@ -228,7 +888,7 @@ mayúsculas y minúsculas) y dígitos que incluye.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_18.c"
 ```
 </details>
 
@@ -240,7 +900,7 @@ pulse enter) y la muestre por pantalla cambiada a mayúsculas.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_19.c"
 ```
 </details>
 
@@ -251,7 +911,7 @@ implemente la función apropiada para probar su funcionamiento, activando este �
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_20.c"
 ```
 </details>
 
@@ -263,7 +923,7 @@ principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_21.c"
 ```
 </details>
 
@@ -275,7 +935,7 @@ principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_22.c"
 ```
 </details>
 
@@ -302,7 +962,98 @@ los siguientes elementos:
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_23.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Constantes
+#define N 4 // Número de notas (exámenes) a valorar
+#define MAX 25 // Máximo de letras de un nombre y apellido
+#define FORMATO "%25[^\n]" // Formato para mostrar los nombres
+#define CLASE 4 // Número de alumnos por clase
+
+// Definiciones
+typedef struct {
+    char NombreApellidos[MAX + 1]; // Cadena para nombres y apellidos
+    int Notas[N]; // Vector para almacenar las Notas
+    float Media; // Media aritmética de las notas del alumno
+} tRegAlumno; // Registro para el nombre y notas de cada alumno
+
+typedef tRegAlumno tVAlumno[CLASE]; // Definición de tipo del vector de la estructura dada.
+
+typedef char puntuacion;
+
+typedef float Media;
+
+// Definición de Funciones
+tRegAlumno pedirNota(); // Pedir las notas de cada Alumno
+void introducirNotasAlumnos(tVAlumno v); // Función para Introducir Notas de los alumnos
+puntuacion calculaPuntuacion(Media m); // Recibiendo la nota media devolver la letra de la puntuación
+void mostrarMedias(const tVAlumno v); // Muestra los nombres, la nota y la nota media de cada alumno
+
+// Main Por si no era evidente
+int main() {
+    tVAlumno vAlumnos; // Vector en el que guardaremos notas y nombres de todos los alumnos de la clase
+
+    puts("Bienvenida profesor/a del grupo D. Vamos introducir esas notas.");
+    introducirNotasAlumnos(vAlumnos);
+    mostrarMedias(vAlumnos);
+
+    return 0;
+}
+
+// Declaración de funciones
+tRegAlumno pedirNota() {
+    tRegAlumno aux; // Vector Auxiliar
+    int sum = 0; // Sumatorio de Notas para la media
+
+    printf("Nombre y apellidos del alumno/a: ");
+    scanf(FORMATO, aux.NombreApellidos);
+
+    for (int i = 0; i < N; i++) {
+        do {
+            printf("Nota de la asignatura %2d: ", i + 1);
+            scanf("%d", &aux.Notas[i]);
+        } while (aux.Notas[i] < 0 || aux.Notas[i] > 100);
+        sum += aux.Notas[i];
+        while ((getchar()) != '\n'); // Limpio Buffer estilo profe Carmen
+    }
+
+    aux.Media = (float)(sum)/(float)N;
+
+    return aux;
+}
+
+void introducirNotasAlumnos(tVAlumno v) {
+    for (int i = 0; i < CLASE; i++) {
+        printf("Notas alumno/a Nº %2d:\n", i + 1);
+        v[i] = pedirNota();
+    }
+}
+
+puntuacion calculaPuntuacion(const Media m) {
+    puntuacion Letra;
+    if (m >= 70) {
+        if (m >= 80) {
+            if (m >= 90) Letra = 'A';
+            else Letra = 'B';
+        } else Letra = 'C';
+    } else {
+        if (m >= 60) Letra = 'D';
+        else Letra = 'E';
+    }
+    return Letra;
+}
+
+void mostrarMedias(const tVAlumno v) {
+    puts("\nMostrando medias...\n");
+    for (int i = 0; i < N; i++)
+        printf("%s\t\t\t%.2f\t\t%c\n", v[i].NombreApellidos, v[i].Media, calculaPuntuacion(v[i].Media));
+}
 ```
 </details>
 
@@ -315,7 +1066,7 @@ principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_24.c"
 ```
 </details>
 
@@ -327,7 +1078,7 @@ principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_25.c"
 ```
 </details>
 
@@ -339,7 +1090,7 @@ programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_26.c"
 ```
 </details>
 
@@ -350,7 +1101,7 @@ implemente la función apropiada para probar su funcionamiento, activando este �
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_27.c"
 ```
 </details>
 
@@ -375,7 +1126,40 @@ Introduzca el máximo multiplicador: 7
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_28.c"
+// SPDX-FileCopyrightText: 2023 Pablo Portas López <pablo.portas@udc.es>
+//
+// SPDX-License-Identifier: GPL-3.0-only
+
+// Librerías
+#include <stdio.h>
+
+// Definición funciones
+void introduceDatosPorTeclado(int *n, int *mmax);
+
+void imprimirTablaDeMultiplicar(int n, int mmax);
+
+// Main
+int main() {
+    int n, mmax;
+    introduceDatosPorTeclado(&n, &mmax);
+    imprimirTablaDeMultiplicar(n, mmax);
+    return 0;
+}
+
+// Declaración Funciones
+void introduceDatosPorTeclado(int *n, int *mmax) {
+    printf("Introduzca un número entero: ");
+    scanf("%d", n);
+    printf("Introduzca el máximo multiplicador: ");
+    scanf("%d", mmax);
+}
+
+void imprimirTablaDeMultiplicar(int n, int mmax) {
+    for (int i = 1; i <= mmax; i++) {
+        printf("\t%3d  x  %3d  =  %d\n", n, i, n * i);
+    }
+}
 ```
 </details>
 
@@ -387,7 +1171,7 @@ implemente otra función apropiada para probar su funcionamiento, activando esta
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_29.c"
 ```
 </details>
 
@@ -400,7 +1184,7 @@ activándola desde el programa principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_30.c"
 ```
 </details>
 
@@ -413,7 +1197,7 @@ principal.
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_31.c"
 ```
 </details>
 
@@ -424,7 +1208,7 @@ Además de la función, implemente otra función apropiada para probar su funcio
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_32.c"
 ```
 </details>
 
@@ -437,7 +1221,7 @@ para probar su funcionamiento, activando está último desde el programa princip
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_33.c"
 ```
 </details>
 
@@ -475,7 +1259,7 @@ El número 124 no es primo
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_34.c"
 ```
 </details>
 
@@ -507,7 +1291,7 @@ usuario pueda elegir entre cuatro opciones para realizar las siguientes operacio
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_35.c"
 ```
 </details>
 
@@ -526,7 +1310,7 @@ Implemente un programa en Lenguaje C para trabajar con números complejos. Las o
 
 <details>
 <summary>Mostrar Solución</summary>
-```c title="Ejercicio_01.c"
+```c title="Ejercicio_36.c"
 ```
 </details>
 
