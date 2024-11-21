@@ -36,6 +36,7 @@ export default defineConfig({
   integrations: [ starlight({
     title: 'Pásame el Código',
     description: 'Una web open source con apuntes y ejercicios resueltos de las diferentes asignaturas que componen el Grado de Enxeñería Informática da Universidade da Coruña.',
+    lastUpdated: true,
     defaultLocale: 'root',
     locales: {
       root: {
