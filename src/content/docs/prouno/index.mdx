@@ -8,6 +8,11 @@ tableOfContents: false
 
 import { LinkCard } from '@astrojs/starlight/components';
 
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/env.d.ts?raw';
+
+<Code code={importedCode} lang="ts" title="src/env.d.ts" />
+
 ## Apuntes
 
 <LinkCard
