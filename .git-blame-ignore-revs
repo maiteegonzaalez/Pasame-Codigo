@@ -1,0 +1,18 @@
+# .git-blame-ignore-revs
+#
+# Este archivo consiste en una lista de commits que deben ser ignorados
+# para los propósitos de `git blame`. Esto es útil para ignorar commits que 
+# solo cambiaron espacios en blanco, indentación o formato, pero no modificaron
+# el árbol de sintaxis subyacente.
+#
+# GitHub reconocerá automáticamente este archivo para las vistas de blame:
+#   https://docs.github.com/es/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view
+# Para usar este archivo localmente, ejecuta:
+#   git blame --ignore-revs-file .git-blame-ignore-revs
+# Para usar siempre este archivo por defecto, ejecuta:
+#   git config --local blame.ignoreRevsFile .git-blame-ignore-revs
+# Para deshabilitar esta funcionalidad, ejecuta:
+#   git config --local blame.ignoreRevsFile ""
+# Los comentarios son opcionales, pero pueden proporcionar contexto útil.
+
+
