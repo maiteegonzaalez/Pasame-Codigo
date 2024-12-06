@@ -13,7 +13,7 @@ import remarkMath from 'remark-math';
 import rehypeMathJax from 'rehype-mathjax';
 
 // Vercel Adapter
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/static';
 
 // Partytown Integration
 import partytown from '@astrojs/partytown'
@@ -29,9 +29,11 @@ const ogImageAlt = 'Una web open source con apuntes y ejercicios resueltos de la
 // https://astro.build/config
 export default defineConfig({
   site: 'https://pc.pablopl.dev',
-  output: 'server',
+  output: 'static',
   adapter: vercel({
-    webAnalytics: { enabled: true }
+    webAnalytics: { enabled: true },
+    imageService: true,
+    devImageService: 'sharp',
   }),
   integrations: [ starlight({
     title: 'Pásame el Código',
