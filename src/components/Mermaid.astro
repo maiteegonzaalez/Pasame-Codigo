@@ -14,20 +14,22 @@
 ---
 
 <script>
-    import mermaid from 'mermaid';
-    // Postpone mermaid initialization
-    mermaid.initialize({ startOnLoad: false });
+  import mermaid from "mermaid";
+  // Postpone mermaid initialization
+  mermaid.initialize({ startOnLoad: false });
 
-    function extractMermaidCode() {
+  function extractMermaidCode() {
     // Find all mermaid components
-    const mermaidElements = document.querySelectorAll("figure.expandable-diagram");
-    
-    mermaidElements.forEach((element) => {
-        // Find the `copy` button for each component
-        const copyButton = element.querySelector(".copy button");
+    const mermaidElements = document.querySelectorAll(
+      "figure.expandable-diagram",
+    );
 
-        // Ensure copyButton is an HTML element and has the dataset property
-        if (copyButton instanceof HTMLElement && copyButton.dataset.code) {
+    mermaidElements.forEach((element) => {
+      // Find the `copy` button for each component
+      const copyButton = element.querySelector(".copy button");
+
+      // Ensure copyButton is an HTML element and has the dataset property
+      if (copyButton instanceof HTMLElement && copyButton.dataset.code) {
         // Extract the code from the `data-code` attribute
         let code = copyButton.dataset.code;
 
@@ -44,35 +46,39 @@
 
         // Ensure the diagramContainer and its firstChild exist before replacing
         if (diagramContainer && diagramContainer.firstChild) {
-            diagramContainer.replaceChild(preElement, diagramContainer.firstChild);
+          diagramContainer.replaceChild(
+            preElement,
+            diagramContainer.firstChild,
+          );
         }
-        }
+      }
     });
-    }
-  
-    // Wait for the DOM to be fully loaded
-    document.addEventListener("DOMContentLoaded", async () => {
-      extractMermaidCode();
-      applyTheme();
+  }
+
+  // Wait for the DOM to be fully loaded
+  document.addEventListener("DOMContentLoaded", async () => {
+    extractMermaidCode();
+    applyTheme();
+  });
+
+  // Función para aplicar el tema de la página en los diagramas
+  const applyTheme = () => {
+    const theme =
+      document.documentElement.getAttribute("data-theme") === "dark"
+        ? "dark"
+        : "default";
+    mermaid.initialize({
+      theme,
+      startOnLoad: true,
     });
-
-    // Función para aplicar el tema de la página en los diagramas
-    const applyTheme = () => {
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
-      mermaid.initialize({
-        theme,
-        startOnLoad: true
-      });
-    }
-
+  };
 </script>
 
 <figure class="expandable-diagram">
-  
-    <div class="diagram-content">Cargando diagrama...</div>
-  
-    <details>
-      <summary>Código diagrama</summary>
-      <slot />
-    </details>
-  </figure>
+  <div class="diagram-content">Cargando diagrama...</div>
+
+  <details>
+    <summary>Código diagrama</summary>
+    <slot />
+  </details>
+</figure>

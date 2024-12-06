@@ -2,12 +2,11 @@
 
 <div align="center">
 
-
 [![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white)](https://vercel.com)
 [![MDX](https://img.shields.io/badge/MDX-1B1F24.svg?logo=mdx&logoColor=white)](https://mdxjs.com/)
-[![C](https://img.shields.io/badge/C-A8B9CC.svg?logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![C](https://img.shields.io/badge/C-A8B9CC.svg?logo=c&logoColor=white)](<https://en.wikipedia.org/wiki/C_(programming_language)>)
 [![OCaml](https://img.shields.io/badge/OCaml-EC6813.svg?logo=OCaml&logoColor=white)](https://ocaml.org/)
 [![Java](https://img.shields.io/badge/Java-007396.svg?logo=openjdk&logoColor=white)](https://www.oracle.com/es/java/)
 [![Web](https://img.shields.io/website?down_message=offline&up_message=online&label=Web&url=https%3A%2F%2Fpc.pablopl.dev)](https://pc.pablopl.dev)
@@ -36,7 +35,6 @@
 <div align="center">
 <a href="https://github.com/TeenBiscuits/Pasame-Codigo/pulse"><img src="https://repobeats.axiom.co/api/embed/a8e143aa3070146b890d78a36acf3f2547e686c1.svg"/></a>
 </div>
-
 
 ## Estrellitas 🌟
 
@@ -67,4 +65,3 @@ Puede encontrar una copia de todas las licencias pertinentes en la carpeta [LICE
 ```
 
 </div>
-

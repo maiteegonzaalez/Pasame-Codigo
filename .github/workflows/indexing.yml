@@ -1,4 +1,4 @@
-name: 🔎 Indexación en motores de búsqueda 
+name: 🔎 Indexación en motores de búsqueda
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
         uses: tj-actions/vercel-wait@v1
         with:
           project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          token:  ${{ secrets.VERCEL_TOKEN }}
+          token: ${{ secrets.VERCEL_TOKEN }}
           sha: ${{ github.sha }}
 
   indexnow:
@@ -36,7 +36,7 @@ jobs:
         # https://github.com/bojieyang/indexnow-action
         uses: bojieyang/indexnow-action@v2
         with:
-          sitemap-location: 'https://pc.pablopl.dev/sitemap-index.xml'
+          sitemap-location: "https://pc.pablopl.dev/sitemap-index.xml"
           key: ${{ secrets.INDEXNOW_KEY }}
           endpoint: www.bing.com
           failure-strategy: error
@@ -53,5 +53,5 @@ jobs:
         # https://github.com/robingenz/google-indexing-action
         uses: robingenz/action-google-indexing@v1.0.1
         with:
-          siteUrl: 'pc.pablopl.dev'
+          siteUrl: "pc.pablopl.dev"
           gcpServiceAccountKey: ${{ secrets.GCP_SA_KEY }}
