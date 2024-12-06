@@ -12,7 +12,18 @@ updates:
       interval: "weekly"
     labels:
       - "dependencies"
-    group:
-      name: "npm-dependencies"
-      patterns:
+    groups:
+      default:
+        applies-to: version-updates
+        patterns:
         - "*"
+        update-types:
+        - "minor"
+        - "patch"
+      minor-and-patch:
+        applies-to: security-updates
+        patterns:
+        - "*"
+        update-types:
+        - "patch"
+        - "minor"
