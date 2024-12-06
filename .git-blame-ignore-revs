@@ -15,4 +15,7 @@
 #   git config --local blame.ignoreRevsFile ""
 # Los comentarios son opcionales, pero pueden proporcionar contexto útil.
 
-
+# 2024-12-06 Automatic Format with Prettier
+# First Time Using Prettier 🚀
+# Pablo Portas López <81629707+TeenBiscuits@users.noreply.github.com>
+ebd7a13c9872136d41285650eae1e75f1ada8c8c
