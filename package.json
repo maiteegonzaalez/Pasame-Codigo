@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "format": "prettier . \"!**/*.mdx\" --write",
+    "format": "prettier . --write",
     "prebuild": "node scripts/indexnow.js",
     "build": "astro check && astro build",
     "preview": "astro preview",
